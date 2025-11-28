@@ -1937,11 +1937,11 @@
             if (distance === 0) {
                 return 0;
             } else if (distance <= 1500) {
-                return 5.00;
+                return 3.00;
             } else {
                 const additionalDistance = distance - 1500;
                 const additionalFee = Math.ceil(additionalDistance / 1000) * 1.00;
-                return 5.00 + additionalFee;
+                return 3.00 + additionalFee;
             }
         }
 
