@@ -1,2 +1,2 @@
-# fratelli.pizzaria.bh
+# Pizzaria.Fratelli
 Delivery App
