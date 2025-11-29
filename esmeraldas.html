@@ -1248,6 +1248,128 @@
             transform: translateY(-2px);
         }
 
+        /* Modal de WhatsApp */
+        .whatsapp-modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            z-index: 1000;
+            justify-content: center;
+            align-items: center;
+            backdrop-filter: blur(5px);
+        }
+        
+        .whatsapp-content {
+            background-color: white;
+            width: 90%;
+            max-width: 500px;
+            max-height: 90vh;
+            border-radius: 16px;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+            animation: modalAppear 0.3s ease;
+        }
+        
+        .whatsapp-header {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 24px;
+            background: linear-gradient(135deg, #25D366, #128C7E);
+            color: white;
+            position: relative;
+        }
+        
+        .whatsapp-close { 
+            position: absolute;
+            right: 24px;
+            background: none; 
+            border: none; 
+            color: white; 
+            font-size: 1.8rem; 
+            cursor: pointer; 
+            transition: transform 0.3s ease;
+            padding: 5px;
+        }
+        
+        .whatsapp-close:hover { 
+            transform: scale(1.2); 
+        }
+        
+        .whatsapp-body { 
+            padding: 24px; 
+            flex-grow: 1; 
+            overflow-y: auto; 
+            text-align: center;
+        }
+        
+        .whatsapp-icon {
+            font-size: 4rem;
+            color: #25D366;
+            margin-bottom: 20px;
+            animation: bounce 1s ease;
+        }
+        
+        .whatsapp-title {
+            font-size: 1.8rem;
+            font-weight: 700;
+            margin-bottom: 15px;
+            color: var(--cor-texto);
+        }
+        
+        .whatsapp-message {
+            font-size: 1.1rem;
+            margin-bottom: 25px;
+            color: #666;
+        }
+        
+        .whatsapp-instructions {
+            font-size: 1rem;
+            color: #666;
+            margin-bottom: 25px;
+            padding: 15px;
+            background-color: #f8f9fa;
+            border-radius: 8px;
+            text-align: left;
+        }
+        
+        .whatsapp-buttons {
+            display: flex;
+            gap: 15px;
+            margin-top: 25px;
+        }
+        
+        .whatsapp-btn {
+            flex: 1;
+            padding: 14px;
+            border: none;
+            border-radius: 10px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: var(--transicao);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+        }
+        
+        .btn-whatsapp {
+            background: linear-gradient(135deg, #25D366, #128C7E);
+            color: white;
+        }
+        
+        .btn-whatsapp:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(37, 211, 102, 0.4);
+        }
+
         /* Animações Aprimoradas */
         @keyframes bounce {
             0%, 20%, 60%, 100% { transform: translateY(0); }
@@ -1448,6 +1570,15 @@
             .address-full {
                 grid-column: 1;
             }
+            
+            .whatsapp-content { 
+                width: 95%; 
+                max-width: 400px; 
+            }
+            
+            .whatsapp-buttons { 
+                flex-direction: column; 
+            }
         }
 
         @media (max-width: 480px) {
@@ -1514,6 +1645,14 @@
             .cart-tab { 
                 padding: 8px 10px;
                 font-size: 0.7rem;
+            }
+            
+            .whatsapp-title { 
+                font-size: 1.5rem; 
+            }
+            
+            .whatsapp-message { 
+                font-size: 1rem; 
             }
         }
 
@@ -1794,6 +1933,42 @@
         </div>
     </div>
 
+    <!-- Modal de WhatsApp -->
+    <div class="whatsapp-modal" id="whatsapp-modal">
+        <div class="whatsapp-content">
+            <div class="whatsapp-header">
+                <h2>Enviar Pedido via WhatsApp</h2>
+                <button class="whatsapp-close" id="whatsapp-close">&times;</button>
+            </div>
+            <div class="whatsapp-body">
+                <div class="whatsapp-icon">
+                    <i class="fab fa-whatsapp"></i>
+                </div>
+                <h3 class="whatsapp-title">Seu pedido será enviado pelo WhatsApp</h3>
+                <p class="whatsapp-message">Clique no botão abaixo para enviar seu pedido diretamente para a Pizzaria Fratelli.</p>
+                
+                <div class="whatsapp-instructions">
+                    <p><strong>Instruções:</strong></p>
+                    <ol style="text-align: left; margin-left: 20px; margin-top: 10px;">
+                        <li>Clique no botão "Enviar para WhatsApp"</li>
+                        <li>Será aberto o aplicativo do WhatsApp</li>
+                        <li>Confirme o envio da mensagem</li>
+                        <li>Aguarde a confirmação da pizzaria</li>
+                    </ol>
+                </div>
+                
+                <div class="whatsapp-buttons">
+                    <button class="whatsapp-btn btn-secondary" id="whatsapp-cancel-btn">
+                        <i class="fas fa-times"></i> Cancelar
+                    </button>
+                    <button class="whatsapp-btn btn-whatsapp" id="whatsapp-send-btn">
+                        <i class="fab fa-whatsapp"></i> Enviar para WhatsApp
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <div class="notification" id="notification"></div>
 
     <script>
@@ -1802,6 +1977,7 @@
             API_URL: "https://script.google.com/macros/s/AKfycbzYD-WhC2DV6LIiqtWI2NjuU_30fuFu7-FduabZ0fBZz6a1zLsHBE7WzsvFhxiKAdB1dw/exec",
             DELIVERY_FEE: 5.00,
             MAX_ORDERS: 5,
+            WHATSAPP_NUMBER: "5531973141755",
             
             DISCOUNT_RULES: {
                 "pizzas_promo": {
@@ -1951,6 +2127,7 @@
         let currentCategory = 'todos';
         let orderTimers = new Map();
         let currentDeliveryFee = CONFIG.DELIVERY_FEE;
+        let currentOrderData = null;
 
         // Elementos DOM
         const elements = {
@@ -1989,7 +2166,11 @@
             ordersHistory: document.getElementById('orders-history'),
             cartTabs: document.querySelectorAll('.cart-tab'),
             tabContents: document.querySelectorAll('.cart-tab-content'),
-            streetAutocomplete: document.getElementById('street-autocomplete')
+            streetAutocomplete: document.getElementById('street-autocomplete'),
+            whatsappModal: document.getElementById('whatsapp-modal'),
+            whatsappClose: document.getElementById('whatsapp-close'),
+            whatsappCancelBtn: document.getElementById('whatsapp-cancel-btn'),
+            whatsappSendBtn: document.getElementById('whatsapp-send-btn')
         };
 
         // FUNÇÕES UTILITÁRIAS
@@ -2757,6 +2938,51 @@
             return items;
         }
 
+        // FUNÇÃO PARA FORMATAR MENSAGEM DO WHATSAPP
+        function formatWhatsAppMessage(orderData) {
+            let message = `🍕 *PEDIDO PIZZARIA FRATELLI* 🍕\n\n`;
+            message += `*Número do Pedido:* ${orderData.orderNumber}\n\n`;
+            message += `*Itens do Pedido:*\n`;
+            
+            orderData.items.forEach(item => {
+                message += `• ${item.Quantidade}x ${item.Produto} - ${formatCurrency(item.Valor * item.Quantidade)}\n`;
+            });
+            
+            message += `\n*Resumo do Pedido:*\n`;
+            message += `Subtotal: ${formatCurrency(orderData.subtotal)}\n`;
+            message += `Desconto: ${formatCurrency(orderData.discount)}\n`;
+            message += `Taxa de Entrega: ${formatCurrency(orderData.deliveryFee)}\n`;
+            message += `*Total: ${formatCurrency(orderData.total)}*\n\n`;
+            message += `*Forma de Pagamento:* ${orderData.paymentMethod}\n\n`;
+            message += `*Dados do Cliente:*\n`;
+            message += `Nome: ${orderData.customerName}\n`;
+            message += `Telefone: ${orderData.customerPhone}\n`;
+            message += `Endereço: ${orderData.customerAddress}\n`;
+            
+            return encodeURIComponent(message);
+        }
+
+        // FUNÇÃO PARA ABRIR WHATSAPP
+        function openWhatsApp(orderData) {
+            const message = formatWhatsAppMessage(orderData);
+            const whatsappUrl = `https://wa.me/${CONFIG.WHATSAPP_NUMBER}?text=${message}`;
+            window.open(whatsappUrl, '_blank');
+        }
+
+        // FUNÇÃO PARA MOSTRAR MODAL DO WHATSAPP
+        function showWhatsAppModal(orderData) {
+            currentOrderData = orderData;
+            elements.whatsappModal.style.display = 'flex';
+            document.body.style.overflow = 'hidden';
+        }
+
+        // FUNÇÃO PARA FECHAR MODAL DO WHATSAPP
+        function closeWhatsAppModal() {
+            elements.whatsappModal.style.display = 'none';
+            document.body.style.overflow = 'auto';
+            currentOrderData = null;
+        }
+
         async function finalizeOrder() {
             if (!validateCustomerData()) {
                 showNotification('Preencha todos os dados obrigatórios!', 'error');
@@ -2832,8 +3058,10 @@
                     // Salva no histórico local
                     saveOrderToHistory(orderData);
                     
-                    showOrderConfirmation(orderData);
+                    // Mostra modal do WhatsApp
+                    showWhatsAppModal(orderData);
                     
+                    // Limpa carrinho
                     cart = {};
                     closeCartModal();
                     updateCartUI();
@@ -3001,6 +3229,20 @@
             elements.trackOrderBtn.addEventListener('click', trackOrder);
             elements.orderConfirmation.addEventListener('click', (e) => {
                 if (e.target === elements.orderConfirmation) closeConfirmation();
+            });
+            
+            // Eventos para o modal do WhatsApp
+            elements.whatsappClose.addEventListener('click', closeWhatsAppModal);
+            elements.whatsappCancelBtn.addEventListener('click', closeWhatsAppModal);
+            elements.whatsappSendBtn.addEventListener('click', () => {
+                if (currentOrderData) {
+                    openWhatsApp(currentOrderData);
+                    closeWhatsAppModal();
+                    showNotification('Pedido enviado para o WhatsApp!', 'success');
+                }
+            });
+            elements.whatsappModal.addEventListener('click', (e) => {
+                if (e.target === elements.whatsappModal) closeWhatsAppModal();
             });
             
             const formFields = [
