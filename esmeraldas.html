@@ -1824,7 +1824,7 @@
                             
                             <div class="form-group">
                                 <label for="customer-neighborhood">Bairro *</label>
-                                <input type="text" id="customer-neighborhood" placeholder="Bairro" required readonly>
+                                <input type="text" id="customer-neighborhood" placeholder="Bairro" required>
                             </div>
                             
                             <div class="form-group">
@@ -1834,7 +1834,7 @@
                             
                             <div class="form-group address-full">
                                 <label for="customer-city">Cidade *</label>
-                                <input type="text" id="customer-city" placeholder="Cidade" required readonly>
+                                <input type="text" id="customer-city" placeholder="Cidade" required>
                             </div>
                         </div>
                         
@@ -2329,7 +2329,7 @@
             }
         }
 
-        // SISTEMA DE TAXA DE ENTREGA POR ENDEREÇO
+        // SISTEMA DE TAXA DE ENTREGA POR ENDEREÇO - CORRIGIDO
         function handleStreetInput() {
             const input = elements.customerStreet.value.toLowerCase();
             elements.streetAutocomplete.innerHTML = '';
@@ -2384,6 +2384,44 @@
             });
             
             elements.streetAutocomplete.style.display = 'block';
+        }
+
+        // NOVA FUNÇÃO: Preenche automaticamente bairro e cidade quando o usuário digita um endereço
+        function autoFillAddressFields() {
+            const streetValue = elements.customerStreet.value.trim();
+            
+            // Se o campo de rua estiver vazio, não faz nada
+            if (!streetValue) return;
+            
+            // Verifica se o endereço existe na lista
+            const addressMatch = deliveryRates.find(rate => 
+                rate.street.toLowerCase() === streetValue.toLowerCase()
+            );
+            
+            if (addressMatch) {
+                // Se encontrou na lista, preenche os campos
+                elements.customerNeighborhood.value = addressMatch.neighborhood;
+                elements.customerCity.value = addressMatch.city;
+                elements.customerZipcode.value = addressMatch.zipCode;
+                
+                // Atualiza a taxa de entrega
+                currentDeliveryFee = calculateDeliveryFee(addressMatch.distance);
+                updateCartTotals();
+                
+                showNotification(`Endereço encontrado! Taxa de entrega: ${formatCurrency(currentDeliveryFee)}`);
+            } else {
+                // Se não encontrou, preenche com valores padrão
+                elements.customerNeighborhood.value = "Centro"; // Valor padrão
+                elements.customerCity.value = "Esmeraldas/MG"; // Valor padrão
+                
+                // Define uma taxa padrão para endereços não listados
+                currentDeliveryFee = 5.00; // Taxa padrão
+                updateCartTotals();
+                
+                showNotification(`Endereço não encontrado na lista. Taxa de entrega padrão: ${formatCurrency(currentDeliveryFee)}`);
+            }
+            
+            checkCheckoutAvailability();
         }
 
         document.addEventListener('click', function(e) {
@@ -2907,6 +2945,10 @@
                             currentDeliveryFee = calculateDeliveryFee(match.distance);
                             updateCartTotals();
                             showNotification(`Taxa de entrega: ${formatCurrency(currentDeliveryFee)}`, 'info');
+                        } else {
+                            // Se não encontrou na lista, usa taxa padrão
+                            currentDeliveryFee = 5.00;
+                            updateCartTotals();
                         }
                     }
                     
@@ -3263,8 +3305,17 @@
                 });
             });
             
+            // Eventos para o campo de rua - CORRIGIDOS
             elements.customerStreet.addEventListener('input', handleStreetInput);
             elements.customerStreet.addEventListener('focus', handleStreetInput);
+            
+            // NOVO: Evento para preencher automaticamente bairro e cidade quando o usuário sai do campo
+            elements.customerStreet.addEventListener('blur', function() {
+                // Aguarda um pouco para dar tempo do autocomplete ser clicado
+                setTimeout(() => {
+                    autoFillAddressFields();
+                }, 200);
+            });
             
             loadCustomerData();
             loadProducts();
