@@ -828,11 +828,6 @@
             color: #856404;
         }
         
-        .status-delivered {
-            background-color: #d1edff;
-            color: #004085;
-        }
-        
         .status-completed {
             background-color: #d4edda;
             color: #155724;
@@ -1083,171 +1078,6 @@
             background: linear-gradient(135deg, #dc3545, #c82333); 
         }
 
-        /* Página de Confirmação de Pedido Aprimorada */
-        .order-confirmation {
-            display: none;
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-color: rgba(0, 0, 0, 0.5);
-            z-index: 1000;
-            justify-content: center;
-            align-items: center;
-            backdrop-filter: blur(5px);
-        }
-        
-        .confirmation-content {
-            background-color: white;
-            width: 90%;
-            max-width: 500px;
-            max-height: 90vh;
-            border-radius: 16px;
-            overflow: hidden;
-            display: flex;
-            flex-direction: column;
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
-            animation: modalAppear 0.3s ease;
-        }
-        
-        .confirmation-header {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            padding: 24px;
-            background: linear-gradient(135deg, var(--verde-italia), var(--vermelho-italia));
-            color: white;
-            position: relative;
-        }
-        
-        .confirmation-close { 
-            position: absolute;
-            right: 24px;
-            background: none; 
-            border: none; 
-            color: white; 
-            font-size: 1.8rem; 
-            cursor: pointer; 
-            transition: transform 0.3s ease;
-            padding: 5px;
-        }
-        
-        .confirmation-close:hover { 
-            transform: scale(1.2); 
-        }
-        
-        .confirmation-body { 
-            padding: 24px; 
-            flex-grow: 1; 
-            overflow-y: auto; 
-            text-align: center;
-        }
-        
-        .confirmation-icon {
-            font-size: 4rem;
-            color: var(--verde-italia);
-            margin-bottom: 20px;
-            animation: bounce 1s ease;
-        }
-        
-        .confirmation-title {
-            font-size: 1.8rem;
-            font-weight: 700;
-            margin-bottom: 15px;
-            color: var(--cor-texto);
-        }
-        
-        .confirmation-message {
-            font-size: 1.1rem;
-            margin-bottom: 25px;
-            color: #666;
-        }
-        
-        .confirmation-order-details {
-            background: linear-gradient(135deg, #f8f9fa, #ffffff);
-            padding: 20px;
-            border-radius: 12px;
-            margin-bottom: 25px;
-            border: 1px solid #e9ecef;
-        }
-        
-        .confirmation-order-detail {
-            display: flex;
-            justify-content: space-between;
-            margin-bottom: 12px;
-            padding-bottom: 12px;
-            border-bottom: 1px solid #e9ecef;
-        }
-        
-        .confirmation-order-detail:last-child {
-            margin-bottom: 0;
-            padding-bottom: 0;
-            border-bottom: none;
-        }
-        
-        .confirmation-order-detail-label {
-            font-weight: 600;
-            color: var(--cor-texto);
-        }
-        
-        .confirmation-order-detail-value {
-            color: var(--vermelho-italia);
-            font-weight: 600;
-        }
-        
-        .confirmation-instructions {
-            font-size: 1rem;
-            color: #666;
-            margin-bottom: 25px;
-            padding: 15px;
-            background-color: #f8f9fa;
-            border-radius: 8px;
-            text-align: center;
-        }
-        
-        .confirmation-buttons {
-            display: flex;
-            gap: 15px;
-            margin-top: 25px;
-        }
-        
-        .confirmation-btn {
-            flex: 1;
-            padding: 14px;
-            border: none;
-            border-radius: 10px;
-            font-size: 1rem;
-            font-weight: 600;
-            cursor: pointer;
-            transition: var(--transicao);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 8px;
-        }
-        
-        .btn-primary {
-            background: linear-gradient(135deg, var(--verde-italia), var(--vermelho-italia));
-            color: white;
-        }
-        
-        .btn-primary:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2);
-        }
-        
-        .btn-secondary {
-            background-color: #f8f9fa;
-            color: var(--cor-texto);
-            border: 2px solid #e9ecef;
-        }
-        
-        .btn-secondary:hover {
-            background-color: #e9ecef;
-            transform: translateY(-2px);
-        }
-
         /* Modal de WhatsApp */
         .whatsapp-modal {
             display: none;
@@ -1379,15 +1209,6 @@
 
         .cart-bounce {
             animation: bounce 0.6s ease;
-        }
-
-        @keyframes buttonSuccess {
-            0% { background-color: var(--verde-italia); }
-            100% { background-color: var(--verde-italia); }
-        }
-
-        .button-success {
-            animation: buttonSuccess 1.5s ease;
         }
 
         /* Estilos para o sistema de autocompletar */
@@ -1544,15 +1365,6 @@
                 font-size: 0.8rem;
             }
             
-            .confirmation-content { 
-                width: 95%; 
-                max-width: 400px; 
-            }
-            
-            .confirmation-buttons { 
-                flex-direction: column; 
-            }
-            
             .cart-tabs { 
                 flex-direction: row; 
                 font-size: 0.8rem;
@@ -1634,14 +1446,6 @@
                 font-size: 1.2rem;
             }
             
-            .confirmation-title { 
-                font-size: 1.5rem; 
-            }
-            
-            .confirmation-message { 
-                font-size: 1rem; 
-            }
-            
             .cart-tab { 
                 padding: 8px 10px;
                 font-size: 0.7rem;
@@ -1653,13 +1457,6 @@
             
             .whatsapp-message { 
                 font-size: 1rem; 
-            }
-        }
-
-        @media (max-width: 360px) {
-            .cart-tab { 
-                padding: 6px 8px;
-                font-size: 0.65rem;
             }
         }
     </style>
@@ -1888,51 +1685,6 @@
         </div>
     </div>
 
-    <!-- Página de Confirmação de Pedido -->
-    <div class="order-confirmation" id="order-confirmation">
-        <div class="confirmation-content">
-            <div class="confirmation-header">
-                <h2>Pedido Confirmado!</h2>
-                <button class="confirmation-close" id="confirmation-close">&times;</button>
-            </div>
-            <div class="confirmation-body">
-                <div class="confirmation-icon">
-                    <i class="fas fa-check-circle"></i>
-                </div>
-                <h3 class="confirmation-title">Obrigado pelo seu pedido!</h3>
-                <p class="confirmation-message">Seu pedido foi recebido e está sendo preparado com carinho.</p>
-                
-                <div class="confirmation-order-details">
-                    <div class="confirmation-order-detail">
-                        <span class="confirmation-order-detail-label">Número do Pedido:</span>
-                        <span class="confirmation-order-detail-value" id="confirmation-order-number">#00001</span>
-                    </div>
-                    <div class="confirmation-order-detail">
-                        <span class="confirmation-order-detail-label">Tempo Estimado:</span>
-                        <span class="confirmation-order-detail-value" id="confirmation-delivery-time">40-50 minutos</span>
-                    </div>
-                    <div class="confirmation-order-detail">
-                        <span class="confirmation-order-detail-label">Total:</span>
-                        <span class="confirmation-order-detail-value" id="confirmation-total">R$ 0,00</span>
-                    </div>
-                </div>
-                
-                <div class="confirmation-instructions">
-                    Clique "Acompanhar pedido" para ver o andamento de seu pedido ou em "Fazer Novo Pedido" para comprar denovo.
-                </div>
-                
-                <div class="confirmation-buttons">
-                    <button class="confirmation-btn btn-secondary" id="track-order-btn">
-                        <i class="fas fa-clock"></i> Acompanhar Pedido
-                    </button>
-                    <button class="confirmation-btn btn-primary" id="order-again-btn">
-                        <i class="fas fa-shopping-cart"></i> Fazer Novo Pedido
-                    </button>
-                </div>
-            </div>
-        </div>
-    </div>
-
     <!-- Modal de WhatsApp -->
     <div class="whatsapp-modal" id="whatsapp-modal">
         <div class="whatsapp-content">
@@ -1979,19 +1731,45 @@
             MAX_ORDERS: 5,
             WHATSAPP_NUMBER: "5531973141755",
             
+            // SISTEMA FLEXÍVEL DE DESCONTOS - AGORA COM CONTROLE INDIVIDUAL
             DISCOUNT_RULES: {
                 "pizzas_promo": {
+                    active: false, // ✅ AGORA PODE SER LIGADO/DESLIGADO
                     type: "category_based",
                     target: "pizzas",
                     trigger: "OR",
                     conditions: [
-                        { type: "quantity", value: 20 },
-                        { type: "value", value: 600.00 }
+                        { type: "quantity", value: 2 },
+                        { type: "value", value: 60.00 }
                     ],
-                    discount: { type: "percentage", value: 1 },
+                    discount: { type: "percentage", value: 10 }, // ✅ 10% AGORA
                     applyTo: "category",
                     name: "Promoção de Pizzas - 2 unid ou R$ 60",
                     priority: 1
+                },
+                "entrega_gratis": {
+                    active: false, // ✅ NOVA REGRA - ENTREGA GRÁTIS
+                    type: "total_based",
+                    target: "all",
+                    conditions: [
+                        { type: "value", value: 100.00 }
+                    ],
+                    discount: { type: "fixed", value: 5.00 }, // ✅ ENTREGA GRÁTIS
+                    applyTo: "delivery",
+                    name: "Entrega Grátis - Acima de R$ 100",
+                    priority: 2
+                },
+                "desconto_15": {
+                    active: false, // ✅ NOVA REGRA - DESCONTO 15%
+                    type: "total_based",
+                    target: "all",
+                    conditions: [
+                        { type: "value", value: 150.00 }
+                    ],
+                    discount: { type: "percentage", value: 15 },
+                    applyTo: "total",
+                    name: "Desconto 15% - Acima de R$ 150",
+                    priority: 3
                 }
             }
         };
@@ -2156,13 +1934,6 @@
             notification: document.getElementById('notification'),
             loadingMessage: document.getElementById('loading-message'),
             apiStatus: document.getElementById('api-status-text'),
-            orderConfirmation: document.getElementById('order-confirmation'),
-            confirmationClose: document.getElementById('confirmation-close'),
-            orderAgainBtn: document.getElementById('order-again-btn'),
-            trackOrderBtn: document.getElementById('track-order-btn'),
-            confirmationOrderNumber: document.getElementById('confirmation-order-number'),
-            confirmationDeliveryTime: document.getElementById('confirmation-delivery-time'),
-            confirmationTotal: document.getElementById('confirmation-total'),
             ordersHistory: document.getElementById('orders-history'),
             cartTabs: document.querySelectorAll('.cart-tab'),
             tabContents: document.querySelectorAll('.cart-tab-content'),
@@ -2235,19 +2006,37 @@
             );
         }
 
-        // SISTEMA DE DESCONTOS CORRIGIDO
+        // ✅ SISTEMA FLEXÍVEL DE DESCONTOS - AGORA COM CONTROLE INDIVIDUAL
         function calculateDiscounts(subtotal, cart) {
             const itemsByCategory = groupItemsByCategory(cart);
-            const activeRule = Object.values(CONFIG.DISCOUNT_RULES)[0];
+            let totalDiscount = 0;
+            let deliveryDiscount = 0;
             
-            if (isRuleApplicable(activeRule, itemsByCategory, subtotal)) {
-                const discount = calculateRuleDiscount(activeRule, itemsByCategory, subtotal);
-                console.log(`✅ Regra aplicada: ${activeRule.name} - Desconto: ${formatCurrency(discount)}`);
-                return discount;
+            // Aplica regras por ordem de prioridade
+            const activeRules = Object.values(CONFIG.DISCOUNT_RULES)
+                .filter(rule => rule.active)
+                .sort((a, b) => a.priority - b.priority);
+            
+            console.log(`🔍 ${activeRules.length} regra(s) de desconto ativa(s)`);
+            
+            for (const rule of activeRules) {
+                if (isRuleApplicable(rule, itemsByCategory, subtotal)) {
+                    const discount = calculateRuleDiscount(rule, itemsByCategory, subtotal);
+                    
+                    if (rule.applyTo === "delivery") {
+                        deliveryDiscount += discount;
+                        console.log(`🚚 Desconto de entrega aplicado: ${formatCurrency(discount)}`);
+                    } else {
+                        totalDiscount += discount;
+                        console.log(`💰 Desconto aplicado (${rule.name}): ${formatCurrency(discount)}`);
+                    }
+                }
             }
             
-            console.log('ℹ️ Nenhuma regra de desconto aplicada');
-            return 0;
+            return {
+                totalDiscount: totalDiscount,
+                deliveryDiscount: deliveryDiscount
+            };
         }
 
         function groupItemsByCategory(cart) {
@@ -2286,6 +2075,8 @@
             switch (rule.type) {
                 case "category_based":
                     return checkCategoryRule(rule, itemsByCategory);
+                case "total_based":
+                    return checkTotalRule(rule, subtotal);
                 default:
                     return false;
             }
@@ -2313,6 +2104,17 @@
             }
         }
 
+        function checkTotalRule(rule, subtotal) {
+            const conditionsMet = rule.conditions.map(condition => {
+                if (condition.type === "value") {
+                    return subtotal >= condition.value;
+                }
+                return false;
+            });
+            
+            return conditionsMet.every(Boolean);
+        }
+
         function calculateRuleDiscount(rule, itemsByCategory, subtotal) {
             const discountValue = rule.discount.value;
             
@@ -2321,15 +2123,38 @@
                     if (rule.type === "category_based") {
                         const category = rule.target.toLowerCase();
                         const categoryData = itemsByCategory[category];
-                        return categoryData ? (categoryData.totalValue * discountValue / 100) : 0;
+                        if (rule.discount.type === "percentage") {
+                            return categoryData ? (categoryData.totalValue * discountValue / 100) : 0;
+                        } else {
+                            return discountValue;
+                        }
                     }
                     return 0;
+                    
+                case "total":
+                    if (rule.discount.type === "percentage") {
+                        return subtotal * discountValue / 100;
+                    } else {
+                        return discountValue;
+                    }
+                    
+                case "delivery":
+                    return discountValue; // Valor fixo para desconto de entrega
+                    
                 default:
                     return 0;
             }
         }
 
-        // SISTEMA DE TAXA DE ENTREGA POR ENDEREÇO - CORRIGIDO
+        // ✅ FUNÇÃO REVISADA: calculateDeliveryTime
+        function calculateDeliveryTime(total) {
+            // Lógica corrigida: pedidos maiores levam MAIS tempo
+            if (total > 50) return 50;    // Pedidos grandes: 50-60 min
+            if (total > 30) return 45;    // Pedidos médios: 45-55 min  
+            return 40;                    // Pedidos pequenos: 40-50 min
+        }
+
+        // SISTEMA DE TAXA DE ENTREGA POR ENDEREÇO
         function handleStreetInput() {
             const input = elements.customerStreet.value.toLowerCase();
             elements.streetAutocomplete.innerHTML = '';
@@ -2352,7 +2177,6 @@
                 const item = document.createElement('div');
                 item.className = 'autocomplete-item';
                 
-                // Calcular a taxa usando a nova função
                 const deliveryFee = calculateDeliveryFee(rate.distance);
                 
                 item.innerHTML = `
@@ -2372,7 +2196,6 @@
                     elements.streetAutocomplete.style.display = 'none';
                     elements.customerNumber.focus();
                     
-                    // Usar a nova função para calcular a taxa
                     currentDeliveryFee = calculateDeliveryFee(rate.distance);
                     updateCartTotals();
                     checkCheckoutAvailability();
@@ -2386,36 +2209,29 @@
             elements.streetAutocomplete.style.display = 'block';
         }
 
-        // NOVA FUNÇÃO: Preenche automaticamente bairro e cidade quando o usuário digita um endereço
         function autoFillAddressFields() {
             const streetValue = elements.customerStreet.value.trim();
             
-            // Se o campo de rua estiver vazio, não faz nada
             if (!streetValue) return;
             
-            // Verifica se o endereço existe na lista
             const addressMatch = deliveryRates.find(rate => 
                 rate.street.toLowerCase() === streetValue.toLowerCase()
             );
             
             if (addressMatch) {
-                // Se encontrou na lista, preenche os campos
                 elements.customerNeighborhood.value = addressMatch.neighborhood;
                 elements.customerCity.value = addressMatch.city;
                 elements.customerZipcode.value = addressMatch.zipCode;
                 
-                // Atualiza a taxa de entrega
                 currentDeliveryFee = calculateDeliveryFee(addressMatch.distance);
                 updateCartTotals();
                 
                 showNotification(`Endereço encontrado! Taxa de entrega: ${formatCurrency(currentDeliveryFee)}`);
             } else {
-                // Se não encontrou, preenche com valores padrão
-                elements.customerNeighborhood.value = "Centro"; // Valor padrão
-                elements.customerCity.value = "Esmeraldas/MG"; // Valor padrão
+                elements.customerNeighborhood.value = "Centro";
+                elements.customerCity.value = "Esmeraldas/MG";
                 
-                // Define uma taxa padrão para endereços não listados
-                currentDeliveryFee = 5.00; // Taxa padrão
+                currentDeliveryFee = 5.00;
                 updateCartTotals();
                 
                 showNotification(`Endereço não encontrado na lista. Taxa de entrega padrão: ${formatCurrency(currentDeliveryFee)}`);
@@ -2438,7 +2254,7 @@
             });
         }
 
-        // SISTEMA DE HISTÓRICO DE PEDIDOS CORRIGIDO
+        // SISTEMA DE HISTÓRICO DE PEDIDOS
         function saveOrderToHistory(orderData) {
             try {
                 const ordersHistory = getOrdersHistory();
@@ -2483,12 +2299,6 @@
             }
         }
 
-        function calculateDeliveryTime(total) {
-            if (total > 50) return 35;
-            if (total > 30) return 40;
-            return 45;
-        }
-
         function getOrderStatus(deliveryTime, orderTimestamp) {
             const orderTime = new Date(orderTimestamp);
             const deliveryTimeMs = orderTime.getTime() + (deliveryTime * 60000);
@@ -2510,7 +2320,7 @@
             return Math.floor(remainingMs / 1000);
         }
 
-        // FUNÇÕES DE INTERFACE - HISTÓRICO DE PEDIDOS CORRIGIDAS
+        // FUNÇÕES DE INTERFACE - HISTÓRICO DE PEDIDOS
         function renderOrdersHistory() {
             const ordersHistory = getOrdersHistory();
             const ordersContainer = elements.ordersHistory;
@@ -2603,13 +2413,11 @@
         function startAllOrderTimers() {
             const ordersHistory = getOrdersHistory();
             
-            // Limpar todos os timers existentes
             orderTimers.forEach((timer, orderNumber) => {
                 clearInterval(timer);
                 orderTimers.delete(orderNumber);
             });
             
-            // Iniciar timers apenas para pedidos pendentes
             ordersHistory.forEach(order => {
                 if (order.status === 'pending') {
                     startOrderTimer(order.orderNumber, order.estimatedDeliveryMinutes, order.orderTimestamp);
@@ -2618,7 +2426,6 @@
         }
 
         function startOrderTimer(orderNumber, deliveryMinutes, orderTimestamp) {
-            // Se já existe um timer para este pedido, não criar outro
             if (orderTimers.has(orderNumber)) {
                 return;
             }
@@ -2694,7 +2501,6 @@
                     updateApiStatus(true, 'Produtos carregados');
                     showNotification(`✅ ${allProducts.length} produtos carregados!`, 'success');
                     
-                    // Verificar se há pedidos pendentes e abrir o histórico automaticamente
                     if (hasPendingOrders()) {
                         setTimeout(() => {
                             showCartModal();
@@ -2774,7 +2580,7 @@
             
             const originalText = button.innerHTML;
             button.innerHTML = '<i class="fas fa-check"></i> Adicionado!';
-            button.classList.add('button-success');
+            button.disabled = true;
             
             if (cart[productId]) {
                 cart[productId]++;
@@ -2788,7 +2594,7 @@
             
             setTimeout(() => {
                 button.innerHTML = originalText;
-                button.classList.remove('button-success');
+                button.disabled = false;
             }, 1500);
         }
 
@@ -2865,12 +2671,13 @@
                 }
             }
 
-            const discount = calculateDiscounts(subtotal, cart);
-            const total = subtotal - discount + currentDeliveryFee;
+            const discounts = calculateDiscounts(subtotal, cart);
+            const finalDeliveryFee = Math.max(0, currentDeliveryFee - discounts.deliveryDiscount);
+            const total = subtotal - discounts.totalDiscount + finalDeliveryFee;
 
             elements.subtotal.textContent = formatCurrency(subtotal);
-            elements.discount.textContent = formatCurrency(discount);
-            elements.deliveryFee.textContent = formatCurrency(currentDeliveryFee);
+            elements.discount.textContent = formatCurrency(discounts.totalDiscount);
+            elements.deliveryFee.textContent = formatCurrency(finalDeliveryFee);
             elements.total.textContent = formatCurrency(total);
             elements.cartCount.textContent = totalItems;
             
@@ -2886,7 +2693,7 @@
                            elements.customerNeighborhood.value &&
                            elements.customerCity.value &&
                            elements.paymentMethod.value;
-            // O CEP é o único campo que pode ficar em branco, então não verificamos ele
+
             elements.checkoutBtn.disabled = !(hasItems && hasData);
         }
 
@@ -2903,7 +2710,6 @@
                 paymentMethod: elements.paymentMethod.value
             };
             
-            // Verificamos todos os campos exceto o CEP (que é opcional)
             const requiredFields = ['name', 'phone', 'street', 'number', 'neighborhood', 'city', 'paymentMethod'];
             const isValid = requiredFields.every(field => 
                 data[field] !== null && data[field] !== undefined && data[field] !== ''
@@ -2946,7 +2752,6 @@
                             updateCartTotals();
                             showNotification(`Taxa de entrega: ${formatCurrency(currentDeliveryFee)}`, 'info');
                         } else {
-                            // Se não encontrou na lista, usa taxa padrão
                             currentDeliveryFee = 5.00;
                             updateCartTotals();
                         }
@@ -2960,7 +2765,6 @@
             }
         }
 
-        // FUNÇÃO ATUALIZADA: getOrderItems() - AGORA INCLUI ID DO PRODUTO
         function getOrderItems() {
             const items = [];
             for (const productId in cart) {
@@ -2968,7 +2772,7 @@
                 const quantity = cart[productId];
                 if (product && quantity > 0) {
                     items.push({
-                        Id: product.id, // ✅ AGORA INCLUI O ID DO PRODUTO
+                        Id: product.id,
                         Produto: product.produto,
                         Quantidade: quantity,
                         Valor: parseFloat(product.valor.toFixed(2)),
@@ -2980,7 +2784,6 @@
             return items;
         }
 
-        // FUNÇÃO PARA FORMATAR MENSAGEM DO WHATSAPP
         function formatWhatsAppMessage(orderData) {
             let message = `🍕 *PEDIDO PIZZARIA FRATELLI* 🍕\n\n`;
             message += `*Número do Pedido:* ${orderData.orderNumber}\n\n`;
@@ -3004,21 +2807,18 @@
             return encodeURIComponent(message);
         }
 
-        // FUNÇÃO PARA ABRIR WHATSAPP
         function openWhatsApp(orderData) {
             const message = formatWhatsAppMessage(orderData);
             const whatsappUrl = `https://wa.me/${CONFIG.WHATSAPP_NUMBER}?text=${message}`;
             window.open(whatsappUrl, '_blank');
         }
 
-        // FUNÇÃO PARA MOSTRAR MODAL DO WHATSAPP
         function showWhatsAppModal(orderData) {
             currentOrderData = orderData;
             elements.whatsappModal.style.display = 'flex';
             document.body.style.overflow = 'hidden';
         }
 
-        // FUNÇÃO PARA FECHAR MODAL DO WHATSAPP
         function closeWhatsAppModal() {
             elements.whatsappModal.style.display = 'none';
             document.body.style.overflow = 'auto';
@@ -3062,7 +2862,6 @@
                 
                 console.log('📤 Enviando dados para API...');
                 
-                // DADOS PARA A API NO FORMATO CORRETO
                 const apiOrderData = {
                     Telefone: elements.customerPhone.value,
                     Nome: elements.customerName.value,
@@ -3097,13 +2896,10 @@
                 if (result.success) {
                     showNotification('Pedido realizado com sucesso!', 'success');
                     
-                    // Salva no histórico local
                     saveOrderToHistory(orderData);
                     
-                    // Mostra modal do WhatsApp
                     showWhatsAppModal(orderData);
                     
-                    // Limpa carrinho
                     cart = {};
                     closeCartModal();
                     updateCartUI();
@@ -3155,10 +2951,16 @@
                 }
             }
 
-            const discount = calculateDiscounts(subtotal, cart);
-            const total = subtotal - discount + currentDeliveryFee;
+            const discounts = calculateDiscounts(subtotal, cart);
+            const finalDeliveryFee = Math.max(0, currentDeliveryFee - discounts.deliveryDiscount);
+            const total = subtotal - discounts.totalDiscount + finalDeliveryFee;
 
-            return { subtotal, discount, total, costTotal };
+            return { 
+                subtotal, 
+                discount: discounts.totalDiscount, 
+                total, 
+                costTotal 
+            };
         }
 
         function validateCustomerData() {
@@ -3172,8 +2974,6 @@
                 elements.paymentMethod
             ];
             
-            // O CEP é opcional, então não verificamos ele
-            
             for (let field of requiredFields) {
                 if (!field.value.trim()) {
                     field.focus();
@@ -3182,36 +2982,6 @@
             }
             
             return true;
-        }
-
-        // FUNÇÕES DA PÁGINA DE CONFIRMAÇÃO CORRIGIDAS
-        function showOrderConfirmation(orderData) {
-            const deliveryMinutes = orderData.estimatedDeliveryMinutes;
-            const deliveryTime = `${deliveryMinutes}-${deliveryMinutes + 10} minutos`;
-            
-            elements.confirmationOrderNumber.textContent = `#${orderData.orderNumber}`;
-            elements.confirmationDeliveryTime.textContent = deliveryTime;
-            elements.confirmationTotal.textContent = formatCurrency(orderData.total);
-            
-            elements.orderConfirmation.style.display = 'flex';
-            document.body.style.overflow = 'hidden';
-        }
-
-        function closeConfirmation() {
-            elements.orderConfirmation.style.display = 'none';
-            document.body.style.overflow = 'auto';
-        }
-
-        function orderAgain() {
-            closeConfirmation();
-            showNotification('Adicione itens ao carrinho para fazer um novo pedido');
-        }
-
-        function trackOrder() {
-            closeConfirmation();
-            showCartModal();
-            switchTab('history');
-            showNotification('Acompanhe seus pedidos no histórico', 'info');
         }
 
         // SISTEMA DE ABAS
@@ -3266,13 +3036,6 @@
                 tab.addEventListener('click', () => switchTab(tab.dataset.tab));
             });
             
-            elements.confirmationClose.addEventListener('click', closeConfirmation);
-            elements.orderAgainBtn.addEventListener('click', orderAgain);
-            elements.trackOrderBtn.addEventListener('click', trackOrder);
-            elements.orderConfirmation.addEventListener('click', (e) => {
-                if (e.target === elements.orderConfirmation) closeConfirmation();
-            });
-            
             // Eventos para o modal do WhatsApp
             elements.whatsappClose.addEventListener('click', closeWhatsAppModal);
             elements.whatsappCancelBtn.addEventListener('click', closeWhatsAppModal);
@@ -3305,13 +3068,10 @@
                 });
             });
             
-            // Eventos para o campo de rua - CORRIGIDOS
             elements.customerStreet.addEventListener('input', handleStreetInput);
             elements.customerStreet.addEventListener('focus', handleStreetInput);
             
-            // NOVO: Evento para preencher automaticamente bairro e cidade quando o usuário sai do campo
             elements.customerStreet.addEventListener('blur', function() {
-                // Aguarda um pouco para dar tempo do autocomplete ser clicado
                 setTimeout(() => {
                     autoFillAddressFields();
                 }, 200);
@@ -3323,6 +3083,22 @@
             renderOrdersHistory();
             
             setTimeout(scrollToTop, 500);
+
+            // ✅ CONSOLE CONTROLS - PARA TESTAR REGRAS DE DESCONTO
+            console.log(`
+🎯 CONTROLES DE DESCONTO DISPONÍVEIS:
+
+// Ativar/Desativar regras:
+CONFIG.DISCOUNT_RULES.pizzas_promo.active = true;      // 10% em 2 pizzas ou R$60
+CONFIG.DISCOUNT_RULES.entrega_gratis.active = true;    // Entrega grátis acima de R$100  
+CONFIG.DISCOUNT_RULES.desconto_15.active = true;       // 15% acima de R$150
+
+// Ver regras ativas:
+console.log('Regras ativas:', Object.values(CONFIG.DISCOUNT_RULES).filter(r => r.active));
+
+// Atualizar carrinho após mudança:
+updateCartTotals();
+            `);
         }
 
         document.addEventListener('DOMContentLoaded', init);
