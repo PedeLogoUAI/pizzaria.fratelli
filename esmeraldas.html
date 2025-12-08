@@ -6,6 +6,7 @@
     <title>Pizzaria Fratelli - Pizza Napolitana Artesanal</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
+        /* ESTILOS EXISTENTES - MANTIDOS */
         :root {
             --verde-italia: #008C45;
             --branco-italia: #F4F5F0;
@@ -40,7 +41,6 @@
             padding: 0 15px; 
         }
         
-        /* Header Modernizado */
         header {
             background: linear-gradient(135deg, var(--verde-italia) 0%, var(--branco-italia) 50%, var(--vermelho-italia) 100%);
             padding: 10px 0;
@@ -131,7 +131,6 @@
             color: #FFD700;
         }
 
-        /* Hero Section Aprimorada */
         .hero {
             text-align: center;
             padding: 80px 0 60px;
@@ -238,7 +237,39 @@
             display: inline-block;
         }
 
-        /* Categorias Aprimoradas */
+        /* NOVO: Feed de Promoções */
+        .promotions-feed {
+            margin: 40px 0;
+            text-align: center;
+        }
+        
+        .promotions-feed h2 {
+            font-size: 2rem;
+            color: var(--vermelho-italia);
+            margin-bottom: 25px;
+            font-weight: 700;
+            position: relative;
+            display: inline-block;
+        }
+        
+        .promotions-feed h2::after {
+            content: '';
+            position: absolute;
+            bottom: -8px;
+            left: 10%;
+            width: 80%;
+            height: 3px;
+            background: linear-gradient(90deg, var(--verde-italia), var(--vermelho-italia));
+            border-radius: 2px;
+        }
+        
+        .promotions-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 25px;
+            margin-bottom: 40px;
+        }
+
         .category-filters {
             display: flex;
             justify-content: center;
@@ -293,7 +324,24 @@
             box-shadow: 0 6px 15px rgba(0, 140, 69, 0.3);
         }
 
-        /* Grid de Produtos Modernizado */
+        /* NOVO: Mensagem de seleção de categoria */
+        .category-message {
+            text-align: center;
+            padding: 40px 20px;
+            font-size: 1.2rem;
+            color: var(--cor-texto);
+            background: linear-gradient(135deg, rgba(0, 140, 69, 0.05) 0%, rgba(244, 245, 240, 0.1) 100%);
+            border-radius: var(--borda-arredondada);
+            margin: 30px 0;
+            border: 2px dashed var(--verde-italia);
+            display: none;
+        }
+        
+        .category-message.show {
+            display: block;
+            animation: fadeIn 0.5s ease;
+        }
+        
         .products-grid {
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
@@ -338,24 +386,24 @@
         .badge-vegano { background-color: #4CAF50; }
         
         .product-image-container {
-    width: 100%;
-    height: 200px; /* Mantém altura fixa */
-    overflow: hidden;
-    position: relative;
-    background-color: #f8f9fa; /* Fundo neutro para as "barras" */
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
+            width: 100%;
+            height: 200px;
+            overflow: hidden;
+            position: relative;
+            background-color: #f8f9fa;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
         
         .product-image { 
-    max-width: 100%;
-    max-height: 100%;
-    width: auto;
-    height: auto;
-    object-fit: contain; /* Mostra imagem inteira */
-}
+            max-width: 100%;
+            max-height: 100%;
+            width: auto;
+            height: auto;
+            object-fit: contain;
+            transition: transform 0.5s ease;
+        }
         
         .product-card:hover .product-image { 
             transform: scale(1.08); 
@@ -423,6 +471,18 @@
             transform: none;
             box-shadow: none;
         }
+        
+        /* NOVO: Estilo para cards de promoção */
+        .promo-info {
+            padding: 12px;
+            background: linear-gradient(135deg, #fff9e6, #fff);
+            border-top: 1px solid #ffeaa7;
+            font-size: 0.9rem;
+            color: #d63031;
+            font-weight: 500;
+            text-align: center;
+            margin-top: 10px;
+        }
 
         .loading, .error-message { 
             text-align: center; 
@@ -434,7 +494,6 @@
             color: var(--vermelho-italia); 
         }
 
-        /* Footer Aprimorado */
         footer {
             background: linear-gradient(135deg, var(--verde-italia) 0%, var(--branco-italia) 50%, var(--vermelho-italia) 100%);
             color: #333;
@@ -531,7 +590,6 @@
             font-size: 0.9rem;
         }
 
-        /* Carrinho Flutuante Aprimorado */
         .floating-cart {
             position: fixed;
             top: 50%;
@@ -575,7 +633,6 @@
             border: 2px solid var(--vermelho-italia);
         }
 
-        /* Modal do Carrinho Aprimorado */
         .cart-modal {
             display: none;
             position: fixed;
@@ -781,7 +838,6 @@
             transform: scale(1.1); 
         }
 
-        /* Histórico de Pedidos Aprimorado */
         .orders-history {
             max-height: 400px;
             overflow-y: auto;
@@ -920,7 +976,6 @@
             font-weight: 600;
         }
 
-        /* Formulário Modernizado */
         .customer-data { 
             background: linear-gradient(135deg, #f8f9fa, #ffffff);
             padding: 24px;
@@ -1078,7 +1133,6 @@
             background: linear-gradient(135deg, #dc3545, #c82333); 
         }
 
-        /* Modal de WhatsApp */
         .whatsapp-modal {
             display: none;
             position: fixed;
@@ -1200,7 +1254,6 @@
             box-shadow: 0 6px 20px rgba(37, 211, 102, 0.4);
         }
 
-        /* Animações Aprimoradas */
         @keyframes bounce {
             0%, 20%, 60%, 100% { transform: translateY(0); }
             40% { transform: translateY(-8px); }
@@ -1211,7 +1264,6 @@
             animation: bounce 0.6s ease;
         }
 
-        /* Estilos para o sistema de autocompletar */
         .autocomplete-container {
             position: relative;
         }
@@ -1247,7 +1299,6 @@
             border-bottom: none;
         }
 
-        /* Layout de endereço com campos separados */
         .address-fields {
             display: grid;
             grid-template-columns: 1fr 1fr;
@@ -1258,7 +1309,6 @@
             grid-column: 1 / -1;
         }
 
-        /* Scrollbar personalizada */
         ::-webkit-scrollbar {
             width: 8px;
         }
@@ -1277,7 +1327,6 @@
             background: var(--vermelho-italia);
         }
 
-        /* Media Queries Aprimoradas */
         @media (max-width: 768px) {
             .products-grid { 
                 grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); 
@@ -1349,6 +1398,11 @@
             .category-btn {
                 padding: 6px 12px;
                 font-size: 0.8rem;
+            }
+            
+            .promotions-grid {
+                grid-template-columns: 1fr;
+                gap: 20px;
             }
             
             .floating-cart {
@@ -1516,15 +1570,30 @@
             </div>
         </section>
 
+        <!-- NOVA SEÇÃO: Feed de Promoções -->
+        <section class="promotions-feed">
+            <div class="container">
+                <h2>🔥 Combos Promocionais</h2>
+                <div class="promotions-grid" id="promotions-grid">
+                    <!-- Cards de promoção serão renderizados aqui -->
+                </div>
+            </div>
+        </section>
+
         <section class="container">
             <div class="category-filters" id="category-filters">
-                <button class="category-btn active" data-category="todos">Todos</button>
+                <button class="category-btn" data-category="todos">Todos</button>
+                <!-- Categorias serão renderizadas aqui -->
+            </div>
+
+            <!-- NOVO: Mensagem de seleção de categoria -->
+            <div class="category-message" id="category-message">
+                <i class="fas fa-info-circle" style="font-size: 2rem; color: var(--verde-italia); margin-bottom: 15px;"></i>
+                <p>Para ver os produtos clique em uma das categorias acima.</p>
             </div>
 
             <div class="products-grid" id="products-grid">
-                <div class="loading" id="loading-message">
-                    <i class="fas fa-spinner fa-spin"></i> Carregando cardápio...
-                </div>
+                <!-- Produtos serão renderizados aqui -->
             </div>
         </section>
     </main>
@@ -1545,7 +1614,7 @@
                         <a href="https://wa.me/5531973141755" target="_blank">
                             <i class="fab fa-whatsapp"></i>
                         </a>
-                        <a href="https://instagram.com/pizzariafratelliesmeraldas target="_blank">
+                        <a href="https://instagram.com/pizzariafratelliesmeraldas" target="_blank">
                             <i class="fab fa-instagram"></i>
                         </a>
                         <a href="https://tiktok.com/@fratelli.17" target="_blank">
@@ -1724,17 +1793,56 @@
     <div class="notification" id="notification"></div>
 
     <script>
-        // CONFIGURAÇÃO
+        /**
+         * Sistema de Pizzaria Fratelli - Refatorado
+         * @author Engenheiro de Software Full-Stack
+         * @version 4.0 - Com feed de promoções e seleção de categoria obrigatória
+         */
+
+        // ==============================
+        // CONFIGURAÇÃO DO SISTEMA
+        // ==============================
         const CONFIG = {
             API_URL: "https://script.google.com/macros/s/AKfycbzYD-WhC2DV6LIiqtWI2NjuU_30fuFu7-FduabZ0fBZz6a1zLsHBE7WzsvFhxiKAdB1dw/exec",
             DELIVERY_FEE: 5.00,
             MAX_ORDERS: 5,
             WHATSAPP_NUMBER: "5531973141755",
             
-            // SISTEMA FLEXÍVEL DE DESCONTOS - AGORA COM CONTROLE INDIVIDUAL
+            /**
+             * SISTEMA DE DESCONTOS
+             * ✅ Nova regra: Pizza + Refrigerante - Tudo acima de R$ 50 vira desconto!
+             */
             DISCOUNT_RULES: {
+                "pizza_refrigerante_combo": {
+                    active: true, // ✅ ATIVADA
+                    type: "combo_based",
+                    target: ["pizzas", "bebidas"],
+                    conditions: [
+                        { 
+                            type: "category_quantity", 
+                            category: "pizzas", 
+                            value: 1 
+                        },
+                        { 
+                            type: "category_quantity", 
+                            category: "bebidas", 
+                            value: 1 
+                        },
+                        { 
+                            type: "combo_value", 
+                            value: 50.00 
+                        }
+                    ],
+                    discount: { 
+                        type: "excess_percentage", 
+                        value: 100 // ✅ 100% = TUDO que passar de R$ 50 vira desconto!
+                    },
+                    applyTo: "combo",
+                    name: "🔥 COMBO: Pizza + Refrigerante por R$ 50!",
+                    priority: 1
+                },
                 "pizzas_promo": {
-                    active: false, // ✅ AGORA PODE SER LIGADO/DESLIGADO
+                    active: false,
                     type: "category_based",
                     target: "pizzas",
                     trigger: "OR",
@@ -1742,172 +1850,149 @@
                         { type: "quantity", value: 2 },
                         { type: "value", value: 60.00 }
                     ],
-                    discount: { type: "percentage", value: 10 }, // ✅ 10% AGORA
+                    discount: { type: "percentage", value: 10 },
                     applyTo: "category",
                     name: "Promoção de Pizzas - 2 unid ou R$ 60",
-                    priority: 1
-                },
-                "entrega_gratis": {
-                    active: false, // ✅ NOVA REGRA - ENTREGA GRÁTIS
-                    type: "total_based",
-                    target: "all",
-                    conditions: [
-                        { type: "value", value: 100.00 }
-                    ],
-                    discount: { type: "fixed", value: 5.00 }, // ✅ ENTREGA GRÁTIS
-                    applyTo: "delivery",
-                    name: "Entrega Grátis - Acima de R$ 100",
                     priority: 2
-                },
-                "desconto_15": {
-                    active: false, // ✅ NOVA REGRA - DESCONTO 15%
-                    type: "total_based",
-                    target: "all",
-                    conditions: [
-                        { type: "value", value: 150.00 }
-                    ],
-                    discount: { type: "percentage", value: 15 },
-                    applyTo: "total",
-                    name: "Desconto 15% - Acima de R$ 150",
-                    priority: 3
                 }
+            },
+            
+            /**
+             * IMAGENS DOS COMBOS PROMOCIONAIS
+             */
+            PROMO_IMAGES: {
+                "guarana": "https://pedelogouai.github.io/pizzaria.fratelli/imagens/pizza+guarana.jpeg",
+                "cocacola": "https://pedelogouai.github.io/pizzaria.fratelli/imagens/pizza+cocacola.jpeg"
             }
         };
 
-        // Base de dados de endereços e distâncias
+        // ==============================
+        // BASE DE DADOS DE ENDEREÇOS
+        // ==============================
         const deliveryRates = [
-  { id: 1, street: "Avenida Iracema Rodrigues Garcia", neighborhood: "Nova Esmeraldas", city: "Esmeraldas/MG", zipCode: "32800-537", distance: 500 },
-  { id: 2, street: "Avenida José de Lima Geo - lado ímpar", neighborhood: "Moradas Santa Quitéria", city: "Esmeraldas/MG", zipCode: "32800-694", distance: 2800 },
-  { id: 3, street: "Avenida José de Lima Geo - lado par", neighborhood: "Moradas Santa Quitéria", city: "Esmeraldas/MG", zipCode: "32800-692", distance: 2850 },
-  { id: 4, street: "Avenida Juscelino Kubitschek de Oliveira", neighborhood: "Centro", city: "Esmeraldas/MG", zipCode: "32800-060", distance: 3100 },
-  { id: 5, street: "Avenida Maestro Dimas Palhares", neighborhood: "Moradas Santa Quitéria", city: "Esmeraldas/MG", zipCode: "32800-672", distance: 2900 },
-  { id: 6, street: "Praça Antônio Gertrudes Azevedo", neighborhood: "Centro", city: "Esmeraldas/MG", zipCode: "32800-088", distance: 3150 },
-  { id: 7, street: "Praça Coronel Antônio Nunes Galvão", neighborhood: "Moradas Santa Quitéria", city: "Esmeraldas/MG", zipCode: "32800-688", distance: 3000 },
-  { id: 8, street: "Praça do Rosário", neighborhood: "Centro", city: "Esmeraldas/MG", zipCode: "32800-110", distance: 3200 },
-  { id: 9, street: "Praça Dona Márcia Rodrigues do Carmo", neighborhood: "Centro", city: "Esmeraldas/MG", zipCode: "32800-138", distance: 3250 },
-  { id: 10, street: "Praça Getúlio Vargas", neighborhood: "Centro", city: "Esmeraldas/MG", zipCode: "32800-092", distance: 3300 },
-  { id: 11, street: "Praça José Mauricio da Silva", neighborhood: "Centro", city: "Esmeraldas/MG", zipCode: "32800-114", distance: 3350 },
-  { id: 12, street: "Praça Nossa Senhora das Dores", neighborhood: "Centro", city: "Esmeraldas/MG", zipCode: "32800-066", distance: 3400 },
-  { id: 13, street: "Praça Sadi Alves Vieira", neighborhood: "Centro", city: "Esmeraldas/MG", zipCode: "32800-064", distance: 3450 },
-  { id: 14, street: "Rodovia Deputado Lúcio de Souza Cruz", neighborhood: "Centro", city: "Esmeraldas/MG", zipCode: "32800-095", distance: 3500 },
-  { id: 15, street: "Rodovia Deputado Lúcio de Souza Cruz 400 Belmicro", neighborhood: "Centro", city: "Esmeraldas/MG", zipCode: "32800-900", distance: 3550 },
-  { id: 16, street: "Rua A", neighborhood: "Nova Esmeraldas", city: "Esmeraldas/MG", zipCode: "32800-530", distance: 3000 },
-  { id: 17, street: "Rua Alberto Campolina Diniz", neighborhood: "Centro", city: "Esmeraldas/MG", zipCode: "32800-168", distance: 3600 },
-  { id: 18, street: "Rua Ana Felipa", neighborhood: "Centro", city: "Esmeraldas/MG", zipCode: "32800-094", distance: 3650 },
-  { id: 19, street: "Rua Antônio Cândido Diniz", neighborhood: "Centro", city: "Esmeraldas/MG", zipCode: "32800-112", distance: 3700 },
-  { id: 20, street: "Rua Antônio José da Silva", neighborhood: "Nova Esmeraldas", city: "Esmeraldas/MG", zipCode: "32800-572", distance: 400 },
-  { id: 21, street: "Rua Antônio Palhares Diniz", neighborhood: "Centro", city: "Esmeraldas/MG", zipCode: "32800-116", distance: 3750 },
-  { id: 22, street: "Rua Antônio Xavier de Almeida", neighborhood: "Centro", city: "Esmeraldas/MG", zipCode: "32800-164", distance: 3800 },
-  { id: 23, street: "Rua Arthur Rodrigues de Paula", neighborhood: "Moradas Santa Quitéria", city: "Esmeraldas/MG", zipCode: "32800-690", distance: 3050 },
-  { id: 24, street: "Rua Augusto Rodrigues", neighborhood: "Moradas Santa Quitéria", city: "Esmeraldas/MG", zipCode: "32800-676", distance: 3100 },
-  { id: 25, street: "Rua Bela Vista", neighborhood: "Centro", city: "Esmeraldas/MG", zipCode: "32800-132", distance: 3850 },
-  { id: 26, street: "Rua Belo Horizonte", neighborhood: "Centro", city: "Esmeraldas/MG", zipCode: "32800-078", distance: 3900 },
-  { id: 27, street: "Rua Belo Horizonte", neighborhood: "Nova Esmeraldas", city: "Esmeraldas/MG", zipCode: "32800-596", distance: 400 },
-  { id: 28, street: "Rua Benedito Valadares", neighborhood: "Centro", city: "Esmeraldas/MG", zipCode: "32800-130", distance: 3950 },
-  { id: 29, street: "Rua C", neighborhood: "Nova Esmeraldas", city: "Esmeraldas/MG", zipCode: "32800-539", distance: 400 },
-  { id: 30, street: "Rua Capim Branco", neighborhood: "Centro", city: "Esmeraldas/MG", zipCode: "32800-152", distance: 4000 },
-  { id: 31, street: "Rua Carmem Rodrigues Silva", neighborhood: "Nova Esmeraldas", city: "Esmeraldas/MG", zipCode: "32800-557", distance: 400 },
-  { id: 32, street: "Rua Cinco", neighborhood: "Nova Esmeraldas", city: "Esmeraldas/MG", zipCode: "32800-606", distance: 550 },
-  { id: 33, street: "Rua Conceição Odilia Silva", neighborhood: "Nova Esmeraldas", city: "Esmeraldas/MG", zipCode: "32800-563", distance: 600 },
-  { id: 34, street: "Rua Contagem", neighborhood: "Centro", city: "Esmeraldas/MG", zipCode: "32800-118", distance: 4050 },
-  { id: 35, street: "Rua Coronel José Jacinto Alves Ferreira", neighborhood: "Centro", city: "Esmeraldas/MG", zipCode: "32800-108", distance: 4100 },
-  { id: 36, street: "Rua D", neighborhood: "Nova Esmeraldas", city: "Esmeraldas/MG", zipCode: "32800-533", distance: 650 },
-  { id: 37, street: "Rua Dois", neighborhood: "Nova Esmeraldas", city: "Esmeraldas/MG", zipCode: "32800-600", distance: 700 },
-  { id: 38, street: "Rua Dona Maria Angélica Cândida", neighborhood: "Centro", city: "Esmeraldas/MG", zipCode: "32800-084", distance: 4150 },
-  { id: 39, street: "Rua dos Expedicionários", neighborhood: "Centro", city: "Esmeraldas/MG", zipCode: "32800-076", distance: 4200 },
-  { id: 40, street: "Rua Doutor Pedro Aleixo", neighborhood: "Moradas Santa Quitéria", city: "Esmeraldas/MG", zipCode: "32800-706", distance: 3150 },
-  { id: 41, street: "Rua E", neighborhood: "Nova Esmeraldas", city: "Esmeraldas/MG", zipCode: "32800-542", distance: 750 },
-  { id: 42, street: "Rua Elber Ribeiro Oliveira", neighborhood: "Moradas Santa Quitéria", city: "Esmeraldas/MG", zipCode: "32800-678", distance: 3200 },
-  { id: 43, street: "Rua Elizeu Alves Vieira", neighborhood: "Centro", city: "Esmeraldas/MG", zipCode: "32800-096", distance: 4250 },
-  { id: 44, street: "Rua Emídio Alves", neighborhood: "Centro", city: "Esmeraldas/MG", zipCode: "32800-136", distance: 4300 },
-  { id: 45, street: "Rua Ernesto Rodrigues Silva", neighborhood: "Moradas Santa Quitéria", city: "Esmeraldas/MG", zipCode: "32800-680", distance: 3250 },
-  { id: 46, street: "Rua Estevão Alves Diniz", neighborhood: "Moradas Santa Quitéria", city: "Esmeraldas/MG", zipCode: "32800-702", distance: 3300 },
-  { id: 47, street: "Rua Eurides Pinto da Silva", neighborhood: "Nova Esmeraldas", city: "Esmeraldas/MG", zipCode: "32800-566", distance: 800 },
-  { id: 48, street: "Rua F", neighborhood: "Nova Esmeraldas", city: "Esmeraldas/MG", zipCode: "32800-543", distance: 850 },
-  { id: 49, street: "Rua Farmacêutico Aristides Benevides Diniz", neighborhood: "Centro", city: "Esmeraldas/MG", zipCode: "32800-124", distance: 4350 },
-  { id: 50, street: "Rua Francisco Xavier Ferreira Palhares", neighborhood: "Centro", city: "Esmeraldas/MG", zipCode: "32800-160", distance: 4400 },
-  { id: 51, street: "Rua G", neighborhood: "Nova Esmeraldas", city: "Esmeraldas/MG", zipCode: "32800-548", distance: 900 },
-  { id: 52, street: "Rua H", neighborhood: "Nova Esmeraldas", city: "Esmeraldas/MG", zipCode: "32800-545", distance: 950 },
-  { id: 53, street: "Rua Helena Couto Diniz", neighborhood: "Centro", city: "Esmeraldas/MG", zipCode: "32800-104", distance: 4450 },
-  { id: 54, street: "Rua I", neighborhood: "Nova Esmeraldas", city: "Esmeraldas/MG", zipCode: "32800-546", distance: 1000 },
-  { id: 55, street: "Rua Inhaúma", neighborhood: "Centro", city: "Esmeraldas/MG", zipCode: "32800-158", distance: 4500 },
-  { id: 56, street: "Rua Iraci Fernandes Moreira", neighborhood: "Centro", city: "Esmeraldas/MG", zipCode: "32800-120", distance: 4550 },
-  { id: 57, street: "Rua J", neighborhood: "Nova Esmeraldas", city: "Esmeraldas/MG", zipCode: "32800-547", distance: 1050 },
-  { id: 58, street: "Rua José Alves Filho", neighborhood: "Centro", city: "Esmeraldas/MG", zipCode: "32800-166", distance: 4600 },
-  { id: 59, street: "Rua José Alves Marinho", neighborhood: "Centro", city: "Esmeraldas/MG", zipCode: "32800-086", distance: 4650 },
-  { id: 60, street: "Rua José Firmino Gaspar", neighborhood: "Moradas Santa Quitéria", city: "Esmeraldas/MG", zipCode: "32800-674", distance: 3350 },
-  { id: 61, street: "Rua José Leopoldo Diniz", neighborhood: "Moradas Santa Quitéria", city: "Esmeraldas/MG", zipCode: "32800-700", distance: 3400 },
-  { id: 62, street: "Rua José Lucas Filho", neighborhood: "Centro", city: "Esmeraldas/MG", zipCode: "32800-072", distance: 4700 },
-  { id: 63, street: "Rua José Rodrigues Silva", neighborhood: "Centro", city: "Esmeraldas/MG", zipCode: "32800-122", distance: 4750 },
-  { id: 64, street: "Rua José Saturnino Costa", neighborhood: "Moradas Santa Quitéria", city: "Esmeraldas/MG", zipCode: "32800-682", distance: 3450 },
-  { id: 65, street: "Rua Leocádia Ferreira Palhares", neighborhood: "Moradas Santa Quitéria", city: "Esmeraldas/MG", zipCode: "32800-686", distance: 3500 },
-  { id: 66, street: "Rua Leofredo Rosário Gaspar", neighborhood: "Moradas Santa Quitéria", city: "Esmeraldas/MG", zipCode: "32800-698", distance: 3550 },
-  { id: 67, street: "Rua Luiz Orsini", neighborhood: "Moradas Santa Quitéria", city: "Esmeraldas/MG", zipCode: "32800-684", distance: 3600 },
-  { id: 68, street: "Rua Maestro Cid Silva", neighborhood: "Moradas Santa Quitéria", city: "Esmeraldas/MG", zipCode: "32800-704", distance: 3650 },
-  { id: 69, street: "Rua Major Otaviano Silva", neighborhood: "Centro", city: "Esmeraldas/MG", zipCode: "32800-146", distance: 4800 },
-  { id: 70, street: "Rua Marechal Floriano Peixoto", neighborhood: "Centro", city: "Esmeraldas/MG", zipCode: "32800-102", distance: 4850 },
-  { id: 71, street: "Rua Matozinhos", neighborhood: "Centro", city: "Esmeraldas/MG", zipCode: "32800-142", distance: 4900 },
-  { id: 72, street: "Rua Mauro Salvador Fonseca", neighborhood: "Moradas Santa Quitéria", city: "Esmeraldas/MG", zipCode: "32800-696", distance: 3700 },
-  { id: 73, street: "Rua Miguel Fernandes", neighborhood: "Centro", city: "Esmeraldas/MG", zipCode: "32800-128", distance: 4950 },
-  { id: 74, street: "Rua Muzambinho", neighborhood: "Centro", city: "Esmeraldas/MG", zipCode: "32800-144", distance: 5000 },
-  { id: 75, street: "Rua Nicolau de Lemos", neighborhood: "Centro", city: "Esmeraldas/MG", zipCode: "32800-080", distance: 5050 },
-  { id: 76, street: "Rua O", neighborhood: "Nova Esmeraldas", city: "Esmeraldas/MG", zipCode: "32800-560", distance: 1100 },
-  { id: 77, street: "Rua Oito", neighborhood: "Nova Esmeraldas", city: "Esmeraldas/MG", zipCode: "32800-608", distance: 1150 },
-  { id: 78, street: "Rua Olegário Maciel", neighborhood: "Centro", city: "Esmeraldas/MG", zipCode: "32800-074", distance: 5100 },
-  { id: 79, street: "Rua Olhos D'Água", neighborhood: "Centro", city: "Esmeraldas/MG", zipCode: "32800-100", distance: 5150 },
-  { id: 80, street: "Rua Olinto Bambirra", neighborhood: "Nova Esmeraldas", city: "Esmeraldas/MG", zipCode: "32800-575", distance: 0 },
-  { id: 81, street: "Rua Omar Marçal Rezende", neighborhood: "Moradas Santa Quitéria", city: "Esmeraldas/MG", zipCode: "32800-689", distance: 3750 },
-  { id: 82, street: "Rua Orestes Diniz", neighborhood: "Moradas Santa Quitéria", city: "Esmeraldas/MG", zipCode: "32800-710", distance: 3800 },
-  { id: 83, street: "Rua P", neighborhood: "Nova Esmeraldas", city: "Esmeraldas/MG", zipCode: "32800-554", distance: 1200 },
-  { id: 84, street: "Rua Padre Burgos", neighborhood: "Centro", city: "Esmeraldas/MG", zipCode: "32800-068", distance: 5200 },
-  { id: 85, street: "Rua Padre José de Freitas Lage", neighborhood: "Centro", city: "Esmeraldas/MG", zipCode: "32800-140", distance: 5250 },
-  { id: 86, street: "Rua Pedro Leopoldo", neighborhood: "Centro", city: "Esmeraldas/MG", zipCode: "32800-154", distance: 5300 },
-  { id: 87, street: "Rua Petrônio Ribeiro de Oliveira", neighborhood: "Centro", city: "Esmeraldas/MG", zipCode: "32800-162", distance: 5350 },
-  { id: 88, street: "Rua Presidente Artur Bernardes", neighborhood: "Centro", city: "Esmeraldas/MG", zipCode: "32800-150", distance: 5400 },
-  { id: 89, street: "Rua Professor Joaquim Ribeiro Sobrinho", neighborhood: "Centro", city: "Esmeraldas/MG", zipCode: "32800-137", distance: 5450 },
-  { id: 90, street: "Rua Professor Pedro Bambirra", neighborhood: "Moradas Santa Quitéria", city: "Esmeraldas/MG", zipCode: "32800-708", distance: 2900 },
-  { id: 91, street: "Rua Professor Ricardo de Souza Cruz", neighborhood: "Centro", city: "Esmeraldas/MG", zipCode: "32800-090", distance: 5500 },
-  { id: 92, street: "Rua Quatro", neighborhood: "Nova Esmeraldas", city: "Esmeraldas/MG", zipCode: "32800-604", distance: 1250 },
-  { id: 93, street: "Rua Quintiliano José da Silva", neighborhood: "Centro", city: "Esmeraldas/MG", zipCode: "32800-148", distance: 3400 },
-  { id: 94, street: "Rua R", neighborhood: "Nova Esmeraldas", city: "Esmeraldas/MG", zipCode: "32800-568", distance: 1300 },
-  { id: 95, street: "Rua Seis", neighborhood: "Nova Esmeraldas", city: "Esmeraldas/MG", zipCode: "32800-612", distance: 1350 },
-  { id: 96, street: "Rua Sete", neighborhood: "Nova Esmeraldas", city: "Esmeraldas/MG", zipCode: "32800-610", distance: 1400 },
-  { id: 97, street: "Rua T", neighborhood: "Nova Esmeraldas", city: "Esmeraldas/MG", zipCode: "32800-581", distance: 1450 },
-  { id: 98, street: "Rua Três", neighborhood: "Nova Esmeraldas", city: "Esmeraldas/MG", zipCode: "32800-602", distance: 1500 },
-  { id: 99, street: "Rua U", neighborhood: "Nova Esmeraldas", city: "Esmeraldas/MG", zipCode: "32800-578", distance: 1550 },
-  { id: 100, street: "Rua Um", neighborhood: "Nova Esmeraldas", city: "Esmeraldas/MG", zipCode: "32800-598", distance: 1600 },
-  { id: 101, street: "Rua V", neighborhood: "Nova Esmeraldas", city: "Esmeraldas/MG", zipCode: "32800-584", distance: 1650 },
-  { id: 102, street: "Rua Vereador Geraldo Campolina Leroy", neighborhood: "Nova Esmeraldas", city: "Esmeraldas/MG", zipCode: "32800-590", distance: 1700 },
-  { id: 103, street: "Rua Violeta Maria Aparecida Palhares Moreira", neighborhood: "Nova Esmeraldas", city: "Esmeraldas/MG", zipCode: "32800-536", distance: 1750 },
-  { id: 104, street: "Rua W", neighborhood: "Nova Esmeraldas", city: "Esmeraldas/MG", zipCode: "32800-585", distance: 1800 },
-  { id: 105, street: "Rua Wilson Silva", neighborhood: "Nova Esmeraldas", city: "Esmeraldas/MG", zipCode: "32800-551", distance: 1850 },
-  { id: 106, street: "Rua X", neighborhood: "Nova Esmeraldas", city: "Esmeraldas/MG", zipCode: "32800-587", distance: 1900 },
-  { id: 107, street: "Rua Z", neighborhood: "Nova Esmeraldas", city: "Esmeraldas/MG", zipCode: "32800-593", distance: 1950 },
-  { id: 108, street: "Estrada Acesso para Santa Quitéria", neighborhood: "Moradas Santa Quitéria", city: "Esmeraldas/MG", zipCode: "32800-670", distance: 2950 }
-];
+            { id: 1, street: "Avenida Iracema Rodrigues Garcia", neighborhood: "Nova Esmeraldas", city: "Esmeraldas/MG", zipCode: "32800-537", distance: 500 },
+            { id: 2, street: "Avenida José de Lima Geo - lado ímpar", neighborhood: "Moradas Santa Quitéria", city: "Esmeraldas/MG", zipCode: "32800-694", distance: 2800 },
+            { id: 3, street: "Avenida José de Lima Geo - lado par", neighborhood: "Moradas Santa Quitéria", city: "Esmeraldas/MG", zipCode: "32800-692", distance: 2850 },
+            { id: 4, street: "Avenida Juscelino Kubitschek de Oliveira", neighborhood: "Centro", city: "Esmeraldas/MG", zipCode: "32800-060", distance: 3100 },
+            { id: 5, street: "Avenida Maestro Dimas Palhares", neighborhood: "Moradas Santa Quitéria", city: "Esmeraldas/MG", zipCode: "32800-672", distance: 2900 },
+            { id: 6, street: "Praça Antônio Gertrudes Azevedo", neighborhood: "Centro", city: "Esmeraldas/MG", zipCode: "32800-088", distance: 3150 },
+            { id: 7, street: "Praça Coronel Antônio Nunes Galvão", neighborhood: "Moradas Santa Quitéria", city: "Esmeraldas/MG", zipCode: "32800-688", distance: 3000 },
+            { id: 8, street: "Praça do Rosário", neighborhood: "Centro", city: "Esmeraldas/MG", zipCode: "32800-110", distance: 3200 },
+            { id: 9, street: "Praça Dona Márcia Rodrigues do Carmo", neighborhood: "Centro", city: "Esmeraldas/MG", zipCode: "32800-138", distance: 3250 },
+            { id: 10, street: "Praça Getúlio Vargas", neighborhood: "Centro", city: "Esmeraldas/MG", zipCode: "32800-092", distance: 3300 },
+            { id: 11, street: "Praça José Mauricio da Silva", neighborhood: "Centro", city: "Esmeraldas/MG", zipCode: "32800-114", distance: 3350 },
+            { id: 12, street: "Praça Nossa Senhora das Dores", neighborhood: "Centro", city: "Esmeraldas/MG", zipCode: "32800-066", distance: 3400 },
+            { id: 13, street: "Praça Sadi Alves Vieira", neighborhood: "Centro", city: "Esmeraldas/MG", zipCode: "32800-064", distance: 3450 },
+            { id: 14, street: "Rodovia Deputado Lúcio de Souza Cruz", neighborhood: "Centro", city: "Esmeraldas/MG", zipCode: "32800-095", distance: 3500 },
+            { id: 15, street: "Rodovia Deputado Lúcio de Souza Cruz 400 Belmicro", neighborhood: "Centro", city: "Esmeraldas/MG", zipCode: "32800-900", distance: 3550 },
+            { id: 16, street: "Rua A", neighborhood: "Nova Esmeraldas", city: "Esmeraldas/MG", zipCode: "32800-530", distance: 3000 },
+            { id: 17, street: "Rua Alberto Campolina Diniz", neighborhood: "Centro", city: "Esmeraldas/MG", zipCode: "32800-168", distance: 3600 },
+            { id: 18, street: "Rua Ana Felipa", neighborhood: "Centro", city: "Esmeraldas/MG", zipCode: "32800-094", distance: 3650 },
+            { id: 19, street: "Rua Antônio Cândido Diniz", neighborhood: "Centro", city: "Esmeraldas/MG", zipCode: "32800-112", distance: 3700 },
+            { id: 20, street: "Rua Antônio José da Silva", neighborhood: "Nova Esmeraldas", city: "Esmeraldas/MG", zipCode: "32800-572", distance: 400 },
+            { id: 21, street: "Rua Antônio Palhares Diniz", neighborhood: "Centro", city: "Esmeraldas/MG", zipCode: "32800-116", distance: 3750 },
+            { id: 22, street: "Rua Antônio Xavier de Almeida", neighborhood: "Centro", city: "Esmeraldas/MG", zipCode: "32800-164", distance: 3800 },
+            { id: 23, street: "Rua Arthur Rodrigues de Paula", neighborhood: "Moradas Santa Quitéria", city: "Esmeraldas/MG", zipCode: "32800-690", distance: 3050 },
+            { id: 24, street: "Rua Augusto Rodrigues", neighborhood: "Moradas Santa Quitéria", city: "Esmeraldas/MG", zipCode: "32800-676", distance: 3100 },
+            { id: 25, street: "Rua Bela Vista", neighborhood: "Centro", city: "Esmeraldas/MG", zipCode: "32800-132", distance: 3850 },
+            { id: 26, street: "Rua Belo Horizonte", neighborhood: "Centro", city: "Esmeraldas/MG", zipCode: "32800-078", distance: 3900 },
+            { id: 27, street: "Rua Belo Horizonte", neighborhood: "Nova Esmeraldas", city: "Esmeraldas/MG", zipCode: "32800-596", distance: 400 },
+            { id: 28, street: "Rua Benedito Valadares", neighborhood: "Centro", city: "Esmeraldas/MG", zipCode: "32800-130", distance: 3950 },
+            { id: 29, street: "Rua C", neighborhood: "Nova Esmeraldas", city: "Esmeraldas/MG", zipCode: "32800-539", distance: 400 },
+            { id: 30, street: "Rua Capim Branco", neighborhood: "Centro", city: "Esmeraldas/MG", zipCode: "32800-152", distance: 4000 },
+            { id: 31, street: "Rua Carmem Rodrigues Silva", neighborhood: "Nova Esmeraldas", city: "Esmeraldas/MG", zipCode: "32800-557", distance: 400 },
+            { id: 32, street: "Rua Cinco", neighborhood: "Nova Esmeraldas", city: "Esmeraldas/MG", zipCode: "32800-606", distance: 550 },
+            { id: 33, street: "Rua Conceição Odilia Silva", neighborhood: "Nova Esmeraldas", city: "Esmeraldas/MG", zipCode: "32800-563", distance: 600 },
+            { id: 34, street: "Rua Contagem", neighborhood: "Centro", city: "Esmeraldas/MG", zipCode: "32800-118", distance: 4050 },
+            { id: 35, street: "Rua Coronel José Jacinto Alves Ferreira", neighborhood: "Centro", city: "Esmeraldas/MG", zipCode: "32800-108", distance: 4100 },
+            { id: 36, street: "Rua D", neighborhood: "Nova Esmeraldas", city: "Esmeraldas/MG", zipCode: "32800-533", distance: 650 },
+            { id: 37, street: "Rua Dois", neighborhood: "Nova Esmeraldas", city: "Esmeraldas/MG", zipCode: "32800-600", distance: 700 },
+            { id: 38, street: "Rua Dona Maria Angélica Cândida", neighborhood: "Centro", city: "Esmeraldas/MG", zipCode: "32800-084", distance: 4150 },
+            { id: 39, street: "Rua dos Expedicionários", neighborhood: "Centro", city: "Esmeraldas/MG", zipCode: "32800-076", distance: 4200 },
+            { id: 40, street: "Rua Doutor Pedro Aleixo", neighborhood: "Moradas Santa Quitéria", city: "Esmeraldas/MG", zipCode: "32800-706", distance: 3150 },
+            { id: 41, street: "Rua E", neighborhood: "Nova Esmeraldas", city: "Esmeraldas/MG", zipCode: "32800-542", distance: 750 },
+            { id: 42, street: "Rua Elber Ribeiro Oliveira", neighborhood: "Moradas Santa Quitéria", city: "Esmeraldas/MG", zipCode: "32800-678", distance: 3200 },
+            { id: 43, street: "Rua Elizeu Alves Vieira", neighborhood: "Centro", city: "Esmeraldas/MG", zipCode: "32800-096", distance: 4250 },
+            { id: 44, street: "Rua Emídio Alves", neighborhood: "Centro", city: "Esmeraldas/MG", zipCode: "32800-136", distance: 4300 },
+            { id: 45, street: "Rua Ernesto Rodrigues Silva", neighborhood: "Moradas Santa Quitéria", city: "Esmeraldas/MG", zipCode: "32800-680", distance: 3250 },
+            { id: 46, street: "Rua Estevão Alves Diniz", neighborhood: "Moradas Santa Quitéria", city: "Esmeraldas/MG", zipCode: "32800-702", distance: 3300 },
+            { id: 47, street: "Rua Eurides Pinto da Silva", neighborhood: "Nova Esmeraldas", city: "Esmeraldas/MG", zipCode: "32800-566", distance: 800 },
+            { id: 48, street: "Rua F", neighborhood: "Nova Esmeraldas", city: "Esmeraldas/MG", zipCode: "32800-543", distance: 850 },
+            { id: 49, street: "Rua Farmacêutico Aristides Benevides Diniz", neighborhood: "Centro", city: "Esmeraldas/MG", zipCode: "32800-124", distance: 4350 },
+            { id: 50, street: "Rua Francisco Xavier Ferreira Palhares", neighborhood: "Centro", city: "Esmeraldas/MG", zipCode: "32800-160", distance: 4400 },
+            { id: 51, street: "Rua G", neighborhood: "Nova Esmeraldas", city: "Esmeraldas/MG", zipCode: "32800-548", distance: 900 },
+            { id: 52, street: "Rua H", neighborhood: "Nova Esmeraldas", city: "Esmeraldas/MG", zipCode: "32800-545", distance: 950 },
+            { id: 53, street: "Rua Helena Couto Diniz", neighborhood: "Centro", city: "Esmeraldas/MG", zipCode: "32800-104", distance: 4450 },
+            { id: 54, street: "Rua I", neighborhood: "Nova Esmeraldas", city: "Esmeraldas/MG", zipCode: "32800-546", distance: 1000 },
+            { id: 55, street: "Rua Inhaúma", neighborhood: "Centro", city: "Esmeraldas/MG", zipCode: "32800-158", distance: 4500 },
+            { id: 56, street: "Rua Iraci Fernandes Moreira", neighborhood: "Centro", city: "Esmeraldas/MG", zipCode: "32800-120", distance: 4550 },
+            { id: 57, street: "Rua J", neighborhood: "Nova Esmeraldas", city: "Esmeraldas/MG", zipCode: "32800-547", distance: 1050 },
+            { id: 58, street: "Rua José Alves Filho", neighborhood: "Centro", city: "Esmeraldas/MG", zipCode: "32800-166", distance: 4600 },
+            { id: 59, street: "Rua José Alves Marinho", neighborhood: "Centro", city: "Esmeraldas/MG", zipCode: "32800-086", distance: 4650 },
+            { id: 60, street: "Rua José Firmino Gaspar", neighborhood: "Moradas Santa Quitéria", city: "Esmeraldas/MG", zipCode: "32800-674", distance: 3350 },
+            { id: 61, street: "Rua José Leopoldo Diniz", neighborhood: "Moradas Santa Quitéria", city: "Esmeraldas/MG", zipCode: "32800-700", distance: 3400 },
+            { id: 62, street: "Rua José Lucas Filho", neighborhood: "Centro", city: "Esmeraldas/MG", zipCode: "32800-072", distance: 4700 },
+            { id: 63, street: "Rua José Rodrigues Silva", neighborhood: "Centro", city: "Esmeraldas/MG", zipCode: "32800-122", distance: 4750 },
+            { id: 64, street: "Rua José Saturnino Costa", neighborhood: "Moradas Santa Quitéria", city: "Esmeraldas/MG", zipCode: "32800-682", distance: 3450 },
+            { id: 65, street: "Rua Leocádia Ferreira Palhares", neighborhood: "Moradas Santa Quitéria", city: "Esmeraldas/MG", zipCode: "32800-686", distance: 3500 },
+            { id: 66, street: "Rua Leofredo Rosário Gaspar", neighborhood: "Moradas Santa Quitéria", city: "Esmeraldas/MG", zipCode: "32800-698", distance: 3550 },
+            { id: 67, street: "Rua Luiz Orsini", neighborhood: "Moradas Santa Quitéria", city: "Esmeraldas/MG", zipCode: "32800-684", distance: 3600 },
+            { id: 68, street: "Rua Maestro Cid Silva", neighborhood: "Moradas Santa Quitéria", city: "Esmeraldas/MG", zipCode: "32800-704", distance: 3650 },
+            { id: 69, street: "Rua Major Otaviano Silva", neighborhood: "Centro", city: "Esmeraldas/MG", zipCode: "32800-146", distance: 4800 },
+            { id: 70, street: "Rua Marechal Floriano Peixoto", neighborhood: "Centro", city: "Esmeraldas/MG", zipCode: "32800-102", distance: 4850 },
+            { id: 71, street: "Rua Matozinhos", neighborhood: "Centro", city: "Esmeraldas/MG", zipCode: "32800-142", distance: 4900 },
+            { id: 72, street: "Rua Mauro Salvador Fonseca", neighborhood: "Moradas Santa Quitéria", city: "Esmeraldas/MG", zipCode: "32800-696", distance: 3700 },
+            { id: 73, street: "Rua Miguel Fernandes", neighborhood: "Centro", city: "Esmeraldas/MG", zipCode: "32800-128", distance: 4950 },
+            { id: 74, street: "Rua Muzambinho", neighborhood: "Centro", city: "Esmeraldas/MG", zipCode: "32800-144", distance: 5000 },
+            { id: 75, street: "Rua Nicolau de Lemos", neighborhood: "Centro", city: "Esmeraldas/MG", zipCode: "32800-080", distance: 5050 },
+            { id: 76, street: "Rua O", neighborhood: "Nova Esmeraldas", city: "Esmeraldas/MG", zipCode: "32800-560", distance: 1100 },
+            { id: 77, street: "Rua Oito", neighborhood: "Nova Esmeraldas", city: "Esmeraldas/MG", zipCode: "32800-608", distance: 1150 },
+            { id: 78, street: "Rua Olegário Maciel", neighborhood: "Centro", city: "Esmeraldas/MG", zipCode: "32800-074", distance: 5100 },
+            { id: 79, street: "Rua Olhos D'Água", neighborhood: "Centro", city: "Esmeraldas/MG", zipCode: "32800-100", distance: 5150 },
+            { id: 80, street: "Rua Olinto Bambirra", neighborhood: "Nova Esmeraldas", city: "Esmeraldas/MG", zipCode: "32800-575", distance: 0 },
+            { id: 81, street: "Rua Omar Marçal Rezende", neighborhood: "Moradas Santa Quitéria", city: "Esmeraldas/MG", zipCode: "32800-689", distance: 3750 },
+            { id: 82, street: "Rua Orestes Diniz", neighborhood: "Moradas Santa Quitéria", city: "Esmeraldas/MG", zipCode: "32800-710", distance: 3800 },
+            { id: 83, street: "Rua P", neighborhood: "Nova Esmeraldas", city: "Esmeraldas/MG", zipCode: "32800-554", distance: 1200 },
+            { id: 84, street: "Rua Padre Burgos", neighborhood: "Centro", city: "Esmeraldas/MG", zipCode: "32800-068", distance: 5200 },
+            { id: 85, street: "Rua Padre José de Freitas Lage", neighborhood: "Centro", city: "Esmeraldas/MG", zipCode: "32800-140", distance: 5250 },
+            { id: 86, street: "Rua Pedro Leopoldo", neighborhood: "Centro", city: "Esmeraldas/MG", zipCode: "32800-154", distance: 5300 },
+            { id: 87, street: "Rua Petrônio Ribeiro de Oliveira", neighborhood: "Centro", city: "Esmeraldas/MG", zipCode: "32800-162", distance: 5350 },
+            { id: 88, street: "Rua Presidente Artur Bernardes", neighborhood: "Centro", city: "Esmeraldas/MG", zipCode: "32800-150", distance: 5400 },
+            { id: 89, street: "Rua Professor Joaquim Ribeiro Sobrinho", neighborhood: "Centro", city: "Esmeraldas/MG", zipCode: "32800-137", distance: 5450 },
+            { id: 90, street: "Rua Professor Pedro Bambirra", neighborhood: "Moradas Santa Quitéria", city: "Esmeraldas/MG", zipCode: "32800-708", distance: 2900 },
+            { id: 91, street: "Rua Professor Ricardo de Souza Cruz", neighborhood: "Centro", city: "Esmeraldas/MG", zipCode: "32800-090", distance: 5500 },
+            { id: 92, street: "Rua Quatro", neighborhood: "Nova Esmeraldas", city: "Esmeraldas/MG", zipCode: "32800-604", distance: 1250 },
+            { id: 93, street: "Rua Quintiliano José da Silva", neighborhood: "Centro", city: "Esmeraldas/MG", zipCode: "32800-148", distance: 3400 },
+            { id: 94, street: "Rua R", neighborhood: "Nova Esmeraldas", city: "Esmeraldas/MG", zipCode: "32800-568", distance: 1300 },
+            { id: 95, street: "Rua Seis", neighborhood: "Nova Esmeraldas", city: "Esmeraldas/MG", zipCode: "32800-612", distance: 1350 },
+            { id: 96, street: "Rua Sete", neighborhood: "Nova Esmeraldas", city: "Esmeraldas/MG", zipCode: "32800-610", distance: 1400 },
+            { id: 97, street: "Rua T", neighborhood: "Nova Esmeraldas", city: "Esmeraldas/MG", zipCode: "32800-581", distance: 1450 },
+            { id: 98, street: "Rua Três", neighborhood: "Nova Esmeraldas", city: "Esmeraldas/MG", zipCode: "32800-602", distance: 1500 },
+            { id: 99, street: "Rua U", neighborhood: "Nova Esmeraldas", city: "Esmeraldas/MG", zipCode: "32800-578", distance: 1550 },
+            { id: 100, street: "Rua Um", neighborhood: "Nova Esmeraldas", city: "Esmeraldas/MG", zipCode: "32800-598", distance: 1600 },
+            { id: 101, street: "Rua V", neighborhood: "Nova Esmeraldas", city: "Esmeraldas/MG", zipCode: "32800-584", distance: 1650 },
+            { id: 102, street: "Rua Vereador Geraldo Campolina Leroy", neighborhood: "Nova Esmeraldas", city: "Esmeraldas/MG", zipCode: "32800-590", distance: 1700 },
+            { id: 103, street: "Rua Violeta Maria Aparecida Palhares Moreira", neighborhood: "Nova Esmeraldas", city: "Esmeraldas/MG", zipCode: "32800-536", distance: 1750 },
+            { id: 104, street: "Rua W", neighborhood: "Nova Esmeraldas", city: "Esmeraldas/MG", zipCode: "32800-585", distance: 1800 },
+            { id: 105, street: "Rua Wilson Silva", neighborhood: "Nova Esmeraldas", city: "Esmeraldas/MG", zipCode: "32800-551", distance: 1850 },
+            { id: 106, street: "Rua X", neighborhood: "Nova Esmeraldas", city: "Esmeraldas/MG", zipCode: "32800-587", distance: 1900 },
+            { id: 107, street: "Rua Z", neighborhood: "Nova Esmeraldas", city: "Esmeraldas/MG", zipCode: "32800-593", distance: 1950 },
+            { id: 108, street: "Estrada Acesso para Santa Quitéria", neighborhood: "Moradas Santa Quitéria", city: "Esmeraldas/MG", zipCode: "32800-670", distance: 2950 }
+        ];
 
-        // Nova função para calcular a taxa de entrega baseada na distância
-        function calculateDeliveryFee(distance) {
-            if (distance === 0) {
-                return 0;
-            } else if (distance <= 1500) {
-                return 3.00;
-            } else {
-                const additionalDistance = distance - 1500;
-                const additionalFee = Math.ceil(additionalDistance / 1000) * 1.00;
-                return 3.00 + additionalFee;
-            }
-        }
-
-        // Variáveis globais
+        // ==============================
+        // VARIÁVEIS GLOBAIS
+        // ==============================
         let allProducts = [];
         let cart = {};
-        let currentCategory = 'todos';
+        let currentCategory = null; // Alterado: inicialmente null para obrigar seleção
         let orderTimers = new Map();
         let currentDeliveryFee = CONFIG.DELIVERY_FEE;
         let currentOrderData = null;
 
-        // Elementos DOM
+        // ==============================
+        // ELEMENTOS DOM
+        // ==============================
         const elements = {
             productsGrid: document.getElementById('products-grid'),
             categoryFilters: document.getElementById('category-filters'),
@@ -1941,20 +2026,1066 @@
             whatsappModal: document.getElementById('whatsapp-modal'),
             whatsappClose: document.getElementById('whatsapp-close'),
             whatsappCancelBtn: document.getElementById('whatsapp-cancel-btn'),
-            whatsappSendBtn: document.getElementById('whatsapp-send-btn')
+            whatsappSendBtn: document.getElementById('whatsapp-send-btn'),
+            promotionsGrid: document.getElementById('promotions-grid'),
+            categoryMessage: document.getElementById('category-message')
         };
 
-        // FUNÇÕES UTILITÁRIAS
+        // ==============================
+        // CLASSE: FORMATTER
+        // ==============================
+        class Formatter {
+            /**
+             * Formata valor para moeda brasileira
+             * @param {number} value - Valor a ser formatado
+             * @returns {string} Valor formatado em Reais
+             */
+            static formatCurrency(value) {
+                return new Intl.NumberFormat('pt-BR', {
+                    style: 'currency',
+                    currency: 'BRL'
+                }).format(value);
+            }
+
+            /**
+             * Parse de string de moeda para número
+             * @param {string} value - String de moeda
+             * @returns {number} Valor numérico
+             */
+            static parseCurrency(value) {
+                if (!value || value === '') return 0;
+                const cleaned = String(value)
+                    .replace(/[R$\s]/g, '')
+                    .trim()
+                    .replace(',', '.');
+                const number = parseFloat(cleaned);
+                return isNaN(number) ? 0 : number;
+            }
+        }
+
+        // ==============================
+        // CLASSE: PROMOTION MANAGER
+        // ==============================
+        class PromotionManager {
+            /**
+             * Renderiza os cards de promoção
+             */
+            static renderPromotions() {
+                const promotions = [
+                    {
+                        id: 'promo-1',
+                        name: 'Combo Pizza + Guaraná',
+                        description: 'Pizza média + Guaraná 2L',
+                        image: CONFIG.PROMO_IMAGES.guarana,
+                        price: 50.00
+                    },
+                    {
+                        id: 'promo-2',
+                        name: 'Combo Pizza + Coca-Cola',
+                        description: 'Pizza média + Coca-Cola 2L',
+                        image: CONFIG.PROMO_IMAGES.cocacola,
+                        price: 50.00
+                    }
+                ];
+
+                elements.promotionsGrid.innerHTML = promotions.map(promo => `
+                    <div class="product-card">
+                        <div class="product-badge badge-promocao">PROMOÇÃO</div>
+                        <div class="product-image-container">
+                            <img src="${promo.image}" 
+                                 alt="${promo.name}" 
+                                 class="product-image">
+                        </div>
+                        <div class="product-info">
+                            <div class="product-name">${promo.name}</div>
+                            <div class="product-description">${promo.description}</div>
+                            <div class="product-price">${Formatter.formatCurrency(promo.price)}</div>
+                            <div class="promo-info">
+                                <i class="fas fa-info-circle"></i> 
+                                Para escolher esse Combo Promocional vá nas categorias escolha qualquer pizza e o refrigerante. O desconto aparecerá no carrinho.
+                            </div>
+                        </div>
+                    </div>
+                `).join('');
+            }
+        }
+
+        // ==============================
+        // CLASSE: PRODUCT MANAGER
+        // ==============================
+        class ProductManager {
+            /**
+             * Carrega produtos da API
+             * @returns {Promise<void>}
+             */
+            static async loadProducts() {
+                try {
+                    updateApiStatus(false, 'Conectando...');
+                    
+                    const response = await fetch(CONFIG.API_URL, {
+                        method: 'GET',
+                        mode: 'cors'
+                    });
+
+                    if (!response.ok) {
+                        throw new Error(`Erro HTTP: ${response.status}`);
+                    }
+
+                    const data = await response.json();
+                    
+                    if (data.error) {
+                        throw new Error(`Erro do servidor: ${data.error}`);
+                    }
+                    
+                    if (data.produtos && Array.isArray(data.produtos)) {
+                        allProducts = data.produtos.map((p, index) => {
+                            const rawId = findCaseInsensitiveKey(p, 'id') || String(index + 1);
+                            const cleanId = rawId.toString().replace(/[^0-9]/g, '').padStart(3, '0');
+
+                            return {
+                                id: cleanId,
+                                produto: findCaseInsensitiveKey(p, 'produto') || '',
+                                descricao: findCaseInsensitiveKey(p, 'descricao') || '',
+                                valor: Formatter.parseCurrency(findCaseInsensitiveKey(p, 'valor')),
+                                custo: Formatter.parseCurrency(findCaseInsensitiveKey(p, 'custo')),
+                                categoria: (findCaseInsensitiveKey(p, 'categoria') || '').toLowerCase(),
+                                imagem: findCaseInsensitiveKey(p, 'imagem') || '',
+                                badge: findCaseInsensitiveKey(p, 'badge') || '',
+                                badge_texto: findCaseInsensitiveKey(p, 'badge_texto') || ''
+                            };
+                        });
+                        
+                        updateApiStatus(true, `${allProducts.length} produtos carregados`);
+                        
+                        if (hasPendingOrders()) {
+                            setTimeout(() => {
+                                showCartModal();
+                                switchTab('history');
+                                showNotification('Você tem pedidos em andamento!', 'info');
+                            }, 1000);
+                        }
+                        
+                    } else {
+                        throw new Error("Formato de resposta inesperado");
+                    }
+
+                } catch (error) {
+                    console.error("Erro ao carregar produtos:", error);
+                    updateApiStatus(false, `Erro ao carregar`);
+                    elements.productsGrid.innerHTML = '<div class="error-message">Erro ao carregar produtos. Tente novamente.</div>';
+                } finally {
+                    ProductManager.renderCategories();
+                    PromotionManager.renderPromotions();
+                    ProductManager.renderProducts();
+                    setTimeout(scrollToTop, 300);
+                }
+            }
+
+            /**
+             * Renderiza categorias dos produtos
+             */
+            static renderCategories() {
+                const categories = ['todos', ...new Set(allProducts.map(p => p.categoria))];
+                elements.categoryFilters.innerHTML = categories.map(cat => `
+                    <button class="category-btn ${cat === currentCategory ? 'active' : ''}" data-category="${cat}">
+                        ${cat === 'todos' ? 'Todos' : cat.charAt(0).toUpperCase() + cat.slice(1)}
+                    </button>
+                `).join('');
+                
+                document.querySelectorAll('.category-btn').forEach(btn => {
+                    btn.addEventListener('click', () => {
+                        currentCategory = btn.dataset.category;
+                        ProductManager.renderCategories();
+                        ProductManager.renderProducts();
+                        scrollToTop();
+                    });
+                });
+            }
+
+            /**
+             * Renderiza produtos na grade
+             */
+            static renderProducts() {
+                // Mostra/oculta a mensagem de seleção de categoria
+                if (!currentCategory) {
+                    elements.categoryMessage.classList.add('show');
+                    elements.productsGrid.innerHTML = '';
+                    return;
+                }
+                
+                elements.categoryMessage.classList.remove('show');
+                
+                const filtered = currentCategory === 'todos' 
+                    ? allProducts 
+                    : allProducts.filter(p => p.categoria === currentCategory);
+                
+                if (filtered.length === 0) {
+                    elements.productsGrid.innerHTML = '<div class="error-message">Nenhum produto encontrado</div>';
+                    return;
+                }
+                
+                elements.productsGrid.innerHTML = filtered.map(product => `
+                    <div class="product-card">
+                        ${product.badge ? `<div class="product-badge ${product.badge}">${product.badge_texto || ''}</div>` : ''}
+                        <div class="product-image-container">
+                            <img src="${product.imagem}" 
+                                 alt="${product.produto}" 
+                                 class="product-image"
+                                 onerror="this.src='https://via.placeholder.com/300x200?text=Pizza+Fratelli'">
+                        </div>
+                        <div class="product-info">
+                            <div class="product-name">${product.produto}</div>
+                            <div class="product-description">${product.descricao || 'Sem descrição'}</div>
+                            <div class="product-price">${Formatter.formatCurrency(product.valor)}</div>
+                            <button class="add-to-cart" onclick="CartManager.addToCart('${product.id}', this)">
+                                <i class="fas fa-plus"></i> Adicionar ao Carrinho
+                            </button>
+                        </div>
+                    </div>
+                `).join('');
+                
+                elements.loadingMessage.style.display = 'none';
+            }
+        }
+
+        // ==============================
+        // CLASSE: CART MANAGER
+        // ==============================
+        class CartManager {
+            /**
+             * Adiciona produto ao carrinho
+             * @param {string} productId - ID do produto
+             * @param {HTMLElement} button - Botão clicado
+             */
+            static addToCart(productId, button) {
+                const product = allProducts.find(p => p.id === productId);
+                if (!product) return;
+                
+                const originalText = button.innerHTML;
+                button.innerHTML = '<i class="fas fa-check"></i> Adicionado!';
+                button.disabled = true;
+                
+                cart[productId] = (cart[productId] || 0) + 1;
+                
+                CartManager.updateUI();
+                showNotification(`${product.produto} adicionado!`, 'success');
+                animateCartIcon();
+                
+                setTimeout(() => {
+                    button.innerHTML = originalText;
+                    button.disabled = false;
+                }, 1500);
+            }
+
+            /**
+             * Atualiza quantidade do produto no carrinho
+             * @param {string} productId - ID do produto
+             * @param {number} change - Mudança na quantidade (+1 ou -1)
+             */
+            static updateQuantity(productId, change) {
+                const currentQty = cart[productId] || 0;
+                const newQty = Math.max(0, currentQty + change);
+
+                if (newQty > 0) {
+                    cart[productId] = newQty;
+                } else {
+                    delete cart[productId];
+                }
+
+                CartManager.updateUI();
+            }
+
+            /**
+             * Remove produto do carrinho
+             * @param {string} productId - ID do produto
+             */
+            static removeFromCart(productId) {
+                delete cart[productId];
+                CartManager.updateUI();
+                showNotification('Item removido', 'info');
+            }
+
+            /**
+             * Atualiza interface do carrinho
+             */
+            static updateUI() {
+                const orderNumber = generateOrderNumber();
+                elements.orderNumber.textContent = `Nº do Pedido: ${orderNumber}`;
+                
+                let cartItemsHTML = '';
+                let hasItems = false;
+
+                for (const productId in cart) {
+                    const quantity = cart[productId];
+                    const product = allProducts.find(p => p.id === productId);
+                    
+                    if (product && quantity > 0) {
+                        hasItems = true;
+                        cartItemsHTML += `
+                            <div class="cart-item">
+                                <img src="${product.imagem}" 
+                                     class="cart-item-image"
+                                     onerror="this.src='https://via.placeholder.com/60x60?text=Pizza'">
+                                <div class="cart-item-details">
+                                    <div class="cart-item-name">${product.produto}</div>
+                                    <div class="cart-item-price">${Formatter.formatCurrency(product.valor)}</div>
+                                    <div class="cart-item-quantity">
+                                        <button class="quantity-btn" onclick="CartManager.updateQuantity('${product.id}', -1)">-</button>
+                                        <span class="quantity-value">${quantity}</span>
+                                        <button class="quantity-btn" onclick="CartManager.updateQuantity('${product.id}', 1)">+</button>
+                                        <button class="remove-item" onclick="CartManager.removeFromCart('${product.id}')">
+                                            <i class="fas fa-trash"></i>
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        `;
+                    }
+                }
+
+                elements.cartItems.innerHTML = hasItems 
+                    ? cartItemsHTML 
+                    : '<div style="text-align: center; padding: 40px 20px; color: #6c757d;"><i class="fas fa-shopping-cart" style="font-size: 3rem; margin-bottom: 16px; opacity: 0.3;"></i><p style="font-size: 1.1rem; font-weight: 500;">Seu carrinho está vazio</p><p style="font-size: 0.9rem; margin-top: 8px;">Adicione alguns produtos deliciosos!</p></div>';
+
+                CartManager.updateTotals();
+            }
+
+            /**
+             * Atualiza totais do carrinho
+             */
+            static updateTotals() {
+                let subtotal = 0;
+                let totalItems = 0;
+
+                for (const productId in cart) {
+                    const product = allProducts.find(p => p.id === productId);
+                    const quantity = cart[productId];
+                    if (product && quantity > 0) {
+                        subtotal += quantity * product.valor;
+                        totalItems += quantity;
+                    }
+                }
+
+                const discounts = DiscountManager.calculateDiscounts(subtotal, cart);
+                const finalDeliveryFee = Math.max(0, currentDeliveryFee - discounts.deliveryDiscount);
+                const total = subtotal - discounts.totalDiscount + finalDeliveryFee;
+
+                elements.subtotal.textContent = Formatter.formatCurrency(subtotal);
+                elements.discount.textContent = Formatter.formatCurrency(discounts.totalDiscount);
+                elements.deliveryFee.textContent = Formatter.formatCurrency(finalDeliveryFee);
+                elements.total.textContent = Formatter.formatCurrency(total);
+                elements.cartCount.textContent = totalItems;
+                
+                CartManager.checkCheckoutAvailability();
+            }
+
+            /**
+             * Verifica se pode finalizar pedido
+             */
+            static checkCheckoutAvailability() {
+                const hasItems = Object.keys(cart).length > 0;
+                const hasData = elements.customerName.value && 
+                               elements.customerPhone.value && 
+                               elements.customerStreet.value &&
+                               elements.customerNumber.value &&
+                               elements.customerNeighborhood.value &&
+                               elements.customerCity.value &&
+                               elements.paymentMethod.value;
+
+                elements.checkoutBtn.disabled = !(hasItems && hasData);
+            }
+        }
+
+        // ==============================
+        // CLASSE: DISCOUNT MANAGER
+        // ==============================
+        class DiscountManager {
+            /**
+             * Calcula todos os descontos aplicáveis
+             * @param {number} subtotal - Subtotal do carrinho
+             * @param {Object} cart - Objeto do carrinho
+             * @returns {Object} Descontos calculados
+             */
+            static calculateDiscounts(subtotal, cart) {
+                const itemsByCategory = DiscountManager.groupItemsByCategory(cart);
+                let totalDiscount = 0;
+                let deliveryDiscount = 0;
+                
+                // Aplica regras por ordem de prioridade
+                const activeRules = Object.values(CONFIG.DISCOUNT_RULES)
+                    .filter(rule => rule.active)
+                    .sort((a, b) => a.priority - b.priority);
+                
+                console.log(`🔍 ${activeRules.length} regra(s) de desconto ativa(s)`);
+                
+                for (const rule of activeRules) {
+                    if (DiscountManager.isRuleApplicable(rule, itemsByCategory, subtotal)) {
+                        const discount = DiscountManager.calculateRuleDiscount(rule, itemsByCategory, subtotal);
+                        
+                        if (rule.applyTo === "delivery") {
+                            deliveryDiscount += discount;
+                            console.log(`🚚 Desconto de entrega aplicado: ${Formatter.formatCurrency(discount)}`);
+                        } else {
+                            totalDiscount += discount;
+                            console.log(`💰 Desconto aplicado (${rule.name}): ${Formatter.formatCurrency(discount)}`);
+                        }
+                    }
+                }
+                
+                return {
+                    totalDiscount: totalDiscount,
+                    deliveryDiscount: deliveryDiscount
+                };
+            }
+
+            /**
+             * Agrupa itens por categoria para análise de descontos
+             * @param {Object} cart - Objeto do carrinho
+             * @returns {Object} Itens agrupados por categoria
+             */
+            static groupItemsByCategory(cart) {
+                const categories = {};
+                
+                for (const productId in cart) {
+                    const product = allProducts.find(p => p.id === productId);
+                    if (product && cart[productId] > 0) {
+                        const category = product.categoria.toLowerCase();
+                        if (!categories[category]) {
+                            categories[category] = {
+                                items: [],
+                                totalQuantity: 0,
+                                totalValue: 0
+                            };
+                        }
+                        
+                        const quantity = cart[productId];
+                        const itemValue = product.valor * quantity;
+                        
+                        categories[category].items.push({
+                            product: product,
+                            quantity: quantity,
+                            value: itemValue
+                        });
+                        
+                        categories[category].totalQuantity += quantity;
+                        categories[category].totalValue += itemValue;
+                    }
+                }
+                
+                return categories;
+            }
+
+            /**
+             * Verifica se uma regra de desconto é aplicável
+             * @param {Object} rule - Regra de desconto
+             * @param {Object} itemsByCategory - Itens agrupados por categoria
+             * @param {number} subtotal - Subtotal do carrinho
+             * @returns {boolean} Verdadeiro se a regra é aplicável
+             */
+            static isRuleApplicable(rule, itemsByCategory, subtotal) {
+                switch (rule.type) {
+                    case "category_based":
+                        return DiscountManager.checkCategoryRule(rule, itemsByCategory);
+                    case "combo_based":
+                        return DiscountManager.checkComboRule(rule, itemsByCategory);
+                    default:
+                        return false;
+                }
+            }
+
+            /**
+             * Verifica regra baseada em categoria
+             * @param {Object} rule - Regra de desconto
+             * @param {Object} itemsByCategory - Itens agrupados por categoria
+             * @returns {boolean} Verdadeiro se a regra se aplica
+             */
+            static checkCategoryRule(rule, itemsByCategory) {
+                const category = rule.target.toLowerCase();
+                const categoryData = itemsByCategory[category];
+                
+                if (!categoryData) return false;
+                
+                const conditionsMet = rule.conditions.map(condition => {
+                    if (condition.type === "quantity") {
+                        return categoryData.totalQuantity >= condition.value;
+                    } else if (condition.type === "value") {
+                        return categoryData.totalValue >= condition.value;
+                    }
+                    return false;
+                });
+                
+                if (rule.trigger === "AND") {
+                    return conditionsMet.every(Boolean);
+                } else {
+                    return conditionsMet.some(Boolean);
+                }
+            }
+
+            /**
+             * Verifica regra baseada em combo (Pizza + Refrigerante)
+             * ✅ REGRA IMPLEMENTADA: Tudo que passar de R$ 50 vira desconto!
+             * @param {Object} rule - Regra de desconto
+             * @param {Object} itemsByCategory - Itens agrupados por categoria
+             * @returns {boolean} Verdadeiro se a regra se aplica
+             */
+            static checkComboRule(rule, itemsByCategory) {
+                const categories = Array.isArray(rule.target) ? rule.target : [rule.target];
+                
+                // Verifica se há pelo menos uma pizza e um refrigerante
+                const hasPizza = itemsByCategory["pizzas"] && itemsByCategory["pizzas"].totalQuantity >= 1;
+                const hasBebida = itemsByCategory["bebidas"] && itemsByCategory["bebidas"].totalQuantity >= 1;
+                
+                if (!hasPizza || !hasBebida) return false;
+                
+                // Calcula valor do combo (soma de pizzas e bebidas)
+                let comboValue = 0;
+                if (itemsByCategory["pizzas"]) comboValue += itemsByCategory["pizzas"].totalValue;
+                if (itemsByCategory["bebidas"]) comboValue += itemsByCategory["bebidas"].totalValue;
+                
+                // Verifica condições
+                const conditionsMet = rule.conditions.map(condition => {
+                    if (condition.type === "category_quantity") {
+                        const categoryData = itemsByCategory[condition.category];
+                        return categoryData && categoryData.totalQuantity >= condition.value;
+                    } else if (condition.type === "combo_value") {
+                        return comboValue >= condition.value; // ✅ Deve ser >= R$ 50
+                    }
+                    return false;
+                });
+                
+                return conditionsMet.every(Boolean);
+            }
+
+            /**
+             * Calcula valor do desconto baseado na regra
+             * ✅ CORREÇÃO: 100% do excedente = Tudo que passar de R$ 50 vira desconto!
+             * @param {Object} rule - Regra de desconto
+             * @param {Object} itemsByCategory - Itens agrupados por categoria
+             * @param {number} subtotal - Subtotal do carrinho
+             * @returns {number} Valor do desconto
+             */
+            static calculateRuleDiscount(rule, itemsByCategory, subtotal) {
+                const discountValue = rule.discount.value;
+                
+                switch (rule.applyTo) {
+                    case "category":
+                        if (rule.type === "category_based") {
+                            const category = rule.target.toLowerCase();
+                            const categoryData = itemsByCategory[category];
+                            if (rule.discount.type === "percentage") {
+                                return categoryData ? (categoryData.totalValue * discountValue / 100) : 0;
+                            } else {
+                                return discountValue;
+                            }
+                        }
+                        return 0;
+                        
+                    case "combo":
+                        if (rule.discount.type === "excess_percentage") {
+                            // Calcula valor do combo (pizzas + bebidas)
+                            let comboValue = 0;
+                            if (itemsByCategory["pizzas"]) comboValue += itemsByCategory["pizzas"].totalValue;
+                            if (itemsByCategory["bebidas"]) comboValue += itemsByCategory["bebidas"].totalValue;
+                            
+                            // ✅ CORREÇÃO: 100% do excedente = TUDO que passar de R$ 50
+                            const excessValue = Math.max(0, comboValue - 50);
+                            
+                            // Se for 100%, desconto = TODO o excedente
+                            if (discountValue === 100) {
+                                return excessValue; // ✅ 100% do excedente
+                            } else {
+                                return excessValue * discountValue / 100;
+                            }
+                        } else {
+                            return discountValue;
+                        }
+                        
+                    default:
+                        return 0;
+                }
+            }
+        }
+
+        // ==============================
+        // CLASSE: ORDER MANAGER
+        // ==============================
+        class OrderManager {
+            /**
+             * Finaliza o pedido atual
+             * @returns {Promise<void>}
+             */
+            static async finalizeOrder() {
+                if (!OrderManager.validateCustomerData()) {
+                    showNotification('Preencha todos os dados obrigatórios!', 'error');
+                    return;
+                }
+                
+                try {
+                    elements.checkoutBtn.disabled = true;
+                    elements.checkoutBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Processando...';
+                    
+                    showNotification('Enviando pedido...', 'info');
+                    
+                    const orderNumber = generateOrderNumber();
+                    const { subtotal, discount, total, costTotal } = OrderManager.calculateOrderTotals();
+                    const deliveryMinutes = OrderManager.calculateDeliveryTime(total);
+                    
+                    OrderManager.saveCustomerData();
+                    
+                    const orderData = {
+                        orderNumber: orderNumber,
+                        total: total,
+                        subtotal: subtotal,
+                        discount: discount,
+                        deliveryFee: currentDeliveryFee,
+                        customerName: elements.customerName.value,
+                        customerPhone: elements.customerPhone.value,
+                        customerAddress: OrderManager.getFullAddress(),
+                        customerZipcode: elements.customerZipcode.value,
+                        paymentMethod: elements.paymentMethod.value,
+                        items: OrderManager.getOrderItems(),
+                        orderTimestamp: new Date().toISOString(),
+                        estimatedDeliveryMinutes: deliveryMinutes,
+                        status: 'pending'
+                    };
+                    
+                    console.log('📤 Enviando dados para API...');
+                    
+                    const apiOrderData = {
+                        Telefone: elements.customerPhone.value,
+                        Nome: elements.customerName.value,
+                        Endereco: OrderManager.getFullAddress(),
+                        CEP: elements.customerZipcode.value,
+                        Pagamento: elements.paymentMethod.value,
+                        NumPedido: orderNumber,
+                        Desconto: parseFloat(discount.toFixed(2)),
+                        TaxaEntrega: currentDeliveryFee,
+                        Total: parseFloat(total.toFixed(2)),
+                        CustoTotal: parseFloat(costTotal.toFixed(2)),
+                        itens: orderData.items
+                    };
+                    
+                    console.log('📦 Dados enviados para API:', apiOrderData);
+                    
+                    const response = await fetch(CONFIG.API_URL, {
+                        method: 'POST',
+                        mode: 'cors',
+                        cache: 'no-cache',
+                        body: JSON.stringify(apiOrderData),
+                    });
+                    
+                    if (!response.ok) {
+                        throw new Error(`Falha na requisição: ${response.status}`);
+                    }
+                    
+                    const result = await response.json();
+                    
+                    console.log('📥 Resposta da API:', result);
+                    
+                    if (result.success) {
+                        showNotification('Pedido realizado com sucesso!', 'success');
+                        
+                        OrderHistoryManager.saveOrderToHistory(orderData);
+                        
+                        OrderManager.showWhatsAppModal(orderData);
+                        
+                        cart = {};
+                        closeCartModal();
+                        CartManager.updateUI();
+                        
+                        OrderHistoryManager.renderOrdersHistory();
+                    } else {
+                        throw new Error(result.message);
+                    }
+                } catch (error) {
+                    console.error('❌ Erro no pedido:', error);
+                    showNotification('Erro ao enviar pedido: ' + error.message, 'error');
+                } finally {
+                    elements.checkoutBtn.disabled = false;
+                    elements.checkoutBtn.innerHTML = '<i class="fas fa-check-circle"></i> Finalizar Pedido';
+                }
+            }
+
+            /**
+             * Calcula totais do pedido
+             * @returns {Object} Totais calculados
+             */
+            static calculateOrderTotals() {
+                let subtotal = 0;
+                let costTotal = 0;
+
+                for (const productId in cart) {
+                    const product = allProducts.find(p => p.id === productId);
+                    const quantity = cart[productId];
+                    if (product && quantity > 0) {
+                        subtotal += quantity * product.valor;
+                        costTotal += quantity * product.custo;
+                    }
+                }
+
+                const discounts = DiscountManager.calculateDiscounts(subtotal, cart);
+                const finalDeliveryFee = Math.max(0, currentDeliveryFee - discounts.deliveryDiscount);
+                const total = subtotal - discounts.totalDiscount + finalDeliveryFee;
+
+                return { 
+                    subtotal, 
+                    discount: discounts.totalDiscount, 
+                    total, 
+                    costTotal 
+                };
+            }
+
+            /**
+             * Valida dados do cliente
+             * @returns {boolean} Verdadeiro se dados são válidos
+             */
+            static validateCustomerData() {
+                const requiredFields = [
+                    elements.customerName,
+                    elements.customerPhone,
+                    elements.customerStreet,
+                    elements.customerNumber,
+                    elements.customerNeighborhood,
+                    elements.customerCity,
+                    elements.paymentMethod
+                ];
+                
+                for (let field of requiredFields) {
+                    if (!field.value.trim()) {
+                        field.focus();
+                        return false;
+                    }
+                }
+                
+                return true;
+            }
+
+            /**
+             * Obtém endereço completo formatado
+             * @returns {string} Endereço formatado
+             */
+            static getFullAddress() {
+                const street = elements.customerStreet.value;
+                const number = elements.customerNumber.value;
+                const complement = elements.customerComplement.value;
+                const neighborhood = elements.customerNeighborhood.value;
+                const city = elements.customerCity.value;
+                const zipcode = elements.customerZipcode.value;
+                
+                let address = `${street}, ${number}`;
+                if (complement) {
+                    address += `, ${complement}`;
+                }
+                address += `, ${neighborhood}, ${city}`;
+                
+                if (zipcode) {
+                    address += `, CEP: ${zipcode}`;
+                }
+                
+                return address;
+            }
+
+            /**
+             * Obtém itens do pedido
+             * @returns {Array} Itens do pedido
+             */
+            static getOrderItems() {
+                const items = [];
+                for (const productId in cart) {
+                    const product = allProducts.find(p => p.id === productId);
+                    const quantity = cart[productId];
+                    if (product && quantity > 0) {
+                        items.push({
+                            Id: product.id,
+                            Produto: product.produto,
+                            Quantidade: quantity,
+                            Valor: parseFloat(product.valor.toFixed(2)),
+                            SubTotalItem: parseFloat((quantity * product.valor).toFixed(2)),
+                            CustoItem: parseFloat(product.custo.toFixed(2))
+                        });
+                    }
+                }
+                return items;
+            }
+
+            /**
+             * Salva dados do cliente no localStorage
+             */
+            static saveCustomerData() {
+                const data = {
+                    name: elements.customerName.value.trim(),
+                    phone: elements.customerPhone.value.trim(),
+                    street: elements.customerStreet.value.trim(),
+                    number: elements.customerNumber.value.trim(),
+                    complement: elements.customerComplement.value.trim(),
+                    neighborhood: elements.customerNeighborhood.value.trim(),
+                    zipcode: elements.customerZipcode.value.trim(),
+                    city: elements.customerCity.value.trim(),
+                    paymentMethod: elements.paymentMethod.value
+                };
+                
+                const requiredFields = ['name', 'phone', 'street', 'number', 'neighborhood', 'city', 'paymentMethod'];
+                const isValid = requiredFields.every(field => 
+                    data[field] !== null && data[field] !== undefined && data[field] !== ''
+                );
+                
+                if (isValid) {
+                    localStorage.setItem('customerData', JSON.stringify(data));
+                    console.log('✅ Dados do cliente salvos COMPLETOS:', data);
+                } else {
+                    console.warn('⚠️ Dados incompletos, não salvando no localStorage');
+                }
+            }
+
+            /**
+             * Calcula tempo de entrega baseado no total
+             * @param {number} total - Total do pedido
+             * @returns {number} Tempo de entrega em minutos
+             */
+            static calculateDeliveryTime(total) {
+                if (total > 50) return 50;
+                if (total > 30) return 45;
+                return 40;
+            }
+
+            /**
+             * Exibe modal do WhatsApp
+             * @param {Object} orderData - Dados do pedido
+             */
+            static showWhatsAppModal(orderData) {
+                currentOrderData = orderData;
+                elements.whatsappModal.style.display = 'flex';
+                document.body.style.overflow = 'hidden';
+            }
+        }
+
+        // ==============================
+        // CLASSE: ORDER HISTORY MANAGER
+        // ==============================
+        class OrderHistoryManager {
+            /**
+             * Renderiza histórico de pedidos
+             */
+            static renderOrdersHistory() {
+                const ordersHistory = OrderHistoryManager.getOrdersHistory();
+                const ordersContainer = elements.ordersHistory;
+                
+                if (ordersHistory.length === 0) {
+                    ordersContainer.innerHTML = `
+                        <div style="text-align: center; padding: 40px 20px; color: #6c757d;">
+                            <i class="fas fa-history" style="font-size: 3rem; margin-bottom: 16px; opacity: 0.3;"></i>
+                            <p style="font-size: 1.1rem; font-weight: 500;">Nenhum pedido encontrado</p>
+                            <p style="font-size: 0.9rem; margin-top: 8px;">Seus pedidos aparecerão aqui!</p>
+                        </div>
+                    `;
+                    return;
+                }
+                
+                let ordersHTML = '';
+                
+                ordersHistory.forEach((order) => {
+                    const deliveryMinutes = order.estimatedDeliveryMinutes || 45;
+                    const status = order.status || 'pending';
+                    const remainingSeconds = OrderHistoryManager.getRemainingTime(deliveryMinutes, order.orderTimestamp);
+                    const minutes = Math.floor(remainingSeconds / 60);
+                    const seconds = remainingSeconds % 60;
+                    
+                    let statusText = '';
+                    let statusClass = '';
+                    
+                    if (status === 'pending') {
+                        statusText = 'Em Preparo';
+                        statusClass = 'status-pending';
+                    } else if (status === 'completed') {
+                        statusText = 'Entregue';
+                        statusClass = 'status-completed';
+                    }
+                    
+                    ordersHTML += `
+                        <div class="order-history-item" data-order="${order.orderNumber}">
+                            <div class="order-history-header">
+                                <div class="order-number">#${order.orderNumber}</div>
+                                <div class="order-status ${statusClass}">${statusText}</div>
+                            </div>
+                            
+                            <div class="order-date">
+                                ${new Date(order.orderTimestamp).toLocaleString('pt-BR')}
+                            </div>
+                            
+                            ${status === 'pending' ? `
+                            <div class="order-timer" id="timer-${order.orderNumber}">
+                                <i class="fas fa-clock"></i> 
+                                <span id="timer-display-${order.orderNumber}">${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}</span>
+                            </div>
+                            ` : ''}
+                            
+                            <div class="order-items">
+                                ${order.items ? order.items.map(item => `
+                                    <div class="order-item">
+                                        <span class="order-item-name">${item.Produto}</span>
+                                        <span class="order-item-quantity">${item.Quantidade}x</span>
+                                        <span class="order-item-price">${Formatter.formatCurrency(item.Valor * item.Quantidade)}</span>
+                                    </div>
+                                `).join('') : ''}
+                            </div>
+                            
+                            <div class="order-summary">
+                                <div class="order-summary-row">
+                                    <span class="order-summary-label">Desconto:</span>
+                                    <span class="order-summary-value">${Formatter.formatCurrency(order.discount || 0)}</span>
+                                </div>
+                                <div class="order-summary-row">
+                                    <span class="order-summary-label">Taxa de Entrega:</span>
+                                    <span class="order-summary-value">${Formatter.formatCurrency(order.deliveryFee || CONFIG.DELIVERY_FEE)}</span>
+                                </div>
+                                <div class="order-summary-row">
+                                    <span class="order-summary-label">Total:</span>
+                                    <span class="order-summary-value">${Formatter.formatCurrency(order.Total || order.total)}</span>
+                                </div>
+                            </div>
+                        </div>
+                    `;
+                });
+                
+                ordersContainer.innerHTML = ordersHTML;
+                OrderHistoryManager.startAllOrderTimers();
+                
+                setTimeout(() => {
+                    ordersContainer.scrollTop = 0;
+                }, 100);
+            }
+
+            /**
+             * Salva pedido no histórico
+             * @param {Object} orderData - Dados do pedido
+             */
+            static saveOrderToHistory(orderData) {
+                try {
+                    const ordersHistory = OrderHistoryManager.getOrdersHistory();
+                    ordersHistory.unshift(orderData);
+                    
+                    if (ordersHistory.length > CONFIG.MAX_ORDERS) {
+                        ordersHistory.splice(CONFIG.MAX_ORDERS);
+                    }
+                    
+                    localStorage.setItem('pizzariaOrders', JSON.stringify(ordersHistory));
+                    console.log('✅ Pedido salvo no histórico:', orderData);
+                    
+                } catch (error) {
+                    console.error('❌ Erro ao salvar pedido no histórico:', error);
+                }
+            }
+
+            /**
+             * Obtém histórico de pedidos do localStorage
+             * @returns {Array} Histórico de pedidos
+             */
+            static getOrdersHistory() {
+                try {
+                    const saved = localStorage.getItem('pizzariaOrders');
+                    return saved ? JSON.parse(saved) : [];
+                } catch (error) {
+                    console.error('❌ Erro ao recuperar histórico:', error);
+                    return [];
+                }
+            }
+
+            /**
+             * Obtém tempo restante para entrega
+             * @param {number} deliveryTime - Tempo de entrega em minutos
+             * @param {string} orderTimestamp - Timestamp do pedido
+             * @returns {number} Segundos restantes
+             */
+            static getRemainingTime(deliveryTime, orderTimestamp) {
+                const orderTime = new Date(orderTimestamp);
+                const deliveryTimeMs = orderTime.getTime() + (deliveryTime * 60000);
+                const now = new Date().getTime();
+                const remainingMs = Math.max(0, deliveryTimeMs - now);
+                
+                return Math.floor(remainingMs / 1000);
+            }
+
+            /**
+             * Inicia todos os timers de pedidos pendentes
+             */
+            static startAllOrderTimers() {
+                const ordersHistory = OrderHistoryManager.getOrdersHistory();
+                
+                orderTimers.forEach((timer, orderNumber) => {
+                    clearInterval(timer);
+                    orderTimers.delete(orderNumber);
+                });
+                
+                ordersHistory.forEach(order => {
+                    if (order.status === 'pending') {
+                        OrderHistoryManager.startOrderTimer(order.orderNumber, order.estimatedDeliveryMinutes, order.orderTimestamp);
+                    }
+                });
+            }
+
+            /**
+             * Inicia timer para um pedido específico
+             * @param {string} orderNumber - Número do pedido
+             * @param {number} deliveryMinutes - Tempo de entrega em minutos
+             * @param {string} orderTimestamp - Timestamp do pedido
+             */
+            static startOrderTimer(orderNumber, deliveryMinutes, orderTimestamp) {
+                if (orderTimers.has(orderNumber)) {
+                    return;
+                }
+                
+                const timer = setInterval(() => {
+                    const remainingSeconds = OrderHistoryManager.getRemainingTime(deliveryMinutes, orderTimestamp);
+                    
+                    if (remainingSeconds <= 0) {
+                        OrderHistoryManager.updateOrderStatus(orderNumber, 'completed');
+                        clearInterval(timer);
+                        orderTimers.delete(orderNumber);
+                        OrderHistoryManager.renderOrdersHistory();
+                        showNotification(`Pedido #${orderNumber} foi entregue!`, 'success');
+                    } else {
+                        const minutes = Math.floor(remainingSeconds / 60);
+                        const seconds = remainingSeconds % 60;
+                        const timerElement = document.getElementById(`timer-display-${orderNumber}`);
+                        if (timerElement) {
+                            timerElement.textContent = `${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
+                        }
+                    }
+                }, 1000);
+                
+                orderTimers.set(orderNumber, timer);
+            }
+
+            /**
+             * Atualiza status do pedido
+             * @param {string} orderNumber - Número do pedido
+             * @param {string} status - Novo status
+             * @returns {boolean} Verdadeiro se atualizado com sucesso
+             */
+            static updateOrderStatus(orderNumber, status) {
+                try {
+                    const ordersHistory = OrderHistoryManager.getOrdersHistory();
+                    const orderIndex = ordersHistory.findIndex(order => order.orderNumber === orderNumber);
+                    
+                    if (orderIndex !== -1) {
+                        ordersHistory[orderIndex].status = status;
+                        localStorage.setItem('pizzariaOrders', JSON.stringify(ordersHistory));
+                        return true;
+                    }
+                    return false;
+                } catch (error) {
+                    console.error('❌ Erro ao atualizar status:', error);
+                    return false;
+                }
+            }
+        }
+
+        // ==============================
+        // FUNÇÕES UTILITÁRIAS GLOBAIS
+        // ==============================
         const updateApiStatus = (isConnected, message) => {
             elements.apiStatus.textContent = message;
             elements.apiStatus.style.color = isConnected ? '#008C45' : '#CD212A';
-        };
-
-        const formatCurrency = (value) => {
-            return new Intl.NumberFormat('pt-BR', {
-                style: 'currency',
-                currency: 'BRL'
-            }).format(value);
         };
 
         const generateOrderNumber = () => {
@@ -1990,172 +3121,31 @@
             return null;
         };
 
-        const parseCurrencyString = (value) => {
-            if (value === null || typeof value === 'undefined' || value === '') return 0;
-            let cleanedString = String(value).replace(/[R$\s]/g, '').trim();
-            cleanedString = cleanedString.replace(',', '.');
-            const number = parseFloat(cleanedString);
-            return isNaN(number) ? 0 : number;
-        };
-
-        // FUNÇÃO PARA VERIFICAR SE EXISTEM PEDIDOS NÃO ENTREGUES
-        function hasPendingOrders() {
-            const ordersHistory = getOrdersHistory();
+        const hasPendingOrders = () => {
+            const ordersHistory = OrderHistoryManager.getOrdersHistory();
             return ordersHistory.some(order => 
                 order.status !== 'completed' && order.status !== 'Entregue'
             );
-        }
+        };
 
-        // ✅ SISTEMA FLEXÍVEL DE DESCONTOS - AGORA COM CONTROLE INDIVIDUAL
-        function calculateDiscounts(subtotal, cart) {
-            const itemsByCategory = groupItemsByCategory(cart);
-            let totalDiscount = 0;
-            let deliveryDiscount = 0;
-            
-            // Aplica regras por ordem de prioridade
-            const activeRules = Object.values(CONFIG.DISCOUNT_RULES)
-                .filter(rule => rule.active)
-                .sort((a, b) => a.priority - b.priority);
-            
-            console.log(`🔍 ${activeRules.length} regra(s) de desconto ativa(s)`);
-            
-            for (const rule of activeRules) {
-                if (isRuleApplicable(rule, itemsByCategory, subtotal)) {
-                    const discount = calculateRuleDiscount(rule, itemsByCategory, subtotal);
-                    
-                    if (rule.applyTo === "delivery") {
-                        deliveryDiscount += discount;
-                        console.log(`🚚 Desconto de entrega aplicado: ${formatCurrency(discount)}`);
-                    } else {
-                        totalDiscount += discount;
-                        console.log(`💰 Desconto aplicado (${rule.name}): ${formatCurrency(discount)}`);
-                    }
-                }
-            }
-            
-            return {
-                totalDiscount: totalDiscount,
-                deliveryDiscount: deliveryDiscount
-            };
-        }
+        const animateCartIcon = () => {
+            elements.floatingCart.classList.add('cart-bounce');
+            setTimeout(() => {
+                elements.floatingCart.classList.remove('cart-bounce');
+            }, 600);
+        };
 
-        function groupItemsByCategory(cart) {
-            const categories = {};
-            
-            for (const productId in cart) {
-                const product = allProducts.find(p => p.id === productId);
-                if (product && cart[productId] > 0) {
-                    const category = product.categoria.toLowerCase();
-                    if (!categories[category]) {
-                        categories[category] = {
-                            items: [],
-                            totalQuantity: 0,
-                            totalValue: 0
-                        };
-                    }
-                    
-                    const quantity = cart[productId];
-                    const itemValue = product.valor * quantity;
-                    
-                    categories[category].items.push({
-                        product: product,
-                        quantity: quantity,
-                        value: itemValue
-                    });
-                    
-                    categories[category].totalQuantity += quantity;
-                    categories[category].totalValue += itemValue;
-                }
-            }
-            
-            return categories;
-        }
-
-        function isRuleApplicable(rule, itemsByCategory, subtotal) {
-            switch (rule.type) {
-                case "category_based":
-                    return checkCategoryRule(rule, itemsByCategory);
-                case "total_based":
-                    return checkTotalRule(rule, subtotal);
-                default:
-                    return false;
-            }
-        }
-
-        function checkCategoryRule(rule, itemsByCategory) {
-            const category = rule.target.toLowerCase();
-            const categoryData = itemsByCategory[category];
-            
-            if (!categoryData) return false;
-            
-            const conditionsMet = rule.conditions.map(condition => {
-                if (condition.type === "quantity") {
-                    return categoryData.totalQuantity >= condition.value;
-                } else if (condition.type === "value") {
-                    return categoryData.totalValue >= condition.value;
-                }
-                return false;
+        const scrollToTop = () => {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
             });
-            
-            if (rule.trigger === "AND") {
-                return conditionsMet.every(Boolean);
-            } else {
-                return conditionsMet.some(Boolean);
-            }
-        }
+        };
 
-        function checkTotalRule(rule, subtotal) {
-            const conditionsMet = rule.conditions.map(condition => {
-                if (condition.type === "value") {
-                    return subtotal >= condition.value;
-                }
-                return false;
-            });
-            
-            return conditionsMet.every(Boolean);
-        }
-
-        function calculateRuleDiscount(rule, itemsByCategory, subtotal) {
-            const discountValue = rule.discount.value;
-            
-            switch (rule.applyTo) {
-                case "category":
-                    if (rule.type === "category_based") {
-                        const category = rule.target.toLowerCase();
-                        const categoryData = itemsByCategory[category];
-                        if (rule.discount.type === "percentage") {
-                            return categoryData ? (categoryData.totalValue * discountValue / 100) : 0;
-                        } else {
-                            return discountValue;
-                        }
-                    }
-                    return 0;
-                    
-                case "total":
-                    if (rule.discount.type === "percentage") {
-                        return subtotal * discountValue / 100;
-                    } else {
-                        return discountValue;
-                    }
-                    
-                case "delivery":
-                    return discountValue; // Valor fixo para desconto de entrega
-                    
-                default:
-                    return 0;
-            }
-        }
-
-        // ✅ FUNÇÃO REVISADA: calculateDeliveryTime
-        function calculateDeliveryTime(total) {
-            // Lógica corrigida: pedidos maiores levam MAIS tempo
-            if (total > 50) return 50;    // Pedidos grandes: 50-60 min
-            if (total > 30) return 45;    // Pedidos médios: 45-55 min  
-            return 40;                    // Pedidos pequenos: 40-50 min
-        }
-
-        // SISTEMA DE TAXA DE ENTREGA POR ENDEREÇO
-        function handleStreetInput() {
+        // ==============================
+        // FUNÇÕES DE ENDEREÇO
+        // ==============================
+        const handleStreetInput = () => {
             const input = elements.customerStreet.value.toLowerCase();
             elements.streetAutocomplete.innerHTML = '';
             
@@ -2183,7 +3173,7 @@
                     <div style="font-weight: 600;">${rate.street}</div>
                     <div style="font-size: 0.9rem; color: #666;">${rate.neighborhood}, ${rate.city}</div>
                     <div style="font-size: 0.8rem; color: #008C45; font-weight: 600; margin-top: 4px;">
-                        Distância: ${rate.distance}m • Taxa: ${formatCurrency(deliveryFee)} • CEP: ${rate.zipCode}
+                        Distância: ${rate.distance}m • Taxa: ${Formatter.formatCurrency(deliveryFee)} • CEP: ${rate.zipCode}
                     </div>
                 `;
                 
@@ -2197,19 +3187,19 @@
                     elements.customerNumber.focus();
                     
                     currentDeliveryFee = calculateDeliveryFee(rate.distance);
-                    updateCartTotals();
-                    checkCheckoutAvailability();
+                    CartManager.updateTotals();
+                    CartManager.checkCheckoutAvailability();
                     
-                    showNotification(`Endereço selecionado! Taxa de entrega: ${formatCurrency(currentDeliveryFee)}`);
+                    showNotification(`Endereço selecionado! Taxa de entrega: ${Formatter.formatCurrency(currentDeliveryFee)}`);
                 });
                 
                 elements.streetAutocomplete.appendChild(item);
             });
             
             elements.streetAutocomplete.style.display = 'block';
-        }
+        };
 
-        function autoFillAddressFields() {
+        const autoFillAddressFields = () => {
             const streetValue = elements.customerStreet.value.trim();
             
             if (!streetValue) return;
@@ -2224,506 +3214,76 @@
                 elements.customerZipcode.value = addressMatch.zipCode;
                 
                 currentDeliveryFee = calculateDeliveryFee(addressMatch.distance);
-                updateCartTotals();
+                CartManager.updateTotals();
                 
-                showNotification(`Endereço encontrado! Taxa de entrega: ${formatCurrency(currentDeliveryFee)}`);
+                showNotification(`Endereço encontrado! Taxa de entrega: ${Formatter.formatCurrency(currentDeliveryFee)}`);
             } else {
                 elements.customerNeighborhood.value = "Centro";
                 elements.customerCity.value = "Esmeraldas/MG";
                 
                 currentDeliveryFee = 5.00;
-                updateCartTotals();
+                CartManager.updateTotals();
                 
-                showNotification(`Endereço não encontrado na lista. Taxa de entrega padrão: ${formatCurrency(currentDeliveryFee)}`);
+                showNotification(`Endereço não encontrado na lista. Taxa de entrega padrão: ${Formatter.formatCurrency(currentDeliveryFee)}`);
             }
             
-            checkCheckoutAvailability();
-        }
+            CartManager.checkCheckoutAvailability();
+        };
 
-        document.addEventListener('click', function(e) {
-            if (!elements.customerStreet.contains(e.target) && !elements.streetAutocomplete.contains(e.target)) {
-                elements.streetAutocomplete.style.display = 'none';
-            }
-        });
-
-        // FUNÇÃO PARA ROLAR PARA O TOPO
-        function scrollToTop() {
-            window.scrollTo({
-                top: 0,
-                behavior: 'smooth'
-            });
-        }
-
-        // SISTEMA DE HISTÓRICO DE PEDIDOS
-        function saveOrderToHistory(orderData) {
-            try {
-                const ordersHistory = getOrdersHistory();
-                ordersHistory.unshift(orderData);
-                
-                if (ordersHistory.length > CONFIG.MAX_ORDERS) {
-                    ordersHistory.splice(CONFIG.MAX_ORDERS);
-                }
-                
-                localStorage.setItem('pizzariaOrders', JSON.stringify(ordersHistory));
-                console.log('✅ Pedido salvo no histórico:', orderData);
-                
-            } catch (error) {
-                console.error('❌ Erro ao salvar pedido no histórico:', error);
-            }
-        }
-
-        function getOrdersHistory() {
-            try {
-                const saved = localStorage.getItem('pizzariaOrders');
-                return saved ? JSON.parse(saved) : [];
-            } catch (error) {
-                console.error('❌ Erro ao recuperar histórico:', error);
-                return [];
-            }
-        }
-
-        function updateOrderStatus(orderNumber, status) {
-            try {
-                const ordersHistory = getOrdersHistory();
-                const orderIndex = ordersHistory.findIndex(order => order.orderNumber === orderNumber);
-                
-                if (orderIndex !== -1) {
-                    ordersHistory[orderIndex].status = status;
-                    localStorage.setItem('pizzariaOrders', JSON.stringify(ordersHistory));
-                    return true;
-                }
-                return false;
-            } catch (error) {
-                console.error('❌ Erro ao atualizar status:', error);
-                return false;
-            }
-        }
-
-        function getOrderStatus(deliveryTime, orderTimestamp) {
-            const orderTime = new Date(orderTimestamp);
-            const deliveryTimeMs = orderTime.getTime() + (deliveryTime * 60000);
-            const now = new Date().getTime();
-            
-            if (now >= deliveryTimeMs) {
-                return 'completed';
+        const calculateDeliveryFee = (distance) => {
+            if (distance === 0) {
+                return 0;
+            } else if (distance <= 1500) {
+                return 3.00;
             } else {
-                return 'pending';
+                const additionalDistance = distance - 1500;
+                const additionalFee = Math.ceil(additionalDistance / 1000) * 1.00;
+                return 3.00 + additionalFee;
             }
-        }
+        };
 
-        function getRemainingTime(deliveryTime, orderTimestamp) {
-            const orderTime = new Date(orderTimestamp);
-            const deliveryTimeMs = orderTime.getTime() + (deliveryTime * 60000);
-            const now = new Date().getTime();
-            const remainingMs = Math.max(0, deliveryTimeMs - now);
+        // ==============================
+        // FUNÇÕES DE WHATSAPP
+        // ==============================
+        const formatWhatsAppMessage = (orderData) => {
+            let message = `🍕 *PEDIDO PIZZARIA FRATELLI* 🍕\n\n`;
+            message += `*Número do Pedido:* ${orderData.orderNumber}\n\n`;
+            message += `*Itens do Pedido:*\n`;
             
-            return Math.floor(remainingMs / 1000);
-        }
-
-        // FUNÇÕES DE INTERFACE - HISTÓRICO DE PEDIDOS
-        function renderOrdersHistory() {
-            const ordersHistory = getOrdersHistory();
-            const ordersContainer = elements.ordersHistory;
-            
-            if (ordersHistory.length === 0) {
-                ordersContainer.innerHTML = `
-                    <div style="text-align: center; padding: 40px 20px; color: #6c757d;">
-                        <i class="fas fa-history" style="font-size: 3rem; margin-bottom: 16px; opacity: 0.3;"></i>
-                        <p style="font-size: 1.1rem; font-weight: 500;">Nenhum pedido encontrado</p>
-                        <p style="font-size: 0.9rem; margin-top: 8px;">Seus pedidos aparecerão aqui!</p>
-                    </div>
-                `;
-                return;
-            }
-            
-            let ordersHTML = '';
-            
-            ordersHistory.forEach((order, index) => {
-                const deliveryMinutes = order.estimatedDeliveryMinutes || calculateDeliveryTime(order.Total || order.total);
-                const status = order.status || getOrderStatus(deliveryMinutes, order.orderTimestamp);
-                const remainingSeconds = getRemainingTime(deliveryMinutes, order.orderTimestamp);
-                const minutes = Math.floor(remainingSeconds / 60);
-                const seconds = remainingSeconds % 60;
-                
-                let statusText = '';
-                let statusClass = '';
-                
-                if (status === 'pending') {
-                    statusText = 'Em Preparo';
-                    statusClass = 'status-pending';
-                } else if (status === 'completed') {
-                    statusText = 'Entregue';
-                    statusClass = 'status-completed';
-                }
-                
-                ordersHTML += `
-                    <div class="order-history-item" data-order="${order.orderNumber}">
-                        <div class="order-history-header">
-                            <div class="order-number">#${order.orderNumber}</div>
-                            <div class="order-status ${statusClass}">${statusText}</div>
-                        </div>
-                        
-                        <div class="order-date">
-                            ${new Date(order.orderTimestamp).toLocaleString('pt-BR')}
-                        </div>
-                        
-                        ${status === 'pending' ? `
-                        <div class="order-timer" id="timer-${order.orderNumber}">
-                            <i class="fas fa-clock"></i> 
-                            <span id="timer-display-${order.orderNumber}">${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}</span>
-                        </div>
-                        ` : ''}
-                        
-                        <div class="order-items">
-                            ${order.items ? order.items.map(item => `
-                                <div class="order-item">
-                                    <span class="order-item-name">${item.Produto}</span>
-                                    <span class="order-item-quantity">${item.Quantidade}x</span>
-                                    <span class="order-item-price">${formatCurrency(item.Valor * item.Quantidade)}</span>
-                                </div>
-                            `).join('') : ''}
-                        </div>
-                        
-                        <div class="order-summary">
-                            <div class="order-summary-row">
-                                <span class="order-summary-label">Desconto:</span>
-                                <span class="order-summary-value">${formatCurrency(order.discount || 0)}</span>
-                            </div>
-                            <div class="order-summary-row">
-                                <span class="order-summary-label">Taxa de Entrega:</span>
-                                <span class="order-summary-value">${formatCurrency(order.deliveryFee || CONFIG.DELIVERY_FEE)}</span>
-                            </div>
-                            <div class="order-summary-row">
-                                <span class="order-summary-label">Total:</span>
-                                <span class="order-summary-value">${formatCurrency(order.Total || order.total)}</span>
-                            </div>
-                        </div>
-                    </div>
-                `;
+            orderData.items.forEach(item => {
+                message += `• ${item.Quantidade}x ${item.Produto} - ${Formatter.formatCurrency(item.Valor * item.Quantidade)}\n`;
             });
             
-            ordersContainer.innerHTML = ordersHTML;
-            startAllOrderTimers();
+            message += `\n*Resumo do Pedido:*\n`;
+            message += `Subtotal: ${Formatter.formatCurrency(orderData.subtotal)}\n`;
+            message += `Desconto: ${Formatter.formatCurrency(orderData.discount)}\n`;
+            message += `Taxa de Entrega: ${Formatter.formatCurrency(orderData.deliveryFee)}\n`;
+            message += `*Total: ${Formatter.formatCurrency(orderData.total)}*\n\n`;
+            message += `*Forma de Pagamento:* ${orderData.paymentMethod}\n\n`;
+            message += `*Dados do Cliente:*\n`;
+            message += `Nome: ${orderData.customerName}\n`;
+            message += `Telefone: ${orderData.customerPhone}\n`;
+            message += `Endereço: ${orderData.customerAddress}\n`;
             
-            setTimeout(() => {
-                ordersContainer.scrollTop = 0;
-            }, 100);
-        }
+            return encodeURIComponent(message);
+        };
 
-        function startAllOrderTimers() {
-            const ordersHistory = getOrdersHistory();
-            
-            orderTimers.forEach((timer, orderNumber) => {
-                clearInterval(timer);
-                orderTimers.delete(orderNumber);
-            });
-            
-            ordersHistory.forEach(order => {
-                if (order.status === 'pending') {
-                    startOrderTimer(order.orderNumber, order.estimatedDeliveryMinutes, order.orderTimestamp);
-                }
-            });
-        }
+        const openWhatsApp = (orderData) => {
+            const message = formatWhatsAppMessage(orderData);
+            const whatsappUrl = `https://wa.me/${CONFIG.WHATSAPP_NUMBER}?text=${message}`;
+            window.open(whatsappUrl, '_blank');
+        };
 
-        function startOrderTimer(orderNumber, deliveryMinutes, orderTimestamp) {
-            if (orderTimers.has(orderNumber)) {
-                return;
-            }
-            
-            const timer = setInterval(() => {
-                const remainingSeconds = getRemainingTime(deliveryMinutes, orderTimestamp);
-                
-                if (remainingSeconds <= 0) {
-                    updateOrderStatus(orderNumber, 'completed');
-                    clearInterval(timer);
-                    orderTimers.delete(orderNumber);
-                    renderOrdersHistory();
-                    showNotification(`Pedido #${orderNumber} foi entregue!`, 'success');
-                } else {
-                    const minutes = Math.floor(remainingSeconds / 60);
-                    const seconds = remainingSeconds % 60;
-                    const timerElement = document.getElementById(`timer-display-${orderNumber}`);
-                    if (timerElement) {
-                        timerElement.textContent = `${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
-                    }
-                }
-            }, 1000);
-            
-            orderTimers.set(orderNumber, timer);
-        }
+        const closeWhatsAppModal = () => {
+            elements.whatsappModal.style.display = 'none';
+            document.body.style.overflow = 'auto';
+            currentOrderData = null;
+        };
 
-        // FUNÇÕES DE MELHORIA DE UX
-        function animateCartIcon() {
-            elements.floatingCart.classList.add('cart-bounce');
-            setTimeout(() => {
-                elements.floatingCart.classList.remove('cart-bounce');
-            }, 600);
-        }
-
-        // LÓGICA DE PRODUTOS E CARRINHO
-        async function loadProducts() {
-            try {
-                updateApiStatus(false, 'Conectando...');
-                
-                const response = await fetch(CONFIG.API_URL, {
-                    method: 'GET',
-                    mode: 'cors'
-                });
-
-                if (!response.ok) {
-                    throw new Error(`Erro HTTP: ${response.status}`);
-                }
-
-                const data = await response.json();
-                
-                if (data.error) {
-                    throw new Error(`Erro do servidor: ${data.error}`);
-                }
-                
-                if (data.produtos && Array.isArray(data.produtos)) {
-                    allProducts = data.produtos.map((p, index) => {
-                        const rawId = findCaseInsensitiveKey(p, 'id') || String(index + 1);
-                        const cleanId = rawId.toString().replace(/[^0-9]/g, '').padStart(3, '0');
-
-                        return {
-                            id: cleanId,
-                            produto: findCaseInsensitiveKey(p, 'produto') || '',
-                            descricao: findCaseInsensitiveKey(p, 'descricao') || '',
-                            valor: parseCurrencyString(findCaseInsensitiveKey(p, 'valor')),
-                            custo: parseCurrencyString(findCaseInsensitiveKey(p, 'custo')),
-                            categoria: findCaseInsensitiveKey(p, 'categoria') || '',
-                            imagem: findCaseInsensitiveKey(p, 'imagem') || '',
-                            badge: findCaseInsensitiveKey(p, 'badge') || '',
-                            badge_texto: findCaseInsensitiveKey(p, 'badge_texto') || ''
-                        };
-                    });
-                    
-                    updateApiStatus(true, 'Produtos carregados');
-                    showNotification(`✅ ${allProducts.length} produtos carregados!`, 'success');
-                    
-                    if (hasPendingOrders()) {
-                        setTimeout(() => {
-                            showCartModal();
-                            switchTab('history');
-                            showNotification('Você tem pedidos em andamento!', 'info');
-                        }, 1000);
-                    }
-                    
-                } else {
-                    throw new Error("Formato de resposta inesperado");
-                }
-
-            } catch (error) {
-                console.error("Erro ao carregar produtos:", error);
-                updateApiStatus(false, `Erro ao carregar`);
-                elements.productsGrid.innerHTML = '<div class="error-message">Erro ao carregar produtos. Tente novamente.</div>';
-            } finally {
-                renderCategories();
-                renderProducts();
-                setTimeout(scrollToTop, 300);
-            }
-        }
-
-        function renderCategories() {
-            const categories = ['todos', ...new Set(allProducts.map(p => p.categoria))];
-            elements.categoryFilters.innerHTML = categories.map(cat => `
-                <button class="category-btn ${cat === currentCategory ? 'active' : ''}" data-category="${cat}">
-                    ${cat === 'todos' ? 'Todos' : cat.charAt(0).toUpperCase() + cat.slice(1)}
-                </button>
-            `).join('');
-            
-            document.querySelectorAll('.category-btn').forEach(btn => {
-                btn.addEventListener('click', () => {
-                    currentCategory = btn.dataset.category;
-                    renderCategories();
-                    renderProducts();
-                    scrollToTop();
-                });
-            });
-        }
-
-        function renderProducts() {
-            const filtered = currentCategory === 'todos' 
-                ? allProducts 
-                : allProducts.filter(p => p.categoria === currentCategory);
-            
-            if (filtered.length === 0) {
-                elements.productsGrid.innerHTML = '<div class="error-message">Nenhum produto encontrado</div>';
-                return;
-            }
-            
-            elements.productsGrid.innerHTML = filtered.map(product => `
-                <div class="product-card">
-                    ${product.badge ? `<div class="product-badge ${product.badge}">${product.badge_texto || ''}</div>` : ''}
-                    <div class="product-image-container">
-                        <img src="${product.imagem}" 
-                             alt="${product.produto}" 
-                             class="product-image">
-                    </div>
-                    <div class="product-info">
-                        <div class="product-name">${product.produto}</div>
-                        <div class="product-description">${product.descricao || 'Sem descrição'}</div>
-                        <div class="product-price">${formatCurrency(product.valor)}</div>
-                        <button class="add-to-cart" onclick="addToCart('${product.id}', this)">
-                            <i class="fas fa-plus"></i> Adicionar ao Carrinho
-                        </button>
-                    </div>
-                </div>
-            `).join('');
-            
-            elements.loadingMessage.style.display = 'none';
-        }
-
-        function addToCart(productId, button) {
-            const product = allProducts.find(p => p.id === productId);
-            if (!product) return;
-            
-            const originalText = button.innerHTML;
-            button.innerHTML = '<i class="fas fa-check"></i> Adicionado!';
-            button.disabled = true;
-            
-            if (cart[productId]) {
-                cart[productId]++;
-            } else {
-                cart[productId] = 1;
-            }
-            
-            updateCartUI();
-            showNotification(`${product.produto} adicionado!`, 'success');
-            animateCartIcon();
-            
-            setTimeout(() => {
-                button.innerHTML = originalText;
-                button.disabled = false;
-            }, 1500);
-        }
-
-        function updateQuantity(productId, change) {
-            const currentQty = cart[productId] || 0;
-            const newQty = Math.max(0, currentQty + change);
-
-            if (newQty > 0) {
-                cart[productId] = newQty;
-            } else {
-                delete cart[productId];
-            }
-
-            updateCartUI();
-        }
-
-        function removeFromCart(productId) {
-            delete cart[productId];
-            updateCartUI();
-            showNotification('Item removido', 'info');
-        }
-
-        function updateCartUI() {
-            const orderNumber = generateOrderNumber();
-            elements.orderNumber.textContent = `Nº do Pedido: ${orderNumber}`;
-            
-            let cartItemsHTML = '';
-            let hasItems = false;
-
-            for (const productId in cart) {
-                const quantity = cart[productId];
-                const product = allProducts.find(p => p.id === productId);
-                
-                if (product && quantity > 0) {
-                    hasItems = true;
-                    cartItemsHTML += `
-                        <div class="cart-item">
-                            <img src="${product.imagem}" 
-                                 class="cart-item-image">
-                            <div class="cart-item-details">
-                                <div class="cart-item-name">${product.produto}</div>
-                                <div class="cart-item-price">${formatCurrency(product.valor)}</div>
-                                <div class="cart-item-quantity">
-                                    <button class="quantity-btn" onclick="updateQuantity('${product.id}', -1)">-</button>
-                                    <span class="quantity-value">${quantity}</span>
-                                    <button class="quantity-btn" onclick="updateQuantity('${product.id}', 1)">+</button>
-                                    <button class="remove-item" onclick="removeFromCart('${product.id}')">
-                                        <i class="fas fa-trash"></i>
-                                    </button>
-                                </div>
-                            </div>
-                        </div>
-                    `;
-                }
-            }
-
-            elements.cartItems.innerHTML = hasItems 
-                ? cartItemsHTML 
-                : '<div style="text-align: center; padding: 40px 20px; color: #6c757d;"><i class="fas fa-shopping-cart" style="font-size: 3rem; margin-bottom: 16px; opacity: 0.3;"></i><p style="font-size: 1.1rem; font-weight: 500;">Seu carrinho está vazio</p><p style="font-size: 0.9rem; margin-top: 8px;">Adicione alguns produtos deliciosos!</p></div>';
-
-            updateCartTotals();
-        }
-
-        function updateCartTotals() {
-            let subtotal = 0;
-            let totalItems = 0;
-
-            for (const productId in cart) {
-                const product = allProducts.find(p => p.id === productId);
-                const quantity = cart[productId];
-                if (product && quantity > 0) {
-                    subtotal += quantity * product.valor;
-                    totalItems += quantity;
-                }
-            }
-
-            const discounts = calculateDiscounts(subtotal, cart);
-            const finalDeliveryFee = Math.max(0, currentDeliveryFee - discounts.deliveryDiscount);
-            const total = subtotal - discounts.totalDiscount + finalDeliveryFee;
-
-            elements.subtotal.textContent = formatCurrency(subtotal);
-            elements.discount.textContent = formatCurrency(discounts.totalDiscount);
-            elements.deliveryFee.textContent = formatCurrency(finalDeliveryFee);
-            elements.total.textContent = formatCurrency(total);
-            elements.cartCount.textContent = totalItems;
-            
-            checkCheckoutAvailability();
-        }
-
-        function checkCheckoutAvailability() {
-            const hasItems = Object.keys(cart).length > 0;
-            const hasData = elements.customerName.value && 
-                           elements.customerPhone.value && 
-                           elements.customerStreet.value &&
-                           elements.customerNumber.value &&
-                           elements.customerNeighborhood.value &&
-                           elements.customerCity.value &&
-                           elements.paymentMethod.value;
-
-            elements.checkoutBtn.disabled = !(hasItems && hasData);
-        }
-
-        function saveCustomerData() {
-            const data = {
-                name: elements.customerName.value.trim(),
-                phone: elements.customerPhone.value.trim(),
-                street: elements.customerStreet.value.trim(),
-                number: elements.customerNumber.value.trim(),
-                complement: elements.customerComplement.value.trim(),
-                neighborhood: elements.customerNeighborhood.value.trim(),
-                zipcode: elements.customerZipcode.value.trim(),
-                city: elements.customerCity.value.trim(),
-                paymentMethod: elements.paymentMethod.value
-            };
-            
-            const requiredFields = ['name', 'phone', 'street', 'number', 'neighborhood', 'city', 'paymentMethod'];
-            const isValid = requiredFields.every(field => 
-                data[field] !== null && data[field] !== undefined && data[field] !== ''
-            );
-            
-            if (isValid) {
-                localStorage.setItem('customerData', JSON.stringify(data));
-                console.log('✅ Dados do cliente salvos COMPLETOS:', data);
-            } else {
-                console.warn('⚠️ Dados incompletos, não salvando no localStorage');
-            }
-        }
-
-        function loadCustomerData() {
+        // ==============================
+        // FUNÇÕES DE INTERFACE
+        // ==============================
+        const loadCustomerData = () => {
             const saved = localStorage.getItem('customerData');
             if (saved) {
                 try {
@@ -2749,243 +3309,40 @@
                         );
                         if (match) {
                             currentDeliveryFee = calculateDeliveryFee(match.distance);
-                            updateCartTotals();
-                            showNotification(`Taxa de entrega: ${formatCurrency(currentDeliveryFee)}`, 'info');
+                            CartManager.updateTotals();
+                            showNotification(`Taxa de entrega: ${Formatter.formatCurrency(currentDeliveryFee)}`, 'info');
                         } else {
                             currentDeliveryFee = 5.00;
-                            updateCartTotals();
+                            CartManager.updateTotals();
                         }
                     }
                     
-                    checkCheckoutAvailability();
+                    CartManager.checkCheckoutAvailability();
                     
                 } catch (error) {
                     console.error('❌ Erro ao carregar dados do cliente:', error);
                 }
             }
-        }
+        };
 
-        function getOrderItems() {
-            const items = [];
-            for (const productId in cart) {
-                const product = allProducts.find(p => p.id === productId);
-                const quantity = cart[productId];
-                if (product && quantity > 0) {
-                    items.push({
-                        Id: product.id,
-                        Produto: product.produto,
-                        Quantidade: quantity,
-                        Valor: parseFloat(product.valor.toFixed(2)),
-                        SubTotalItem: parseFloat((quantity * product.valor).toFixed(2)),
-                        CustoItem: parseFloat(product.custo.toFixed(2))
-                    });
+        const showCartModal = () => {
+            elements.cartModal.style.display = 'flex';
+            CartManager.updateUI();
+            switchTab('current');
+            
+            setTimeout(() => {
+                const cartBody = elements.cartModal.querySelector('.cart-body');
+                if (cartBody) {
+                    cartBody.scrollTop = 0;
                 }
-            }
-            return items;
-        }
+            }, 100);
+        };
 
-        function formatWhatsAppMessage(orderData) {
-            let message = `🍕 *PEDIDO PIZZARIA FRATELLI* 🍕\n\n`;
-            message += `*Número do Pedido:* ${orderData.orderNumber}\n\n`;
-            message += `*Itens do Pedido:*\n`;
-            
-            orderData.items.forEach(item => {
-                message += `• ${item.Quantidade}x ${item.Produto} - ${formatCurrency(item.Valor * item.Quantidade)}\n`;
-            });
-            
-            message += `\n*Resumo do Pedido:*\n`;
-            message += `Subtotal: ${formatCurrency(orderData.subtotal)}\n`;
-            message += `Desconto: ${formatCurrency(orderData.discount)}\n`;
-            message += `Taxa de Entrega: ${formatCurrency(orderData.deliveryFee)}\n`;
-            message += `*Total: ${formatCurrency(orderData.total)}*\n\n`;
-            message += `*Forma de Pagamento:* ${orderData.paymentMethod}\n\n`;
-            message += `*Dados do Cliente:*\n`;
-            message += `Nome: ${orderData.customerName}\n`;
-            message += `Telefone: ${orderData.customerPhone}\n`;
-            message += `Endereço: ${orderData.customerAddress}\n`;
-            
-            return encodeURIComponent(message);
-        }
+        const closeCartModal = () => {
+            elements.cartModal.style.display = 'none';
+        };
 
-        function openWhatsApp(orderData) {
-            const message = formatWhatsAppMessage(orderData);
-            const whatsappUrl = `https://wa.me/${CONFIG.WHATSAPP_NUMBER}?text=${message}`;
-            window.open(whatsappUrl, '_blank');
-        }
-
-        function showWhatsAppModal(orderData) {
-            currentOrderData = orderData;
-            elements.whatsappModal.style.display = 'flex';
-            document.body.style.overflow = 'hidden';
-        }
-
-        function closeWhatsAppModal() {
-            elements.whatsappModal.style.display = 'none';
-            document.body.style.overflow = 'auto';
-            currentOrderData = null;
-        }
-
-        async function finalizeOrder() {
-            if (!validateCustomerData()) {
-                showNotification('Preencha todos os dados obrigatórios!', 'error');
-                return;
-            }
-            
-            try {
-                elements.checkoutBtn.disabled = true;
-                elements.checkoutBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Processando...';
-                
-                showNotification('Enviando pedido...', 'info');
-                
-                const orderNumber = generateOrderNumber();
-                const { subtotal, discount, total, costTotal } = calculateOrderTotals();
-                const deliveryMinutes = calculateDeliveryTime(total);
-                
-                saveCustomerData();
-                
-                const orderData = {
-                    orderNumber: orderNumber,
-                    total: total,
-                    subtotal: subtotal,
-                    discount: discount,
-                    deliveryFee: currentDeliveryFee,
-                    customerName: elements.customerName.value,
-                    customerPhone: elements.customerPhone.value,
-                    customerAddress: getFullAddress(),
-                    customerZipcode: elements.customerZipcode.value,
-                    paymentMethod: elements.paymentMethod.value,
-                    items: getOrderItems(),
-                    orderTimestamp: new Date().toISOString(),
-                    estimatedDeliveryMinutes: deliveryMinutes,
-                    status: 'pending'
-                };
-                
-                console.log('📤 Enviando dados para API...');
-                
-                const apiOrderData = {
-                    Telefone: elements.customerPhone.value,
-                    Nome: elements.customerName.value,
-                    Endereco: getFullAddress(),
-                    CEP: elements.customerZipcode.value,
-                    Pagamento: elements.paymentMethod.value,
-                    NumPedido: orderNumber,
-                    Desconto: parseFloat(discount.toFixed(2)),
-                    TaxaEntrega: currentDeliveryFee,
-                    Total: parseFloat(total.toFixed(2)),
-                    CustoTotal: parseFloat(costTotal.toFixed(2)),
-                    itens: orderData.items
-                };
-                
-                console.log('📦 Dados enviados para API:', apiOrderData);
-                
-                const response = await fetch(CONFIG.API_URL, {
-                    method: 'POST',
-                    mode: 'cors',
-                    cache: 'no-cache',
-                    body: JSON.stringify(apiOrderData),
-                });
-                
-                if (!response.ok) {
-                    throw new Error(`Falha na requisição: ${response.status}`);
-                }
-                
-                const result = await response.json();
-                
-                console.log('📥 Resposta da API:', result);
-                
-                if (result.success) {
-                    showNotification('Pedido realizado com sucesso!', 'success');
-                    
-                    saveOrderToHistory(orderData);
-                    
-                    showWhatsAppModal(orderData);
-                    
-                    cart = {};
-                    closeCartModal();
-                    updateCartUI();
-                    
-                    renderOrdersHistory();
-                } else {
-                    throw new Error(result.message);
-                }
-            } catch (error) {
-                console.error('❌ Erro no pedido:', error);
-                showNotification('Erro ao enviar pedido: ' + error.message, 'error');
-            } finally {
-                elements.checkoutBtn.disabled = false;
-                elements.checkoutBtn.innerHTML = '<i class="fas fa-check-circle"></i> Finalizar Pedido';
-            }
-        }
-
-        function getFullAddress() {
-            const street = elements.customerStreet.value;
-            const number = elements.customerNumber.value;
-            const complement = elements.customerComplement.value;
-            const neighborhood = elements.customerNeighborhood.value;
-            const city = elements.customerCity.value;
-            const zipcode = elements.customerZipcode.value;
-            
-            let address = `${street}, ${number}`;
-            if (complement) {
-                address += `, ${complement}`;
-            }
-            address += `, ${neighborhood}, ${city}`;
-            
-            if (zipcode) {
-                address += `, CEP: ${zipcode}`;
-            }
-            
-            return address;
-        }
-
-        function calculateOrderTotals() {
-            let subtotal = 0;
-            let costTotal = 0;
-
-            for (const productId in cart) {
-                const product = allProducts.find(p => p.id === productId);
-                const quantity = cart[productId];
-                if (product && quantity > 0) {
-                    subtotal += quantity * product.valor;
-                    costTotal += quantity * product.custo;
-                }
-            }
-
-            const discounts = calculateDiscounts(subtotal, cart);
-            const finalDeliveryFee = Math.max(0, currentDeliveryFee - discounts.deliveryDiscount);
-            const total = subtotal - discounts.totalDiscount + finalDeliveryFee;
-
-            return { 
-                subtotal, 
-                discount: discounts.totalDiscount, 
-                total, 
-                costTotal 
-            };
-        }
-
-        function validateCustomerData() {
-            const requiredFields = [
-                elements.customerName,
-                elements.customerPhone,
-                elements.customerStreet,
-                elements.customerNumber,
-                elements.customerNeighborhood,
-                elements.customerCity,
-                elements.paymentMethod
-            ];
-            
-            for (let field of requiredFields) {
-                if (!field.value.trim()) {
-                    field.focus();
-                    return false;
-                }
-            }
-            
-            return true;
-        }
-
-        // SISTEMA DE ABAS
-        function switchTab(tabName) {
+        const switchTab = (tabName) => {
             elements.cartTabs.forEach(tab => {
                 tab.classList.toggle('active', tab.dataset.tab === tabName);
             });
@@ -2995,7 +3352,7 @@
             });
             
             if (tabName === 'history') {
-                renderOrdersHistory();
+                OrderHistoryManager.renderOrdersHistory();
             }
             
             setTimeout(() => {
@@ -3004,39 +3361,26 @@
                     activeContent.scrollTop = 0;
                 }
             }, 100);
-        }
+        };
 
-        // CONTROLES DA INTERFACE
-        function showCartModal() {
-            elements.cartModal.style.display = 'flex';
-            updateCartUI();
-            switchTab('current');
-            
-            setTimeout(() => {
-                const cartBody = elements.cartModal.querySelector('.cart-body');
-                if (cartBody) {
-                    cartBody.scrollTop = 0;
-                }
-            }, 100);
-        }
-
-        function closeCartModal() {
-            elements.cartModal.style.display = 'none';
-        }
-
-        function init() {
+        // ==============================
+        // INICIALIZAÇÃO DO SISTEMA
+        // ==============================
+        const init = () => {
+            // Event Listeners do Carrinho
             elements.floatingCart.addEventListener('click', showCartModal);
             elements.closeCart.addEventListener('click', closeCartModal);
-            elements.checkoutBtn.addEventListener('click', finalizeOrder);
+            elements.checkoutBtn.addEventListener('click', OrderManager.finalizeOrder);
             elements.cartModal.addEventListener('click', (e) => {
                 if (e.target === elements.cartModal) closeCartModal();
             });
             
+            // Event Listeners das Abas
             elements.cartTabs.forEach(tab => {
                 tab.addEventListener('click', () => switchTab(tab.dataset.tab));
             });
             
-            // Eventos para o modal do WhatsApp
+            // Event Listeners do WhatsApp
             elements.whatsappClose.addEventListener('click', closeWhatsAppModal);
             elements.whatsappCancelBtn.addEventListener('click', closeWhatsAppModal);
             elements.whatsappSendBtn.addEventListener('click', () => {
@@ -3050,6 +3394,7 @@
                 if (e.target === elements.whatsappModal) closeWhatsAppModal();
             });
             
+            // Event Listeners dos Campos do Formulário
             const formFields = [
                 elements.customerName, elements.customerPhone, elements.customerStreet, 
                 elements.customerNumber, elements.customerComplement, elements.customerNeighborhood, 
@@ -3058,16 +3403,17 @@
             
             formFields.forEach(input => {
                 input.addEventListener('input', function() {
-                    checkCheckoutAvailability();
-                    saveCustomerData();
+                    CartManager.checkCheckoutAvailability();
+                    OrderManager.saveCustomerData();
                 });
                 
                 input.addEventListener('change', function() {
-                    checkCheckoutAvailability();
-                    saveCustomerData();
+                    CartManager.checkCheckoutAvailability();
+                    OrderManager.saveCustomerData();
                 });
             });
             
+            // Event Listeners do Autocomplete de Endereço
             elements.customerStreet.addEventListener('input', handleStreetInput);
             elements.customerStreet.addEventListener('focus', handleStreetInput);
             
@@ -3077,30 +3423,52 @@
                 }, 200);
             });
             
-            loadCustomerData();
-            loadProducts();
+            // Fechar Autocomplete ao Clicar Fora
+            document.addEventListener('click', function(e) {
+                if (!elements.customerStreet.contains(e.target) && !elements.streetAutocomplete.contains(e.target)) {
+                    elements.streetAutocomplete.style.display = 'none';
+                }
+            });
             
-            renderOrdersHistory();
+            // Carregar Dados Iniciais
+            loadCustomerData();
+            ProductManager.loadProducts();
+            OrderHistoryManager.renderOrdersHistory();
+            
+            // Mostrar mensagem inicial
+            elements.categoryMessage.classList.add('show');
             
             setTimeout(scrollToTop, 500);
 
-            // ✅ CONSOLE CONTROLS - PARA TESTAR REGRAS DE DESCONTO
+            // Log de Controles no Console
             console.log(`
-🎯 CONTROLES DE DESCONTO DISPONÍVEIS:
+🎯 SISTEMA DE DESCONTOS - PIZZARIA FRATELLI
+✅ REGRA ATIVA: "Combo Pizza + Refrigerante por R$ 50!"
+🔍 Tudo que passar de R$ 50,00 vira desconto!
 
-// Ativar/Desativar regras:
-CONFIG.DISCOUNT_RULES.pizzas_promo.active = true;      // 10% em 2 pizzas ou R$60
-CONFIG.DISCOUNT_RULES.entrega_gratis.active = true;    // Entrega grátis acima de R$100  
-CONFIG.DISCOUNT_RULES.desconto_15.active = true;       // 15% acima de R$150
+📊 EXEMPLOS:
+• Pizza R$39 + Refri R$15 = R$54 → Desconto: R$4,00
+• Pizza R$45 + Refri R$12 = R$57 → Desconto: R$7,00  
+• Pizza R$60 + Refri R$20 = R$80 → Desconto: R$30,00
 
-// Ver regras ativas:
-console.log('Regras ativas:', Object.values(CONFIG.DISCOUNT_RULES).filter(r => r.active));
+⚙️ CONTROLES NO CONSOLE:
+// Desativar/Ativar regra:
+CONFIG.DISCOUNT_RULES.pizza_refrigerante_combo.active = false;
 
-// Atualizar carrinho após mudança:
-updateCartTotals();
+// Mudar valor base (R$ 50):
+CONFIG.DISCOUNT_RULES.pizza_refrigerante_combo.conditions[2].value = 60.00;
+
+// Atualizar carrinho após mudanças:
+CartManager.updateTotals();
+
+🔥 NOVO FEATURE: Feed de Promoções
+• Mostra 2 cards promocionais
+• Exige seleção de categoria para ver produtos
+• Sistema de desconto integrado e funcional
             `);
-        }
+        };
 
+        // Inicializar quando o DOM estiver pronto
         document.addEventListener('DOMContentLoaded', init);
     </script>
 </body>
