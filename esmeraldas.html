@@ -1,0 +1,897 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pizzaria Fratelli - Delivery</title>
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Merriweather:ital,wght@0,700;1,400&display=swap" rel="stylesheet">
+    
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+
+    <style>
+        body { font-family: 'Inter', sans-serif; }
+        .font-serif { font-family: 'Merriweather', serif; }
+        
+        /* Animations */
+        @keyframes slideIn {
+            from { transform: translateX(100%); }
+            to { transform: translateX(0); }
+        }
+        .animate-slide-in {
+            animation: slideIn 0.3s ease-out forwards;
+        }
+        
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar { width: 6px; }
+        ::-webkit-scrollbar-track { background: #f1f1f1; }
+        ::-webkit-scrollbar-thumb { background: #15803d; border-radius: 3px; }
+        ::-webkit-scrollbar-thumb:hover { background: #166534; }
+
+        .loader {
+            border: 3px solid #f3f3f3;
+            border-radius: 50%;
+            border-top: 3px solid #16a34a;
+            width: 24px;
+            height: 24px;
+            -webkit-animation: spin 1s linear infinite; /* Safari */
+            animation: spin 1s linear infinite;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+    </style>
+</head>
+<body class="bg-gray-50 text-gray-900 flex flex-col min-h-screen">
+
+    <!-- HEADER -->
+    <header class="bg-gradient-to-br from-green-800 via-green-700 to-red-700 text-white shadow-xl relative overflow-hidden">
+        <div class="absolute top-0 left-0 w-full h-3 bg-gradient-to-r from-green-600 via-white to-red-600 shadow-sm z-20"></div>
+        <div class="max-w-4xl mx-auto relative z-10 px-6 py-8">
+            <div class="flex flex-col md:flex-row items-center md:items-start gap-6 text-center md:text-left">
+                <div class="shrink-0 bg-white p-1 rounded-full border-4 border-white/20 shadow-lg">
+                    <img src="https://pedelogouai.github.io/pizzaria.fratelli/imagens/fratelli2.png" alt="Logo" class="w-32 h-32 md:w-40 md:h-40 object-contain">
+                </div>
+                <div class="flex-1 space-y-2">
+                    <h1 class="text-4xl md:text-5xl font-extrabold tracking-tight drop-shadow-lg font-serif">Pizzaria Fratelli</h1>
+                    <p class="text-yellow-300 font-serif italic text-xl font-medium drop-shadow-md">Massa de longa fermentação</p>
+                    <p class="text-green-50 font-medium max-w-xl mx-auto md:mx-0 text-sm md:text-base opacity-95">
+                        Experiencie a autêntica pizza italiana em Esmeraldas. Ingredientes selecionados e queijos artesanais.
+                    </p>
+                    
+                    <div class="pt-4 flex flex-wrap justify-center md:justify-start gap-3">
+                        <button id="status-btn" class="flex items-center gap-2 px-4 py-1.5 rounded-full text-xs font-bold border backdrop-blur-md shadow-sm transition-colors uppercase tracking-wider bg-green-600/30 border-green-300 text-white">
+                            <div id="status-dot" class="w-2 h-2 rounded-full bg-green-400 animate-pulse shadow-[0_0_8px_rgba(255,255,255,0.5)]"></div>
+                            <span id="status-text">Aberto Agora</span>
+                        </button>
+                        <div class="bg-black/20 px-3 py-1.5 rounded-full backdrop-blur-sm text-xs border border-white/10 inline-flex items-center gap-2 text-white/90">
+                            <i data-lucide="clock" class="w-3 h-3"></i>
+                            <span id="business-hours-text">18h às 23h</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Active Offers -->
+            <div class="mt-8 bg-white/10 p-4 rounded-xl backdrop-blur-md border border-white/20 shadow-inner">
+                <p class="font-bold mb-2 text-yellow-300 text-sm flex items-center justify-center md:justify-start gap-2">
+                    <i data-lucide="tag" class="w-4 h-4"></i> Ofertas Ativas:
+                </p>
+                <div id="active-rules" class="flex flex-wrap justify-center md:justify-start gap-x-6 gap-y-2 text-sm text-white font-medium">
+                    <span class="text-white/60 italic">Carregando promoções...</span>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- CATEGORY TABS (STICKY) -->
+    <div class="sticky top-0 bg-white/95 backdrop-blur-md shadow-md z-40 overflow-x-auto border-b border-gray-200 transition-all duration-300">
+        <div class="max-w-4xl mx-auto flex">
+            <button onclick="app.setCategory('PIZZA')" id="tab-pizza" class="flex-1 py-4 text-center font-bold flex justify-center items-center gap-2 transition-all duration-300 text-green-700 border-b-4 border-green-600 bg-green-50/50">
+                <i data-lucide="pizza" class="w-5 h-5"></i> PIZZAS
+            </button>
+            <button onclick="app.setCategory('DRINK')" id="tab-drink" class="flex-1 py-4 text-center font-bold flex justify-center items-center gap-2 transition-all duration-300 text-gray-400 hover:text-red-600 hover:bg-gray-50">
+                <i data-lucide="coffee" class="w-5 h-5"></i> BEBIDAS
+            </button>
+        </div>
+    </div>
+
+    <!-- MAIN CONTENT -->
+    <main class="max-w-4xl mx-auto p-4 py-8 pb-20 flex-grow w-full">
+        <div id="loading-state" class="flex flex-col items-center justify-center h-64 text-gray-500 gap-4">
+            <div class="loader"></div>
+            <p class="font-medium animate-pulse">Carregando cardápio fresquinho...</p>
+        </div>
+        
+        <div id="error-state" class="hidden flex flex-col items-center justify-center py-12 px-4 text-center">
+            <div class="bg-red-100 p-4 rounded-full mb-4">
+                <i data-lucide="alert-triangle" class="text-red-600 w-10 h-10"></i>
+            </div>
+            <h3 class="text-xl font-bold text-gray-800 mb-2">Ops! Algo deu errado.</h3>
+            <p id="error-message" class="text-gray-600 max-w-md mb-6"></p>
+            <button onclick="location.reload()" class="bg-green-700 text-white px-6 py-2 rounded-lg font-bold hover:bg-green-800 transition">Tentar Novamente</button>
+        </div>
+
+        <div id="product-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-2 gap-8 hidden">
+            <!-- Products will be injected here -->
+        </div>
+    </main>
+
+    <!-- FOOTER -->
+    <footer class="bg-green-900 text-white/80 border-t-4 border-red-600 mt-auto">
+        <div class="max-w-4xl mx-auto px-6 py-12">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 md:gap-12">
+                <div class="space-y-4">
+                    <h3 class="text-white font-serif text-xl font-bold">Pizzaria Fratelli</h3>
+                    <div class="space-y-2 text-sm">
+                        <p class="flex items-center gap-2"><i data-lucide="map-pin" class="text-red-400 w-4 h-4"></i> Esmeraldas, MG</p>
+                        <p class="flex items-center gap-2"><i data-lucide="phone" class="text-green-400 w-4 h-4"></i> (31) 9 7314-1755</p>
+                    </div>
+                </div>
+                <div class="space-y-4">
+                    <h3 class="text-white font-serif text-xl font-bold">Pagamento</h3>
+                    <ul class="space-y-3 text-sm">
+                        <li class="flex items-center gap-2"><i data-lucide="credit-card" class="w-4 h-4"></i> Cartão / Dinheiro / Pix</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="mt-12 pt-8 border-t border-white/10 text-center text-xs text-white/40">
+                <p>&copy; 2024 Pizzaria Fratelli. Todos os direitos reservados.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- FLOATING CART BUTTON -->
+    <button onclick="app.toggleCart(true)" class="fixed bottom-6 right-6 bg-gradient-to-r from-green-600 to-green-700 text-white p-4 rounded-full shadow-2xl hover:scale-105 transition-all z-50 border-4 border-white group active:scale-90">
+        <div class="relative">
+            <i data-lucide="shopping-cart" class="w-7 h-7"></i>
+            <span id="cart-badge" class="absolute -top-3 -right-3 bg-red-600 text-white text-xs font-bold w-6 h-6 flex items-center justify-center rounded-full border-2 border-white shadow-sm hidden">0</span>
+        </div>
+    </button>
+
+    <!-- CART DRAWER (MODAL) -->
+    <div id="cart-drawer" class="fixed inset-0 z-50 flex justify-end hidden">
+        <div class="absolute inset-0 bg-black/60 backdrop-blur-sm transition-opacity" onclick="app.toggleCart(false)"></div>
+        <div class="relative w-full max-w-md bg-white h-full shadow-2xl flex flex-col animate-slide-in font-sans">
+            
+            <!-- Drawer Header -->
+            <div id="drawer-header" class="p-5 text-white flex justify-between items-center shadow-md bg-gradient-to-r from-green-700 to-green-600">
+                <div>
+                    <h2 class="text-2xl font-bold flex items-center gap-2 font-serif">
+                        <i data-lucide="shopping-bag" class="w-6 h-6"></i> Seu Pedido
+                    </h2>
+                    <p id="order-id-display" class="text-xs opacity-80 font-mono mt-1 tracking-wider">#</p>
+                </div>
+                <button onclick="app.toggleCart(false)" class="p-2 hover:bg-white/20 rounded-full transition"><i data-lucide="x" class="w-7 h-7"></i></button>
+            </div>
+
+            <!-- Drawer Content -->
+            <div class="flex-1 overflow-y-auto p-5 space-y-6 bg-gray-50">
+                
+                <div id="closed-warning" class="hidden bg-red-50 border border-red-200 rounded-xl p-4 flex items-start gap-3 text-red-800 shadow-sm">
+                    <i data-lucide="alert-circle" class="w-5 h-5 shrink-0 mt-0.5"></i>
+                    <div>
+                        <h3 class="font-bold text-sm">Loja Fechada</h3>
+                        <p class="text-sm mt-1">Estamos recebendo pedidos apenas das 18h às 23h.</p>
+                    </div>
+                </div>
+
+                <!-- Items List -->
+                <section>
+                    <h3 class="font-bold text-gray-800 mb-3 flex items-center gap-2 text-sm uppercase tracking-wide">
+                        <span class="w-1 h-4 bg-red-600 rounded-full"></span> Itens do Pedido
+                    </h3>
+                    <div id="cart-items-container" class="space-y-3">
+                        <!-- Items injected here -->
+                    </div>
+                    
+                    <!-- Observation Field -->
+                    <div class="mt-4 pt-4 border-t border-gray-100 hidden" id="obs-container">
+                        <label class="block text-xs font-bold text-gray-500 mb-2 uppercase flex items-center gap-1">
+                            <span class="w-1 h-3 bg-yellow-400 rounded-full"></span> Observações
+                        </label>
+                        <textarea id="obs-input" oninput="app.updateUser('observations', this.value)" 
+                            class="w-full bg-white border border-gray-300 rounded-lg p-3 text-sm focus:ring-2 focus:ring-green-500 outline-none transition shadow-sm min-h-[80px]" 
+                            placeholder="Ex: Tirar a cebola, enviar maionese extra, troco para 50..."></textarea>
+                    </div>
+                </section>
+
+                <!-- Financials -->
+                <section class="bg-white p-4 rounded-xl border border-gray-200 shadow-sm space-y-2 text-sm">
+                    <div class="flex justify-between text-gray-600"><span>Subtotal</span><span id="cart-subtotal">R$ 0,00</span></div>
+                    <div id="discounts-container"></div>
+                    <div class="flex justify-between text-gray-600"><span>Taxa de Entrega</span><span>R$ 5,00</span></div>
+                    <div class="flex justify-between text-xl font-bold text-gray-900 border-t border-dashed border-gray-300 pt-3 mt-2">
+                        <span>Total</span><span id="cart-total" class="text-red-600">R$ 0,00</span>
+                    </div>
+                </section>
+
+                <!-- Forms -->
+                <section>
+                    <h3 class="font-bold text-gray-800 mb-3 flex items-center gap-2 text-sm uppercase tracking-wide">
+                        <span class="w-1 h-4 bg-green-600 rounded-full"></span> Seus Dados
+                    </h3>
+                    <div class="space-y-3">
+                        <div>
+                            <label class="block text-xs font-bold text-gray-500 mb-1 uppercase">Nome Completo</label>
+                            <input type="text" id="input-name" oninput="app.updateUser('name', this.value)" class="w-full bg-white border border-gray-300 rounded-lg p-3 focus:ring-2 focus:ring-green-500 outline-none" placeholder="Ex: João Silva">
+                        </div>
+                        <div>
+                            <label class="block text-xs font-bold text-gray-500 mb-1 uppercase">Telefone (WhatsApp)</label>
+                            <input type="tel" id="input-phone" oninput="app.updateUser('phone', this.value)" class="w-full bg-white border border-gray-300 rounded-lg p-3 focus:ring-2 focus:ring-green-500 outline-none" placeholder="(00) 00000-0000">
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Address -->
+                <section>
+                    <h3 class="font-bold text-gray-800 mb-3 flex items-center gap-2 text-sm uppercase tracking-wide">
+                        <span class="w-1 h-4 bg-green-600 rounded-full"></span> Endereço
+                    </h3>
+                    <div class="space-y-3">
+                        <div class="relative">
+                            <label class="block text-xs font-bold text-gray-500 mb-1 uppercase">Logradouro</label>
+                            <input type="text" id="input-street" oninput="app.handleStreetChange(this.value)" class="w-full bg-white border border-gray-300 rounded-lg p-3 outline-none" placeholder="Rua..." autocomplete="off">
+                            <div id="address-loader" class="absolute right-3 top-8 hidden loader !w-5 !h-5 !border-2"></div>
+                            <div id="address-suggestions" class="absolute z-50 w-full mt-1 bg-white border border-gray-200 rounded-lg shadow-xl max-h-60 overflow-y-auto hidden"></div>
+                        </div>
+                        <div class="grid grid-cols-3 gap-3">
+                            <div class="col-span-1">
+                                <label class="block text-xs font-bold text-gray-500 mb-1 uppercase">Número</label>
+                                <input type="text" id="input-number" oninput="app.updateUser('number', this.value)" class="w-full bg-white border border-gray-300 rounded-lg p-3 outline-none">
+                            </div>
+                            <div class="col-span-2">
+                                <label class="block text-xs font-bold text-gray-500 mb-1 uppercase">Bairro</label>
+                                <input type="text" id="input-neighborhood" oninput="app.updateUser('neighborhood', this.value)" class="w-full bg-white border border-gray-300 rounded-lg p-3 outline-none">
+                            </div>
+                        </div>
+                        <input type="text" id="input-complement" oninput="app.updateUser('complement', this.value)" class="w-full bg-white border border-gray-300 rounded-lg p-3 outline-none" placeholder="Complemento (Apt, Casa)">
+                         <div class="grid grid-cols-3 gap-3">
+                            <div class="col-span-2">
+                                <input type="text" id="input-city" oninput="app.updateUser('city', this.value)" class="w-full bg-white border border-gray-300 rounded-lg p-3 outline-none" readonly>
+                            </div>
+                             <div class="col-span-1">
+                                <input type="text" id="input-state" oninput="app.updateUser('state', this.value)" class="w-full bg-white border border-gray-300 rounded-lg p-3 outline-none" readonly>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Payment -->
+                <section>
+                    <h3 class="font-bold text-gray-800 mb-3 flex items-center gap-2 text-sm uppercase tracking-wide">
+                        <span class="w-1 h-4 bg-green-600 rounded-full"></span> Pagamento
+                    </h3>
+                    <div class="grid grid-cols-2 gap-3" id="payment-options">
+                        <!-- Buttons injected by JS -->
+                    </div>
+                </section>
+            </div>
+
+            <!-- Drawer Footer -->
+            <div class="p-5 border-t border-gray-200 bg-white">
+                <button id="checkout-btn" onclick="app.checkout()" class="w-full py-4 rounded-xl font-extrabold text-lg transition shadow-xl flex justify-center items-center gap-2 bg-gradient-to-r from-red-600 to-red-700 text-white hover:from-red-500 hover:to-red-600">
+                    <i data-lucide="send" class="w-6 h-6"></i>
+                    <span>ENVIAR PEDIDO</span>
+                    <span id="btn-total" class="bg-white/20 px-2 py-0.5 rounded text-base font-medium">R$ 0,00</span>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- JAVASCRIPT LOGIC -->
+    <script>
+        // --- CONSTANTS & CONFIG ---
+        const CONFIG = {
+            API_URL: "https://script.google.com/macros/s/AKfycbyZ2mHmymDOGxBFZZLVtRzEPWqLO9vZbopRbdgNUZJs666gtA_UzFkn0DlHL3kZSy1oQA/exec",
+            WHATSAPP: "5531995536361",
+            DELIVERY_FEE: 5.00,
+            HOURS: { OPEN: 18, CLOSE: 23 }
+        };
+
+        // --- STATE MANAGEMENT ---
+        const STATE = {
+            products: [],
+            cart: [],
+            discountRules: [],
+            activeCategory: 'PIZZA',
+            userData: {
+                name: '', phone: '', street: '', number: '', complement: '',
+                neighborhood: '', city: 'Esmeraldas', state: 'MG', zipcode: '', reference: '', observations: ''
+            },
+            paymentMethod: 'CREDIT',
+            orderId: '',
+            storeOpen: true,
+            statusClicks: 0
+        };
+
+        // --- UTILS ---
+        const formatCurrency = (val) => new Intl.NumberFormat('pt-BR', { style: 'currency', currency: 'BRL' }).format(val);
+
+        const generateOrderId = () => {
+            const now = new Date();
+            const pad = (n) => n.toString().padStart(2, '0');
+            const rr = Math.floor(Math.random() * 100).toString().padStart(2, '0');
+            return `${now.getFullYear().toString().slice(-2)}${pad(now.getMonth()+1)}${pad(now.getDate())}${pad(now.getHours())}${pad(now.getMinutes())}${pad(now.getSeconds())}${rr}`;
+        };
+
+        const parseNumber = (val) => {
+            if (typeof val === 'number') return val;
+            if (!val) return 0;
+            let clean = String(val).trim();
+            if (clean.includes(',') && !clean.includes('.')) clean = clean.replace(/\./g, '').replace(',', '.');
+            else if (clean.includes(',') && clean.includes('.')) clean = clean.replace(/\./g, '').replace(',', '.');
+            clean = clean.replace(/[^\d.]/g, '');
+            return parseFloat(clean) || 0;
+        };
+
+        const normalizeKey = (obj, keys) => {
+            if (!obj) return undefined;
+            const normalize = s => s.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "").replace(/[\s\u00A0_.\-]/g, '');
+            const map = {};
+            Object.keys(obj).forEach(k => map[normalize(k)] = k);
+            for (const key of keys) {
+                const found = map[normalize(key)];
+                if (found) return obj[found];
+            }
+            return undefined;
+        };
+
+        // --- DISCOUNT ENGINE ---
+        const calculateDiscounts = (items, rules) => {
+            const applied = [];
+            // Sort items by price (descending) to benefit customer in rule matching
+            let available = [...items].sort((a, b) => b.price - a.price);
+            // Sort rules by priority (descending)
+            const sortedRules = [...rules].sort((a, b) => b.priority - a.priority);
+
+            for (const rule of sortedRules) {
+                let keepApplying = true;
+                while (keepApplying) {
+                    const used = [];
+                    let canForm = true;
+                    
+                    for (const [cat, qty] of Object.entries(rule.requirements)) {
+                        // Find candidates that match category and haven't been used in this specific combo iteration
+                        const candidates = available.filter(i => i.category === cat && !used.includes(i));
+                        
+                        if (candidates.length < qty) { 
+                            canForm = false; 
+                            break; 
+                        }
+                        // Take the most expensive ones available
+                        used.push(...candidates.slice(0, qty));
+                    }
+
+                    if (canForm && used.length > 0) {
+                        const originalSum = used.reduce((a, i) => a + i.price, 0);
+                        const discount = originalSum - rule.setPrice;
+                        
+                        if (discount > 0) {
+                            applied.push({ ruleName: rule.name, amountSaved: discount });
+                            // Remove used items from the available pool for subsequent rules/iterations
+                            available = available.filter(i => !used.includes(i));
+                        } else { 
+                            keepApplying = false; 
+                        }
+                    } else { 
+                        keepApplying = false; 
+                    }
+                }
+            }
+            return applied;
+        };
+
+        // --- APP LOGIC ---
+        const app = {
+            init: async () => {
+                // REMOVIDO: Carregamento do localStorage
+                
+                // Set Order ID
+                STATE.orderId = generateOrderId();
+                document.getElementById('order-id-display').innerText = '#' + STATE.orderId;
+
+                // Check Status
+                app.checkStoreStatus();
+                setInterval(app.checkStoreStatus, 60000);
+
+                // Populate Forms
+                app.renderForm();
+
+                // Fetch Data
+                await app.fetchData();
+                
+                // Initial Render
+                lucide.createIcons();
+            },
+
+            checkStoreStatus: () => {
+                // REMOVIDO: Leitura do localStorage para Override
+                let isOpen = true;
+                
+                const hour = new Date().getHours();
+                isOpen = hour >= CONFIG.HOURS.OPEN && hour < CONFIG.HOURS.CLOSE;
+                
+                STATE.storeOpen = isOpen;
+                
+                // UI Update
+                const btn = document.getElementById('status-btn');
+                const dot = document.getElementById('status-dot');
+                const text = document.getElementById('status-text');
+                const header = document.getElementById('drawer-header');
+                const warning = document.getElementById('closed-warning');
+                const checkoutBtn = document.getElementById('checkout-btn');
+
+                if (isOpen) {
+                    btn.className = "flex items-center gap-2 px-4 py-1.5 rounded-full text-xs font-bold border backdrop-blur-md shadow-sm transition-colors uppercase tracking-wider bg-green-600/30 border-green-300 text-white cursor-pointer";
+                    dot.className = "w-2 h-2 rounded-full bg-green-400 animate-pulse shadow-[0_0_8px_rgba(255,255,255,0.5)]";
+                    text.innerText = "Aberto Agora";
+                    header.className = "p-5 text-white flex justify-between items-center shadow-md bg-gradient-to-r from-green-700 to-green-600";
+                    warning.classList.add('hidden');
+                    checkoutBtn.disabled = false;
+                    checkoutBtn.classList.remove('bg-gray-300', 'text-gray-500', 'cursor-not-allowed');
+                    checkoutBtn.classList.add('bg-gradient-to-r', 'from-red-600', 'to-red-700', 'text-white');
+                } else {
+                    btn.className = "flex items-center gap-2 px-4 py-1.5 rounded-full text-xs font-bold border backdrop-blur-md shadow-sm transition-colors uppercase tracking-wider bg-red-600/30 border-red-300 text-red-100 cursor-pointer";
+                    dot.className = "w-2 h-2 rounded-full bg-red-400 animate-pulse shadow-[0_0_8px_rgba(255,255,255,0.5)]";
+                    text.innerText = "Fechado";
+                    header.className = "p-5 text-white flex justify-between items-center shadow-md bg-gray-800";
+                    warning.classList.remove('hidden');
+                    checkoutBtn.disabled = true;
+                    checkoutBtn.classList.add('bg-gray-300', 'text-gray-500', 'cursor-not-allowed');
+                    checkoutBtn.classList.remove('bg-gradient-to-r', 'from-red-600', 'to-red-700', 'text-white');
+                    checkoutBtn.innerHTML = "<span>LOJA FECHADA</span>";
+                }
+
+                // Dev Mode Click (Agora apenas altera estado em memória, sem persistir)
+                btn.onclick = () => {
+                    STATE.statusClicks++;
+                    if (STATE.statusClicks >= 7) {
+                        STATE.storeOpen = !STATE.storeOpen;
+                        alert(`MODO DEV: Loja forçada para ${STATE.storeOpen ? 'ABERTA' : 'FECHADA'} (Temporário)`);
+                        STATE.statusClicks = 0;
+                        
+                        // Força atualização visual imediata (re-executando parte da lógica visual)
+                        if (STATE.storeOpen) {
+                             text.innerText = "Aberto Agora";
+                             dot.className = "w-2 h-2 rounded-full bg-green-400 animate-pulse shadow-[0_0_8px_rgba(255,255,255,0.5)]";
+                             btn.classList.remove('bg-red-600/30', 'border-red-300', 'text-red-100');
+                             btn.classList.add('bg-green-600/30', 'border-green-300', 'text-white');
+                             warning.classList.add('hidden');
+                             checkoutBtn.disabled = false;
+                             checkoutBtn.innerHTML = '<i data-lucide="send" class="w-6 h-6"></i><span>ENVIAR PEDIDO</span><span id="btn-total" class="bg-white/20 px-2 py-0.5 rounded text-base font-medium">R$ 0,00</span>';
+                             checkoutBtn.classList.add('bg-gradient-to-r', 'from-red-600', 'to-red-700');
+                             app.updateCartUI(); // Atualiza total no botão
+                        } else {
+                             text.innerText = "Fechado";
+                             dot.className = "w-2 h-2 rounded-full bg-red-400 animate-pulse shadow-[0_0_8px_rgba(255,255,255,0.5)]";
+                             btn.classList.remove('bg-green-600/30', 'border-green-300', 'text-white');
+                             btn.classList.add('bg-red-600/30', 'border-red-300', 'text-red-100');
+                             warning.classList.remove('hidden');
+                             checkoutBtn.disabled = true;
+                             checkoutBtn.innerHTML = "<span>LOJA FECHADA</span>";
+                             checkoutBtn.classList.remove('bg-gradient-to-r', 'from-red-600', 'to-red-700');
+                             checkoutBtn.classList.add('bg-gray-300');
+                        }
+                    }
+                };
+            },
+
+            fetchData: async () => {
+                try {
+                    const res = await fetch(CONFIG.API_URL);
+                    if(!res.ok) throw new Error("Erro API");
+                    const data = await res.json();
+                    
+                    const rawProds = data.produtos || data.items || [];
+                    STATE.products = rawProds.map((p, i) => {
+                        let cat = 'PIZZA';
+                        const rawCat = String(normalizeKey(p, ['category', 'categoria']) || '').toUpperCase();
+                        if (rawCat.includes('BEBIDA') || rawCat.includes('DRINK') || rawCat.includes('REFRIGERANTE')) cat = 'DRINK';
+                        
+                        return {
+                            id: String(normalizeKey(p, ['id', 'codigo']) || i),
+                            name: normalizeKey(p, ['name', 'produto', 'nome']) || `Item ${i}`,
+                            description: normalizeKey(p, ['description', 'descricao']) || '',
+                            price: parseNumber(normalizeKey(p, ['price', 'valor', 'preco'])),
+                            cost: parseNumber(normalizeKey(p, ['cost', 'custo'])),
+                            image: normalizeKey(p, ['image', 'imagem', 'foto']),
+                            category: cat
+                        };
+                    });
+
+                    // Rules Parsing (Fixed & Robust)
+                    try {
+                        const ruleRes = await fetch(`${CONFIG.API_URL}?sheet=Regras_Desconto&t=${Date.now()}`);
+                        const ruleData = await ruleRes.json();
+                        let rawRules = Array.isArray(ruleData) ? ruleData : (ruleData.regras || []);
+                        
+                        // Fallback check
+                        if (rawRules[0] && normalizeKey(rawRules[0], ['custo', 'imagem']) !== undefined) rawRules = [];
+
+                        STATE.discountRules = rawRules
+                            .filter(r => {
+                                // Robust "Active" Check
+                                const val = normalizeKey(r, ['ativo', 'active']);
+                                if (val === true) return true;
+                                if (val === undefined || val === null) return true; 
+                                const sVal = String(val).toUpperCase().trim();
+                                return ['VERDADEIRO', 'TRUE', '1', 'S', 'SIM'].includes(sVal);
+                            })
+                            .map((r, i) => {
+                                const reqs = {};
+                                
+                                // Robust Column Keys
+                                const qPizza = parseNumber(normalizeKey(r, ['qtd_pizza', 'pizzas', 'qtdpizza', 'qtd.pizza', 'quantidade de pizza']));
+                                const qDrink = parseNumber(normalizeKey(r, ['quantidade de bebida', 'quantidadedebebida', 'qtd_bebida', 'qtdbebida', 'qtd.bebida', 'bebidas', 'quantidade']));
+                                
+                                if (qPizza > 0) reqs['PIZZA'] = qPizza;
+                                if (qDrink > 0) reqs['DRINK'] = qDrink;
+                                
+                                return {
+                                    id: String(normalizeKey(r, ['id']) || `rule_${i}`),
+                                    name: normalizeKey(r, ['nome', 'name']) || 'Promo',
+                                    priority: parseNumber(normalizeKey(r, ['prioridade', 'priority', 'ordem'])),
+                                    setPrice: parseNumber(normalizeKey(r, ['valor_do_desconto', 'valor', 'price', 'setPrice', 'preco'])),
+                                    requirements: reqs
+                                };
+                            })
+                            .filter(r => Object.keys(r.requirements).length > 0 && r.setPrice > 0);
+                        
+                        console.log("Regras Ativas:", STATE.discountRules);
+
+                    } catch (e) { console.warn("Erro regras", e); }
+
+                    // UI Updates
+                    document.getElementById('loading-state').classList.add('hidden');
+                    document.getElementById('product-grid').classList.remove('hidden');
+                    app.renderProducts();
+                    app.renderRules();
+
+                } catch (e) {
+                    console.error(e);
+                    document.getElementById('loading-state').classList.add('hidden');
+                    document.getElementById('error-state').classList.remove('hidden');
+                    document.getElementById('error-message').innerText = e.message;
+                }
+            },
+
+            setCategory: (cat) => {
+                STATE.activeCategory = cat;
+                // Tabs UI
+                const pTab = document.getElementById('tab-pizza');
+                const dTab = document.getElementById('tab-drink');
+                const activeClass = "text-green-700 border-b-4 border-green-600 bg-green-50/50";
+                
+                if (cat === 'PIZZA') {
+                    pTab.className = `flex-1 py-4 text-center font-bold flex justify-center items-center gap-2 transition-all duration-300 ${activeClass}`;
+                    dTab.className = `flex-1 py-4 text-center font-bold flex justify-center items-center gap-2 transition-all duration-300 text-gray-400 hover:text-red-600 hover:bg-gray-50`;
+                } else {
+                    pTab.className = `flex-1 py-4 text-center font-bold flex justify-center items-center gap-2 transition-all duration-300 text-gray-400 hover:text-green-600 hover:bg-gray-50`;
+                    dTab.className = `flex-1 py-4 text-center font-bold flex justify-center items-center gap-2 transition-all duration-300 text-red-700 border-b-4 border-red-600 bg-red-50/50`;
+                }
+                app.renderProducts();
+            },
+
+            renderProducts: () => {
+                const container = document.getElementById('product-grid');
+                container.innerHTML = '';
+                
+                const filtered = STATE.products.filter(p => p.category === STATE.activeCategory);
+                
+                if (filtered.length === 0) {
+                    container.innerHTML = `<div class="col-span-full text-center py-12 text-gray-500 bg-white rounded-xl border border-dashed border-gray-200"><p class="font-medium">Nenhum produto nesta categoria.</p></div>`;
+                    return;
+                }
+
+                filtered.forEach(p => {
+                    const div = document.createElement('div');
+                    div.className = "bg-white rounded-2xl shadow-sm hover:shadow-xl transition-all duration-300 border border-gray-100 overflow-hidden flex flex-col group relative";
+                    div.innerHTML = `
+                        <div class="h-52 overflow-hidden relative">
+                            <img src="${p.image || 'https://via.placeholder.com/400x300?text=Sem+Imagem'}" class="w-full h-full object-cover transition transform group-hover:scale-110 duration-700" onerror="this.src='https://via.placeholder.com/400x300?text=Indisponível'">
+                            <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-60"></div>
+                            <div class="absolute bottom-3 right-3 bg-red-600 text-white px-3 py-1.5 rounded-lg text-lg font-bold shadow-lg border-2 border-white">${formatCurrency(p.price)}</div>
+                        </div>
+                        <div class="p-5 flex flex-col flex-1">
+                            <h3 class="text-xl font-bold text-gray-800 mb-2 font-serif">${p.name}</h3>
+                            <p class="text-gray-500 text-sm mb-6 flex-1 leading-relaxed">${p.description}</p>
+                            <button onclick="app.addToCart('${p.id}')" class="w-full bg-white text-green-700 border-2 border-green-600 py-2.5 rounded-xl font-bold hover:bg-green-600 hover:text-white transition-all flex items-center justify-center gap-2 active:scale-95 shadow-sm">
+                                ADICIONAR
+                            </button>
+                        </div>
+                    `;
+                    container.appendChild(div);
+                });
+                lucide.createIcons(); // Refresh icons inside buttons if added
+            },
+
+            renderRules: () => {
+                const el = document.getElementById('active-rules');
+                if (STATE.discountRules.length === 0) {
+                    el.innerHTML = '<span class="text-white/60 italic">Nenhuma promoção no momento.</span>';
+                    return;
+                }
+                el.innerHTML = STATE.discountRules.map(r => `
+                    <span class="flex items-center gap-1 bg-white/10 px-2 py-0.5 rounded-md border border-white/10">
+                        <span class="w-1.5 h-1.5 rounded-full ${r.priority > 1 ? 'bg-red-400' : 'bg-green-400'}"></span>
+                        ${r.name}: ${formatCurrency(r.setPrice)}
+                    </span>
+                `).join('');
+            },
+
+            // --- CART LOGIC ---
+            addToCart: (prodId) => {
+                const prod = STATE.products.find(p => p.id === prodId);
+                if (prod) {
+                    STATE.cart.push({ ...prod, cartItemId: Math.random().toString(36) });
+                    app.updateCartUI();
+                    
+                    // Simple Toast
+                    const btn = document.querySelector(`button[onclick="app.addToCart('${prodId}')"]`);
+                    if(btn) {
+                        const original = btn.innerHTML;
+                        btn.innerHTML = "ADICIONADO!";
+                        btn.classList.add("bg-green-600", "text-white");
+                        setTimeout(() => {
+                            btn.innerHTML = original;
+                            btn.classList.remove("bg-green-600", "text-white");
+                        }, 1000);
+                    }
+                }
+            },
+
+            removeFromCart: (itemId) => {
+                STATE.cart = STATE.cart.filter(i => i.cartItemId !== itemId);
+                app.updateCartUI();
+            },
+
+            toggleCart: (show) => {
+                const el = document.getElementById('cart-drawer');
+                if (show) {
+                    STATE.orderId = generateOrderId(); // New order ID on open
+                    document.getElementById('order-id-display').innerText = '#' + STATE.orderId;
+                    app.updateCartUI(); // Ensure fresh calculations
+                    el.classList.remove('hidden');
+                } else {
+                    el.classList.add('hidden');
+                }
+            },
+
+            updateCartUI: () => {
+                // Count Badge
+                const badge = document.getElementById('cart-badge');
+                if (STATE.cart.length > 0) {
+                    badge.innerText = STATE.cart.length;
+                    badge.classList.remove('hidden');
+                } else {
+                    badge.classList.add('hidden');
+                }
+
+                // Render Items
+                const container = document.getElementById('cart-items-container');
+                const obsContainer = document.getElementById('obs-container');
+                
+                if (STATE.cart.length === 0) {
+                    container.innerHTML = `<div class="text-center py-8 bg-white rounded-xl border border-gray-100 border-dashed"><p class="text-gray-400">Carrinho vazio.</p></div>`;
+                    obsContainer.classList.add('hidden');
+                } else {
+                    obsContainer.classList.remove('hidden');
+                    container.innerHTML = STATE.cart.map(item => `
+                        <div class="flex justify-between items-start bg-white p-3 rounded-xl border border-gray-200 shadow-sm">
+                            <div class="flex-1">
+                                <p class="font-bold text-gray-800">${item.name}</p>
+                                <p class="text-xs text-gray-500">${item.category === 'PIZZA' ? 'Pizza' : 'Bebida'}</p>
+                            </div>
+                            <div class="flex items-center gap-3">
+                                <span class="font-bold text-green-700">${formatCurrency(item.price)}</span>
+                                <button onclick="app.removeFromCart('${item.cartItemId}')" class="text-gray-400 hover:text-red-500 p-2"><i data-lucide="trash-2" class="w-4 h-4"></i></button>
+                            </div>
+                        </div>
+                    `).join('');
+                }
+
+                // Calculations
+                const subtotal = STATE.cart.reduce((a, i) => a + i.price, 0);
+                const discounts = calculateDiscounts(STATE.cart, STATE.discountRules);
+                const totalDisc = discounts.reduce((a, d) => a + d.amountSaved, 0);
+                const total = Math.max(0, subtotal - totalDisc + CONFIG.DELIVERY_FEE);
+
+                document.getElementById('cart-subtotal').innerText = formatCurrency(subtotal);
+                
+                const discContainer = document.getElementById('discounts-container');
+                discContainer.innerHTML = discounts.map(d => `
+                    <div class="flex justify-between text-green-700 font-bold bg-green-50 px-2 py-1 rounded-md border border-green-100">
+                        <span>${d.ruleName}</span><span>-${formatCurrency(d.amountSaved)}</span>
+                    </div>
+                `).join('');
+
+                document.getElementById('cart-total').innerText = formatCurrency(total);
+                
+                const btnTotal = document.getElementById('btn-total');
+                if(btnTotal) btnTotal.innerText = formatCurrency(total);
+                
+                lucide.createIcons();
+            },
+
+            // --- USER FORM ---
+            updateUser: (field, val) => {
+                STATE.userData[field] = val;
+                // REMOVIDO: Gravação no localStorage
+            },
+
+            renderForm: () => {
+                const u = STATE.userData;
+                const set = (id, val) => { const el = document.getElementById(id); if(el) el.value = val || ''; };
+                
+                set('input-name', u.name);
+                set('input-phone', u.phone);
+                set('input-street', u.street);
+                set('input-number', u.number);
+                set('input-complement', u.complement);
+                set('input-neighborhood', u.neighborhood);
+                set('input-city', u.city);
+                set('input-state', u.state);
+                set('obs-input', u.observations);
+
+                // Render Payment Buttons
+                const methods = [
+                    { id: 'CREDIT', label: 'Cartão Crédito', icon: 'credit-card' },
+                    { id: 'DEBIT', label: 'Cartão Débito', icon: 'credit-card' },
+                    { id: 'CASH', label: 'Dinheiro', icon: 'banknote' },
+                    { id: 'PIX', label: 'PIX', icon: 'smartphone' }
+                ];
+
+                const payContainer = document.getElementById('payment-options');
+                payContainer.innerHTML = methods.map(m => `
+                    <button onclick="app.setPayment('${m.id}')" 
+                        class="p-3 rounded-xl border text-sm font-bold transition flex items-center justify-center gap-2 ${STATE.paymentMethod === m.id ? 'bg-green-600 text-white border-green-600 shadow-md transform scale-105' : 'bg-white text-gray-600 border-gray-300 hover:border-green-400'}">
+                        <i data-lucide="${m.icon}" class="w-4 h-4"></i> ${m.label}
+                    </button>
+                `).join('');
+                lucide.createIcons();
+            },
+
+            setPayment: (method) => {
+                STATE.paymentMethod = method;
+                app.renderForm();
+            },
+
+            // --- ADDRESS ---
+            searchTimeout: null,
+            handleStreetChange: (val) => {
+                app.updateUser('street', val);
+                if (app.searchTimeout) clearTimeout(app.searchTimeout);
+                
+                const list = document.getElementById('address-suggestions');
+                const loader = document.getElementById('address-loader');
+                
+                if (val.length < 3) {
+                    list.classList.add('hidden');
+                    return;
+                }
+
+                loader.classList.remove('hidden');
+                
+                app.searchTimeout = setTimeout(async () => {
+                    try {
+                        const res = await fetch(`https://viacep.com.br/ws/MG/Esmeraldas/${encodeURIComponent(val)}/json/`);
+                        const data = await res.json();
+                        loader.classList.add('hidden');
+                        
+                        if (Array.isArray(data) && data.length > 0) {
+                            list.innerHTML = `<ul>${data.map((addr, i) => `
+                                <li onclick='app.selectAddress(${JSON.stringify(addr)})' class="p-3 hover:bg-green-50 cursor-pointer border-b border-gray-100 flex flex-col">
+                                    <span class="font-bold text-gray-800">${addr.logradouro}</span>
+                                    <span class="text-xs text-gray-500">${addr.bairro}</span>
+                                </li>
+                            `).join('')}</ul>`;
+                            list.classList.remove('hidden');
+                        } else {
+                            list.classList.add('hidden');
+                        }
+                    } catch (e) { loader.classList.add('hidden'); }
+                }, 500);
+            },
+
+            selectAddress: (addr) => {
+                const u = STATE.userData;
+                u.street = addr.logradouro;
+                u.neighborhood = addr.bairro;
+                u.city = addr.localidade;
+                u.state = addr.uf;
+                u.zipcode = addr.cep;
+                
+                app.updateUser('street', u.street); // Trigger save
+                app.renderForm();
+                
+                document.getElementById('address-suggestions').classList.add('hidden');
+                document.getElementById('input-number').focus();
+            },
+
+            // --- CHECKOUT ---
+            checkout: async () => {
+                if (!STATE.storeOpen) return alert("Loja Fechada");
+                const u = STATE.userData;
+                if (!u.name || !u.phone || !u.street || !u.number || !u.neighborhood) return alert("Preencha o endereço completo.");
+                if (STATE.cart.length === 0) return alert("Carrinho vazio.");
+
+                const btn = document.getElementById('checkout-btn');
+                const originalHtml = btn.innerHTML;
+                btn.disabled = true;
+                btn.innerHTML = `<div class="loader !w-5 !h-5 !border-white"></div> ENVIANDO...`;
+
+                // Calculate Finals
+                const sub = STATE.cart.reduce((a, i) => a + i.price, 0);
+                const discounts = calculateDiscounts(STATE.cart, STATE.discountRules);
+                const totalDisc = discounts.reduce((a, d) => a + d.amountSaved, 0);
+                const total = Math.max(0, sub - totalDisc + CONFIG.DELIVERY_FEE);
+
+                // Prepare WhatsApp Message
+                const itemsList = STATE.cart.map(i => `• ${i.name} (${formatCurrency(i.price)})`).join('\n');
+                const discText = discounts.length > 0 ? `\n\n*Descontos:*\n${discounts.map(d => `• ${d.ruleName}: -${formatCurrency(d.amountSaved)}`).join('\n')}` : '';
+                const obsText = u.observations.trim() ? `\n\n*Observações:*\n_${u.observations}_` : '';
+                const payLabel = { 'CREDIT': 'Cartão de Crédito', 'DEBIT': 'Cartão de Débito', 'CASH': 'Dinheiro', 'PIX': 'PIX' }[STATE.paymentMethod];
+
+                const msg = `
+*NOVO PEDIDO: #${STATE.orderId}*
+
+*Cliente:* ${u.name}
+*Telefone:* ${u.phone}
+
+*Endereço:*
+${u.street}, ${u.number}
+${u.complement ? `Comp: ${u.complement}\n` : ''}Bairro: ${u.neighborhood}
+${u.city}/${u.state}
+
+*Itens:*
+${itemsList}${obsText}
+
+*Resumo:*
+Subtotal: ${formatCurrency(sub)}
+Desconto: -${formatCurrency(totalDisc)}${discText}
+Taxa: ${formatCurrency(CONFIG.DELIVERY_FEE)}
+*TOTAL: ${formatCurrency(total)}*
+
+*Pagamento:* ${payLabel}`.trim();
+
+                // Send to Sheets
+                const payload = {
+                    orderId: STATE.orderId,
+                    customer: { name: u.name, phone: u.phone, address: `${u.street}, ${u.number} - ${u.neighborhood} ${u.complement}` },
+                    paymentMethod: payLabel,
+                    items: STATE.cart.map(i => ({ id: i.id, name: i.name, price: i.price, cost: i.cost || 0 })),
+                    financials: { discount: totalDisc, delivery: CONFIG.DELIVERY_FEE, total: total }
+                };
+
+                try {
+                    await fetch(CONFIG.API_URL, {
+                        method: 'POST',
+                        mode: 'no-cors',
+                        headers: { 'Content-Type': 'text/plain;charset=utf-8' },
+                        body: JSON.stringify(payload)
+                    });
+                    await new Promise(r => setTimeout(r, 500)); // Safety delay
+                } catch (e) { console.error("Sheets error", e); }
+
+                // Open WhatsApp
+                window.open(`https://wa.me/${CONFIG.WHATSAPP}?text=${encodeURIComponent(msg)}`, '_blank');
+                
+                btn.disabled = false;
+                btn.innerHTML = originalHtml;
+                STATE.cart = []; // Clear Cart on success? Usually yes, or user closes. Let's keep it to allow re-send if popup blocked, but maybe clear items.
+            }
+        };
+
+        // Initialize App
+        document.addEventListener('DOMContentLoaded', app.init);
+    </script>
+</body>
+</html>
