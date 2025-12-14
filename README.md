@@ -1,2 +1,0 @@
-# Pizzaria.Fratelli
-Delivery App
